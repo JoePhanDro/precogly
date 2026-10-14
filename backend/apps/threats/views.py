@@ -779,10 +779,17 @@ class InstanceCountermeasureViewSet(viewsets.ModelViewSet):
                 {"error": "threat_id is required"}, status=status.HTTP_400_BAD_REQUEST
             )
 
+        # The threat must belong to the same threat model as the countermeasure.
+        # Looking it up by id alone would let a countermeasure in one organization
+        # link to, and recalculate the status of, a threat in another.
+        threat_model_id = countermeasure.threat_model_id
         link_kwargs = {"countermeasure": countermeasure}
         if threat_type in ("flow", "dataflow"):
             try:
-                threat = DataFlowInstanceThreat.objects.get(id=threat_id)
+                threat = DataFlowInstanceThreat.objects.get(
+                    id=threat_id,
+                    data_flow__source_component__orgsystem__threat_model_associations__threat_model_id=threat_model_id,
+                )
             except DataFlowInstanceThreat.DoesNotExist:
                 return Response(
                     {"error": "Threat not found"}, status=status.HTTP_404_NOT_FOUND
@@ -790,7 +797,10 @@ class InstanceCountermeasureViewSet(viewsets.ModelViewSet):
             link_kwargs["flow_threat"] = threat
         else:
             try:
-                threat = ComponentInstanceThreat.objects.get(id=threat_id)
+                threat = ComponentInstanceThreat.objects.get(
+                    id=threat_id,
+                    component__orgsystem__threat_model_associations__threat_model_id=threat_model_id,
+                )
             except ComponentInstanceThreat.DoesNotExist:
                 return Response(
                     {"error": "Threat not found"}, status=status.HTTP_404_NOT_FOUND
