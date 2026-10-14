@@ -42,7 +42,7 @@ canvas_data:
       style: { width: 220, height: 180 }
       data:
         label: "Edge Zone"
-        zoneType: "dmz"
+        zoneType: "zoneDmz"
         technology: "Azure Front Door"
 
     # Trust boundary - AKS Cluster (inside sb-azure)
@@ -53,7 +53,7 @@ canvas_data:
       style: { width: 450, height: 400 }
       data:
         label: "AKS Cluster"
-        zoneType: "privateSecured"
+        zoneType: "zoneInternal"
         technology: "Azure Kubernetes Service"
 
     # Trust boundary - Data Zone (inside sb-azure)
@@ -64,7 +64,7 @@ canvas_data:
       style: { width: 260, height: 420 }
       data:
         label: "Data Zone"
-        zoneType: "privateSecured"
+        zoneType: "zoneRestricted"
         technology: "Azure Private Link"
 
     # Edge services (inside tb-edge)

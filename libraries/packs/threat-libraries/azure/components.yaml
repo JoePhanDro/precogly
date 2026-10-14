@@ -2,7 +2,6 @@
 components:
   # DATABASES
   - slug: sql-database
-    icon: icons/sql-database.svg
     name: "Azure SQL Database"
     category: datastore
     component_type: database
@@ -10,7 +9,6 @@ components:
     description: "Managed SQL Server database service"
 
   - slug: cosmosdb
-    icon: icons/cosmosdb.svg
     name: "Azure Cosmos DB"
     category: datastore
     component_type: database
@@ -18,7 +16,6 @@ components:
     description: "Globally distributed multi-model database"
 
   - slug: postgresql
-    icon: icons/postgresql.svg
     name: "Azure Database for PostgreSQL"
     category: datastore
     component_type: database
@@ -26,7 +23,6 @@ components:
     description: "Managed PostgreSQL database service"
 
   - slug: mysql
-    icon: icons/mysql.svg
     name: "Azure Database for MySQL"
     category: datastore
     component_type: database
@@ -34,7 +30,6 @@ components:
     description: "Managed MySQL database service"
 
   - slug: synapse
-    icon: icons/synapse.svg
     name: "Azure Synapse Analytics"
     category: datastore
     component_type: database
@@ -43,7 +38,6 @@ components:
 
   # STORAGE
   - slug: blob-storage
-    icon: icons/blob-storage.svg
     name: "Azure Blob Storage"
     category: datastore
     component_type: storage
@@ -51,7 +45,6 @@ components:
     description: "Object storage for unstructured data"
 
   - slug: files
-    icon: icons/files.svg
     name: "Azure Files"
     category: datastore
     component_type: storage
@@ -59,7 +52,6 @@ components:
     description: "Managed file shares (SMB/NFS)"
 
   - slug: data-lake
-    icon: icons/data-lake.svg
     name: "Azure Data Lake Storage"
     category: datastore
     component_type: storage
@@ -67,7 +59,6 @@ components:
     description: "Big data analytics storage"
 
   - slug: queue-storage
-    icon: icons/queue-storage.svg
     name: "Azure Queue Storage"
     category: datastore
     component_type: storage
@@ -76,7 +67,6 @@ components:
 
   # CACHE
   - slug: cache-redis
-    icon: icons/cache-redis.svg
     name: "Azure Cache for Redis"
     category: datastore
     component_type: cache
@@ -85,7 +75,6 @@ components:
 
   # COMPUTE
   - slug: functions
-    icon: icons/functions.svg
     name: "Azure Functions"
     category: process
     component_type: compute
@@ -93,7 +82,6 @@ components:
     description: "Serverless function execution"
 
   - slug: aks
-    icon: icons/aks.svg
     name: "Azure AKS"
     category: process
     component_type: compute
@@ -101,7 +89,6 @@ components:
     description: "Azure Kubernetes Service - managed Kubernetes"
 
   - slug: app-service
-    icon: icons/app-service.svg
     name: "Azure App Service"
     category: process
     component_type: compute
@@ -109,7 +96,6 @@ components:
     description: "PaaS for web apps and APIs"
 
   - slug: container-apps
-    icon: icons/container-apps.svg
     name: "Azure Container Apps"
     category: process
     component_type: compute
@@ -117,7 +103,6 @@ components:
     description: "Serverless container platform"
 
   - slug: container-instances
-    icon: icons/container-instances.svg
     name: "Azure Container Instances"
     category: process
     component_type: compute
@@ -125,7 +110,6 @@ components:
     description: "Run containers without managing servers"
 
   - slug: virtual-machines
-    icon: icons/virtual-machines.svg
     name: "Azure Virtual Machines"
     category: process
     component_type: compute
@@ -133,7 +117,6 @@ components:
     description: "IaaS virtual servers"
 
   - slug: batch
-    icon: icons/batch.svg
     name: "Azure Batch"
     category: process
     component_type: compute
@@ -142,7 +125,6 @@ components:
 
   # MESSAGING
   - slug: service-bus
-    icon: icons/service-bus.svg
     name: "Azure Service Bus"
     category: process
     component_type: messaging
@@ -150,7 +132,6 @@ components:
     description: "Enterprise message broker"
 
   - slug: event-hubs
-    icon: icons/event-hubs.svg
     name: "Azure Event Hubs"
     category: process
     component_type: messaging
@@ -158,7 +139,6 @@ components:
     description: "Big data streaming platform"
 
   - slug: event-grid
-    icon: icons/event-grid.svg
     name: "Azure Event Grid"
     category: process
     component_type: messaging
@@ -167,7 +147,6 @@ components:
 
   # NETWORKING
   - slug: vnet
-    icon: icons/vnet.svg
     name: "Azure Virtual Network"
     category: process
     component_type: networking
@@ -175,7 +154,6 @@ components:
     description: "Isolated virtual network"
 
   - slug: subnet
-    icon: icons/subnet.svg
     name: "Azure Subnet"
     category: process
     component_type: networking
@@ -183,7 +161,6 @@ components:
     description: "Network subnet within VNet"
 
   - slug: private-endpoint
-    icon: icons/private-endpoint.svg
     name: "Azure Private Endpoint"
     category: process
     component_type: networking
@@ -191,7 +168,6 @@ components:
     description: "Private connectivity to Azure services"
 
   - slug: virtual-wan
-    icon: icons/virtual-wan.svg
     name: "Azure Virtual WAN"
     category: process
     component_type: networking
@@ -199,7 +175,6 @@ components:
     description: "Network transit hub"
 
   - slug: application-gateway
-    icon: icons/application-gateway.svg
     name: "Azure Application Gateway"
     category: process
     component_type: networking
@@ -207,7 +182,6 @@ components:
     description: "Layer 7 load balancer with WAF"
 
   - slug: front-door
-    icon: icons/front-door.svg
     name: "Azure Front Door"
     category: process
     component_type: networking
@@ -215,7 +189,6 @@ components:
     description: "Global load balancer and CDN"
 
   - slug: load-balancer
-    icon: icons/load-balancer.svg
     name: "Azure Load Balancer"
     category: process
     component_type: networking
@@ -223,7 +196,6 @@ components:
     description: "Layer 4 load balancer"
 
   - slug: traffic-manager
-    icon: icons/traffic-manager.svg
     name: "Azure Traffic Manager"
     category: process
     component_type: networking
@@ -231,7 +203,6 @@ components:
     description: "DNS-based traffic routing"
 
   - slug: dns
-    icon: icons/dns.svg
     name: "Azure DNS"
     category: process
     component_type: networking
@@ -240,7 +211,6 @@ components:
 
   # SECURITY
   - slug: waf
-    icon: icons/waf.svg
     name: "Azure WAF"
     category: process
     component_type: security
@@ -248,7 +218,6 @@ components:
     description: "Web Application Firewall"
 
   - slug: ddos-protection
-    icon: icons/ddos-protection.svg
     name: "Azure DDoS Protection"
     category: process
     component_type: security
@@ -256,7 +225,6 @@ components:
     description: "DDoS attack mitigation"
 
   - slug: firewall
-    icon: icons/firewall.svg
     name: "Azure Firewall"
     category: process
     component_type: security
@@ -264,7 +232,6 @@ components:
     description: "Cloud-native network firewall"
 
   - slug: defender
-    icon: icons/defender.svg
     name: "Microsoft Defender for Cloud"
     category: process
     component_type: security
@@ -272,7 +239,6 @@ components:
     description: "Cloud security posture management"
 
   - slug: sentinel
-    icon: icons/sentinel.svg
     name: "Microsoft Sentinel"
     category: process
     component_type: security
@@ -280,7 +246,6 @@ components:
     description: "Cloud-native SIEM and SOAR"
 
   - slug: key-vault
-    icon: icons/key-vault.svg
     name: "Azure Key Vault"
     category: process
     component_type: security
@@ -288,7 +253,6 @@ components:
     description: "Secrets, keys, and certificate management"
 
   - slug: dedicated-hsm
-    icon: icons/dedicated-hsm.svg
     name: "Azure Dedicated HSM"
     category: process
     component_type: security
@@ -296,7 +260,6 @@ components:
     description: "Hardware Security Module"
 
   - slug: bastion
-    icon: icons/bastion.svg
     name: "Azure Bastion"
     category: process
     component_type: security
@@ -304,7 +267,6 @@ components:
     description: "Secure RDP/SSH access to VMs"
 
   - slug: vpn-gateway
-    icon: icons/vpn-gateway.svg
     name: "Azure VPN Gateway"
     category: process
     component_type: security
@@ -312,8 +274,7 @@ components:
     description: "Site-to-site and point-to-site VPN"
 
   # AUTH / IDENTITY
-  - slug: active-directory
-    icon: icons/active-directory.svg
+  - slug: entra-id
     name: "Microsoft Entra ID"
     category: process
     component_type: auth
@@ -321,7 +282,6 @@ components:
     description: "Cloud identity and access management (formerly Azure AD)"
 
   - slug: ad-b2c
-    icon: icons/ad-b2c.svg
     name: "Azure AD B2C"
     category: process
     component_type: auth
@@ -329,7 +289,6 @@ components:
     description: "Customer identity management"
 
   - slug: managed-identity
-    icon: icons/managed-identity.svg
     name: "Azure Managed Identity"
     category: process
     component_type: auth
@@ -338,7 +297,6 @@ components:
 
   # MONITORING
   - slug: monitor
-    icon: icons/monitor.svg
     name: "Azure Monitor"
     category: process
     component_type: monitoring
@@ -346,7 +304,6 @@ components:
     description: "Full-stack monitoring service"
 
   - slug: app-insights
-    icon: icons/app-insights.svg
     name: "Azure Application Insights"
     category: process
     component_type: monitoring
@@ -354,7 +311,6 @@ components:
     description: "Application performance monitoring"
 
   - slug: log-analytics
-    icon: icons/log-analytics.svg
     name: "Azure Log Analytics"
     category: process
     component_type: monitoring
@@ -363,9 +319,276 @@ components:
 
   # API MANAGEMENT
   - slug: api-management
-    icon: icons/api-management.svg
     name: "Azure API Management"
     category: process
     component_type: networking
     provider: azure
     description: "API gateway and developer portal"
+
+  # FILE STORAGE (NetApp)
+  - slug: netapp-files
+    name: "Azure NetApp Files"
+    category: datastore
+    component_type: storage
+    provider: azure
+    description: "Enterprise NFS and SMB file storage with export policies, dual-protocol volumes, snapshots, and backup vaults"
+
+  # VIRTUAL DESKTOP AND STORAGE ACCOUNTS
+  - slug: azure-virtual-desktop-host-pool
+    name: "Azure Virtual Desktop Host Pool"
+    category: process
+    component_type: virtual-desktop
+    provider: azure
+    description: "Gruppe von Session Hosts mit Registrierung, Managed Identity, Domain-Join-Konfiguration und Diagnoseeinstellungen"
+
+  - slug: azure-virtual-desktop-session-host
+    name: "Azure Virtual Desktop Session Host"
+    category: process
+    component_type: virtual-machine
+    provider: azure
+    description: "Azure-VM mit AVD-Agent, auf der Benutzersitzungen laufen; Anmeldung über Active Directory oder Microsoft Entra ID"
+
+  - slug: azure-virtual-desktop-workspace
+    name: "Azure Virtual Desktop Workspace"
+    category: process
+    component_type: virtual-desktop
+    provider: azure
+    description: "Veröffentlicht Application Groups als Feed für Benutzer; Anmeldung über Conditional Access"
+
+  - slug: azure-virtual-desktop-application-group
+    name: "Azure Virtual Desktop Application Group"
+    category: process
+    component_type: virtual-desktop
+    provider: azure
+    description: "Desktop- oder RemoteApp-Gruppe mit Benutzerzuordnung über Azure RBAC"
+
+  - slug: azure-virtual-desktop-scaling-plan
+    name: "Azure Virtual Desktop Scaling Plan"
+    category: process
+    component_type: virtual-desktop
+    provider: azure
+    description: "Autoscale-Plan, der Session Hosts über Dienstprinzipal oder Managed Identity startet, stoppt und löscht"
+
+  - slug: azure-virtual-desktop-fslogix-profiles
+    name: "Azure Virtual Desktop FSLogix Profile Containers"
+    category: datastore
+    component_type: file-share
+    provider: azure
+    description: "Profilcontainer auf Azure Files, die beim Anmelden auf Session Hosts eingebunden werden"
+
+  - slug: storage-account
+    name: "Azure Storage Account"
+    category: datastore
+    component_type: storage
+    provider: azure
+    description: "Allgemeines Speicherkonto mit Blob-, File-, Queue- und Table-Diensten"
+
+  - slug: backup-vault
+    name: "Azure Backup"
+    category: datastore
+    component_type: backup
+    provider: azure
+    description: "Azure Backup (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: site-recovery
+    name: "Azure Site Recovery"
+    category: process
+    component_type: disaster-recovery
+    provider: azure
+    description: "Azure Site Recovery (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: container-registry
+    name: "Azure Container Registry"
+    category: datastore
+    component_type: registry
+    provider: azure
+    description: "Azure Container Registry (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: data-factory
+    name: "Azure Data Factory"
+    category: process
+    component_type: data-integration
+    provider: azure
+    description: "Azure Data Factory (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: databricks
+    name: "Azure Databricks"
+    category: process
+    component_type: analytics
+    provider: azure
+    description: "Azure Databricks (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: machine-learning
+    name: "Azure Machine Learning"
+    category: process
+    component_type: ai-ml
+    provider: azure
+    description: "Azure Machine Learning (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: ai-services
+    name: "Azure AI Services"
+    category: process
+    component_type: ai-ml
+    provider: azure
+    description: "Azure AI Services (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: ai-search
+    name: "Azure AI Search"
+    category: datastore
+    component_type: search
+    provider: azure
+    description: "Azure AI Search (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: logic-apps
+    name: "Azure Logic Apps"
+    category: process
+    component_type: integration
+    provider: azure
+    description: "Azure Logic Apps (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: automation
+    name: "Azure Automation"
+    category: process
+    component_type: automation
+    provider: azure
+    description: "Azure Automation (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: network-watcher
+    name: "Azure Network Watcher"
+    category: process
+    component_type: networking
+    provider: azure
+    description: "Azure Network Watcher (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: firewall-manager
+    name: "Azure Firewall Manager"
+    category: process
+    component_type: networking
+    provider: azure
+    description: "Azure Firewall Manager (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: managed-hsm
+    name: "Azure Key Vault Managed HSM"
+    category: datastore
+    component_type: key-management
+    provider: azure
+    description: "Azure Key Vault Managed HSM (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: elastic-san
+    name: "Azure Elastic SAN"
+    category: datastore
+    component_type: storage
+    provider: azure
+    description: "Azure Elastic SAN (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: file-sync
+    name: "Azure File Sync"
+    category: process
+    component_type: file-services
+    provider: azure
+    description: "Azure File Sync (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: storage-mover
+    name: "Azure Storage Mover"
+    category: process
+    component_type: data-migration
+    provider: azure
+    description: "Azure Storage Mover (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: expressroute
+    name: "Azure ExpressRoute"
+    category: process
+    component_type: networking
+    provider: azure
+    description: "Azure ExpressRoute (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: domain-services
+    name: "Microsoft Entra Domain Services"
+    category: process
+    component_type: identity
+    provider: azure
+    description: "Microsoft Entra Domain Services (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: service-fabric
+    name: "Azure Service Fabric"
+    category: process
+    component_type: compute
+    provider: azure
+    description: "Azure Service Fabric (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: sql-managed-instance
+    name: "Azure SQL Managed Instance"
+    category: datastore
+    component_type: database
+    provider: azure
+    description: "Azure SQL Managed Instance (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: data-explorer
+    name: "Azure Data Explorer"
+    category: datastore
+    component_type: database
+    provider: azure
+    description: "Azure Data Explorer (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: stream-analytics
+    name: "Azure Stream Analytics"
+    category: process
+    component_type: analytics
+    provider: azure
+    description: "Azure Stream Analytics (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: vm-scale-sets
+    name: "Azure Virtual Machine Scale Sets"
+    category: process
+    component_type: compute
+    provider: azure
+    description: "Azure Virtual Machine Scale Sets (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: nat-gateway
+    name: "Azure NAT Gateway"
+    category: process
+    component_type: networking
+    provider: azure
+    description: "Azure NAT Gateway (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: app-configuration
+    name: "Azure App Configuration"
+    category: datastore
+    component_type: configuration
+    provider: azure
+    description: "Azure App Configuration (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: managed-grafana
+    name: "Azure Managed Grafana"
+    category: process
+    component_type: monitoring
+    provider: azure
+    description: "Azure Managed Grafana (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: hdinsight
+    name: "Azure HDInsight"
+    category: process
+    component_type: analytics
+    provider: azure
+    description: "Azure HDInsight (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: iot-hub
+    name: "Azure IoT Hub"
+    category: process
+    component_type: iot
+    provider: azure
+    description: "Azure IoT Hub (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: arc-servers
+    name: "Azure Arc-enabled Servers"
+    category: process
+    component_type: hybrid-management
+    provider: azure
+    description: "Azure Arc-enabled Servers (Azure-Dienst aus dem Azure-Produktkatalog)"
+
+  - slug: api-center
+    name: "Azure API Center"
+    category: datastore
+    component_type: api-catalog
+    provider: azure
+    description: "Azure API Center (Azure-Dienst aus dem Azure-Produktkatalog)"

@@ -50,7 +50,7 @@ canvas_data:
       style: { width: 220, height: 300 }
       data:
         label: "Gateway Zone"
-        zoneType: "dmz"
+        zoneType: "zoneDmz"
         technology: "Azure API Management"
 
     # Trust boundary - Functions (inside sb-azure)
@@ -61,7 +61,7 @@ canvas_data:
       style: { width: 400, height: 300 }
       data:
         label: "Compute Zone"
-        zoneType: "privateSecured"
+        zoneType: "zoneInternal"
         technology: "Azure Functions Premium"
 
     # Trust boundary - Data (inside sb-azure)
@@ -72,7 +72,7 @@ canvas_data:
       style: { width: 260, height: 420 }
       data:
         label: "Data Zone"
-        zoneType: "privateSecured"
+        zoneType: "zoneRestricted"
         technology: "Azure Private Endpoints"
 
     # Gateway components (inside tb-gateway)

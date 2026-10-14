@@ -67,7 +67,7 @@ canvas_data:
       style: { width: 220, height: 400 }
       data:
         label: "Ingestion Zone"
-        zoneType: "dmz"
+        zoneType: "zoneDmz"
         technology: "Event Hub Namespace"
 
     # Trust boundary - Processing (inside sb-azure)
@@ -78,7 +78,7 @@ canvas_data:
       style: { width: 280, height: 480 }
       data:
         label: "Processing Zone"
-        zoneType: "privateSecured"
+        zoneType: "zoneInternal"
         technology: "Azure VNet Integration"
 
     # Trust boundary - Storage (inside sb-azure)
@@ -89,7 +89,7 @@ canvas_data:
       style: { width: 250, height: 480 }
       data:
         label: "Storage Zone"
-        zoneType: "privateSecured"
+        zoneType: "zoneRestricted"
         technology: "Private Endpoints"
 
     # Ingestion components (inside tb-ingestion)

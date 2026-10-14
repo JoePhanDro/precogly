@@ -1,0 +1,1111 @@
+threats:
+- id: azure-files-shared-key-exposure
+  name: Azure Files Storage Account Key or SAS Exposure
+  description: 'Storage account access keys or long-lived SAS tokens leak through source code, logs, tickets, or shared scripts. Holders gain full data-plane access to all shares and bypass share-level RBAC and NTFS ACLs. Quelle: MCSB v2 IM-8 (Restrict the exposure of credentials and secrets); MITRE ATT&CK T1552.001.'
+- id: azure-files-rbac-acl-misconfiguration
+  name: Azure Files RBAC and NTFS ACL Misalignment
+  description: 'Share-level RBAC roles such as Storage File Data SMB Share Elevated Contributor are granted to broad groups or combined with permissive NTFS ACLs. Users receive write or ACL-change rights they should not have. Quelle: MCSB v2 IM-7 (Restrict resource access based on conditions), PA-7 (Follow just enough administration (least privilege) principle); MITRE ATT&CK T1078.004.'
+- id: azure-files-public-exposure
+  name: Azure Files Public Network Exposure
+  description: 'The storage account is reachable from the public internet through public network access or a default-allow firewall. Stolen credentials can be used from anywhere, and bulk data can be exfiltrated without network controls. Quelle: MCSB v2 NS-2 (Secure cloud native services with network controls), NS-9 (Connect on-premises or cloud network privately); MITRE ATT&CK T1530.'
+- id: azure-files-unencrypted-transfer
+  name: Azure Files Unencrypted SMB Transfer
+  description: 'Clients connect with SMB 2.x or without encryption, so file contents and credential exchanges can be read or captured by anyone on the network path. Quelle: MCSB v2 DP-3 (Encrypt sensitive data in transit); MITRE ATT&CK T1040.'
+- id: azure-files-data-destruction
+  name: Azure Files Data Destruction
+  description: 'Attackers with delete rights remove shares or files without a recovery point, or disable soft delete. Ransomware that encrypts share contents then has no restore path. Quelle: MCSB v2 BR-2 (Protect backup and recovery data), BR-1 (Ensure regular automated backups); MITRE ATT&CK T1485.'
+- id: azure-files-undetected-access
+  name: Azure Files Unlogged Access
+  description: 'Share access and administrative operations are not logged or not forwarded, so misuse of shared data cannot be attributed or investigated. Quelle: MCSB v2 LT-3 (Enable logging for security investigation), DP-2 (Monitor anomalies and threats targeting sensitive data); MITRE ATT&CK T1070.'
+- id: anf-nfs-export-exposure
+  name: Azure NetApp Files NFS Export Over-Exposure
+  description: 'The export policy allows broad CIDR ranges or any host and relies on AUTH_SYS, which trusts client-supplied UIDs. Any host that can reach the subnet can mount the volume and impersonate any user. Quelle: MCSB v2 NS-2 (Secure cloud native services with network controls), IM-7 (Restrict resource access based on conditions); MITRE ATT&CK T1021.'
+- id: anf-dual-protocol-permission-mismatch
+  name: Azure NetApp Files Dual-Protocol Permission Mismatch
+  description: 'Dual-protocol volumes with mixed security styles let NTFS ACLs and UNIX mode bits conflict. Users may gain write access through the less restrictive protocol, creating silent privilege escalation. Quelle: MCSB v2 IM-7 (Restrict resource access based on conditions), PA-7 (Follow just enough administration (least privilege) principle); MITRE ATT&CK T1078.004.'
+- id: anf-snapshot-deletion
+  name: Azure NetApp Files Snapshot and Backup Destruction
+  description: 'Ransomware or an operator with Contributor rights deletes volumes, snapshots, or backup vault copies, removing recovery points. Snapshot policies alone do not protect against principals who hold delete rights. Quelle: MCSB v2 BR-2 (Protect backup and recovery data), BR-1 (Ensure regular automated backups); MITRE ATT&CK T1490.'
+- id: anf-unmanaged-encryption-keys
+  name: Azure NetApp Files Platform-Only Key Control
+  description: 'Volumes use platform-managed keys only, so the organization cannot revoke access to data at rest or demonstrate key custody for regulated workloads. Quelle: MCSB v2 DP-4 (Enable data at rest encryption by default), DP-5 (Use customer-managed key option in data at rest encryption when required); MITRE ATT&CK T1530.'
+- id: anf-network-activity-unlogged
+  name: Azure NetApp Files Unlogged Network Activity
+  description: 'Mounts and NFS traffic to the delegated subnet are not logged, so unauthorized mounts and data access leave no trace. Quelle: MCSB v2 LT-4 (Enable network logging for security investigation); MITRE ATT&CK T1070.'
+- id: entra-token-theft
+  name: Entra ID Session Cookie and Refresh Token Theft
+  description: 'Adversary-in-the-middle phishing kits or infostealer malware capture session cookies and refresh tokens. Attackers replay them to bypass MFA and impersonate users, including administrators. Quelle: MCSB v2 IM-6 (Use strong authentication controls), LT-2 (Enable threat detection for identity and access management); MITRE ATT&CK T1539, T1528.'
+- id: entra-password-spraying
+  name: Entra ID Password Spraying
+  description: 'Low-and-slow password attempts across many accounts evade per-account lockout. Weak or leaked passwords are then used to sign in. Quelle: MCSB v2 IM-6 (Use strong authentication controls); MITRE ATT&CK T1110.003.'
+- id: entra-conditional-access-bypass
+  name: Entra ID Conditional Access Bypass
+  description: 'Conditional Access is circumvented through legacy authentication protocols, the device code flow, excluded accounts, broad trusted named locations, or non-compliant clients. Quelle: MCSB v2 IM-7 (Restrict resource access based on conditions); MITRE ATT&CK T1078.004.'
+- id: entra-standing-admin-access
+  name: Entra ID Standing Privileged Access
+  description: 'Administrators hold permanent privileged role assignments. A single compromised session gives an attacker standing administrative control without any approval or time limit. Quelle: MCSB v2 PA-2 (Avoid standing access for user accounts and permissions), PA-6 (Use privileged access solution); MITRE ATT&CK T1078.004.'
+- id: entra-break-glass-misuse
+  name: Entra ID Emergency Access Account Misuse
+  description: 'Emergency access accounts are weakly protected or their use is not monitored, so an attacker who finds them has an unmonitored path to tenant-wide administrative rights. Quelle: MCSB v2 PA-5 (Set up emergency access); MITRE ATT&CK T1078.004.'
+- id: entra-service-principal-abuse
+  name: Entra ID Service Principal Credential Abuse
+  description: 'Service principals with long-lived client secrets or certificates, or with high-privilege Microsoft Graph application permissions, are compromised. Attackers add credentials to existing apps for persistent access. Quelle: MCSB v2 IM-3 (Manage application identities securely and automatically), IM-8 (Restrict the exposure of credentials and secrets); MITRE ATT&CK T1098.001, T1528.'
+- id: entra-consent-phishing
+  name: Entra ID OAuth Consent Phishing
+  description: 'Users are tricked into granting a malicious multi-tenant application access to mail or files. The app keeps access without a password or MFA challenge. Quelle: MCSB v2 IM-5 (Use single sign-on (SSO) for application access); MITRE ATT&CK T1528.'
+- id: entra-provider-access-abuse
+  name: Entra ID Cloud Provider Support Access Abuse
+  description: 'Provider support staff or an unrestricted support process gains access to customer tenants or data without customer approval. Quelle: MCSB v2 PA-8 (Determine access process for cloud provider support); MITRE ATT&CK T1078.004.'
+- id: appservice-managed-identity-ssrf-abuse
+  name: App Service Managed Identity Token Theft via SSRF
+  description: 'A server-side request forgery flaw in the web app queries the Azure Instance Metadata Service and returns managed identity tokens. The tokens then reach Key Vault, storage, or databases with the application''s permissions. Quelle: MCSB v2 IM-3 (Manage application identities securely and automatically), NS-2 (Secure cloud native services with network controls); MITRE ATT&CK T1552.005.'
+- id: appservice-remote-code-execution
+  name: App Service Remote Code Execution
+  description: 'Injection flaws or vulnerable dependencies in the App Service workload allow code execution in the worker. From there, attackers reach managed identity tokens, app settings, and connected data stores. Quelle: MCSB v2 PV-6 (Rapidly and automatically remediate vulnerabilities); MITRE ATT&CK T1190.'
+- id: appservice-scm-exposure
+  name: App Service SCM and Publishing Credential Exposure
+  description: 'The SCM (Kudu) endpoint and basic-auth FTP or publishing credentials are reachable from the internet. Leaked publish profiles allow code deployment and disclosure of app settings. Quelle: MCSB v2 NS-2 (Secure cloud native services with network controls), IM-4 (Authenticate server and services); MITRE ATT&CK T1078.'
+- id: appservice-insecure-transport
+  name: App Service Insecure Transport
+  description: 'HTTP access or outdated TLS versions are allowed, so session tokens and credentials can be intercepted on the network path. Quelle: MCSB v2 DP-3 (Encrypt sensitive data in transit); MITRE ATT&CK T1040.'
+- id: appservice-secrets-in-settings
+  name: App Service Plaintext Secrets in Configuration
+  description: 'Secrets are stored as plaintext app settings or in deployment templates, where any reader of the app configuration can extract them. Quelle: MCSB v2 IM-8 (Restrict the exposure of credentials and secrets); MITRE ATT&CK T1552.001.'
+- id: appservice-unmonitored-requests
+  name: App Service Unlogged Requests
+  description: 'HTTP requests, application errors, and SCM access are not logged, so SSRF probing and exploitation attempts are not visible. Quelle: MCSB v2 LT-3 (Enable logging for security investigation); MITRE ATT&CK T1070.'
+- id: managed-identity-overprivileged
+  name: Over-Privileged Azure Managed Identity
+  description: 'A system-assigned or user-assigned managed identity holds broad roles such as Owner, Contributor, or subscription-wide access, and is shared across workloads. Compromise of any consumer yields control over everything the identity can reach. Quelle: MCSB v2 PA-7 (Follow just enough administration (least privilege) principle), IM-3 (Manage application identities securely and automatically); MITRE ATT&CK T1078.004.'
+- id: managed-identity-role-changes-unmonitored
+  name: Unmonitored Managed Identity Role Changes
+  description: 'Role assignments to managed identities are granted or widened without review or alerting, so privilege growth stays invisible. Quelle: MCSB v2 PA-4 (Review and reconcile user access regularly), LT-1 (Enable threat detection capabilities); MITRE ATT&CK T1098.'
+- id: vm-management-port-exposure
+  name: Azure VM RDP and SSH Exposure
+  description: 'TCP 3389 or 22 is open to the internet on virtual machines. Attackers brute-force or spray credentials and, after a successful logon, escalate on the host. Quelle: MCSB v2 NS-8 (Detect and disable insecure services and protocols), NS-1 (Establish network segmentation boundaries); MITRE ATT&CK T1021, T1110.001.'
+- id: vm-unpatched-os-exploitation
+  name: Azure VM Unpatched Operating System Exploitation
+  description: 'Missing security updates leave the guest OS exposed to known local and remote privilege escalation exploits. Attackers use these after initial access to gain SYSTEM or root. Quelle: MCSB v2 PV-6 (Rapidly and automatically remediate vulnerabilities), PV-5 (Perform vulnerability assessments); MITRE ATT&CK T1068.'
+- id: vm-configuration-drift
+  name: Azure VM Insecure Configuration Drift
+  description: 'VMs drift away from the hardened baseline (services, firewall, audit policy), creating weaknesses that are never reported or corrected. Quelle: MCSB v2 PV-3 (Define and establish secure configurations for compute resources), PV-4 (Audit and enforce secure configurations for compute resources); MITRE ATT&CK T1059.'
+- id: vm-no-endpoint-protection
+  name: Azure VM Without EDR or Antimalware
+  description: 'VMs without EDR or antimalware protection, or with tamper protection disabled, let malware and living-off-the-land activity run without detection. Quelle: MCSB v2 ES-1 (Use Endpoint Detection and Response (EDR)), ES-2 (Use modern anti-malware software); MITRE ATT&CK T1059.'
+- id: vm-disk-snapshot-exfiltration
+  name: Azure VM Disk and Snapshot Exfiltration
+  description: 'Managed disks or snapshots are publicly accessible or exportable through an unrestricted SAS. Attackers generate a download link and copy the disk contents to an external storage account. Quelle: MCSB v2 DP-4 (Enable data at rest encryption by default), DP-5 (Use customer-managed key option in data at rest encryption when required); MITRE ATT&CK T1537.'
+- id: vm-extension-code-execution
+  name: Azure VM Extension Code Execution
+  description: 'A malicious or unauthorized VM extension, such as a Custom Script Extension pointing to an attacker-controlled URL, runs code as SYSTEM or root on the VM and persists across reboots. Quelle: MCSB v2 PV-4 (Audit and enforce secure configurations for compute resources), AM-5 (Use only approved applications in virtual machine); MITRE ATT&CK T1059.'
+- id: vm-backup-destruction
+  name: Azure VM Backup Destruction
+  description: 'Attackers delete recovery points or disable backup protection for VMs before encrypting or destroying them, so the VM cannot be restored. Quelle: MCSB v2 BR-1 (Ensure regular automated backups), BR-2 (Protect backup and recovery data); MITRE ATT&CK T1490.'
+- id: sql-database-public-exposure
+  name: 'Azure SQL Database: public exposure'
+  description: 'Azure SQL Database ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access on Azure SQL Database should be disabled; MITRE ATT&CK T1530.'
+- id: sql-database-transport
+  name: 'Azure SQL Database: transport'
+  description: 'Die Verbindung zu Azure SQL Database kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3, IM-4; Azure Policy: Azure SQL Database should be running TLS version 1.2 or newer; Enforce SSL connection should be enabled for MySQL database servers; Enforce SSL connection should be enabled for PostgreSQL database servers; MITRE ATT&CK T1040.'
+- id: sql-database-authentication
+  name: 'Azure SQL Database: authentication'
+  description: 'Der Zugriff auf Azure SQL Database stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure SQL Database should have Microsoft Entra-only authentication enabled; Azure SQL Database should have Microsoft Entra-only authentication enabled during creation; MITRE ATT&CK T1078.004.'
+- id: sql-database-backup
+  name: 'Azure SQL Database: backup'
+  description: 'Daten oder Konfiguration von Azure SQL Database lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 BR-1; Azure Policy: Long-term geo-redundant backup should be enabled for Azure SQL Databases; MITRE ATT&CK T1485.'
+- id: sql-database-vulnerable-config
+  name: 'Azure SQL Database: vulnerable config'
+  description: 'Azure SQL Database läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 DP-2, IR-3, IR-5, LT-1, LT-2, PV-6; Azure Policy: Azure Defender for Azure SQL Database servers should be enabled; SQL databases should have vulnerability findings resolved; MITRE ATT&CK T1190.'
+- id: cosmosdb-public-exposure
+  name: 'Azure Cosmos DB: public exposure'
+  description: 'Azure Cosmos DB ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Cosmos DB should disable public network access; MITRE ATT&CK T1530.'
+- id: cosmosdb-encryption
+  name: 'Azure Cosmos DB: encryption'
+  description: 'Daten in Azure Cosmos DB sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure Cosmos DB accounts should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: cosmosdb-authentication
+  name: 'Azure Cosmos DB: authentication'
+  description: 'Der Zugriff auf Azure Cosmos DB stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Cosmos DB database accounts should have local authentication methods disabled; MITRE ATT&CK T1078.004.'
+- id: cosmosdb-vulnerable-config
+  name: 'Azure Cosmos DB: vulnerable config'
+  description: 'Azure Cosmos DB läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 LT-1; Azure Policy: Microsoft Defender for Azure Cosmos DB should be enabled; MITRE ATT&CK T1190.'
+- id: cosmosdb-network-access
+  name: 'Azure Cosmos DB: network access'
+  description: 'Der Netzwerkzugang zu Azure Cosmos DB ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Cosmos DB accounts should have firewall rules; Cosmos DB should use a virtual network service endpoint; CosmosDB accounts should use private link; MITRE ATT&CK T1021.'
+- id: postgresql-public-exposure
+  name: 'Azure Database for PostgreSQL: public exposure'
+  description: 'Azure Database for PostgreSQL ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access should be disabled for PostgreSQL flexible servers; Public network access should be disabled for PostgreSQL servers; MITRE ATT&CK T1530.'
+- id: postgresql-encryption
+  name: 'Azure Database for PostgreSQL: encryption'
+  description: 'Daten in Azure Database for PostgreSQL sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Infrastructure encryption should be enabled for Azure Database for PostgreSQL servers; PostgreSQL flexible servers should use customer-managed keys to encrypt data at rest; PostgreSQL servers should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: postgresql-transport
+  name: 'Azure Database for PostgreSQL: transport'
+  description: 'Die Verbindung zu Azure Database for PostgreSQL kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Enforce SSL connection should be enabled for PostgreSQL database servers; PostgreSQL flexible servers should be running TLS version 1.2 or newer; MITRE ATT&CK T1040.'
+- id: postgresql-authentication
+  name: 'Azure Database for PostgreSQL: authentication'
+  description: 'Der Zugriff auf Azure Database for PostgreSQL stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: A Microsoft Entra administrator should be provisioned for PostgreSQL servers; MITRE ATT&CK T1078.004.'
+- id: postgresql-backup
+  name: 'Azure Database for PostgreSQL: backup'
+  description: 'Daten oder Konfiguration von Azure Database for PostgreSQL lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 BR-1, BR-2; Azure Policy: Geo-redundant backup should be enabled for Azure Database for PostgreSQL; MITRE ATT&CK T1485.'
+- id: postgresql-vulnerable-config
+  name: 'Azure Database for PostgreSQL: vulnerable config'
+  description: 'Azure Database for PostgreSQL läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 IR-3, IR-5, LT-1, LT-2; Azure Policy: Azure Defender for SQL should be enabled for unprotected PostgreSQL flexible servers; MITRE ATT&CK T1190.'
+- id: postgresql-network-access
+  name: 'Azure Database for PostgreSQL: network access'
+  description: 'Der Netzwerkzugang zu Azure Database for PostgreSQL ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: PostgreSQL server should use a virtual network service endpoint; MITRE ATT&CK T1021.'
+- id: mysql-public-exposure
+  name: 'Azure Database for MySQL: public exposure'
+  description: 'Azure Database for MySQL ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access should be disabled for MySQL flexible servers; Public network access should be disabled for MySQL servers; MITRE ATT&CK T1530.'
+- id: mysql-encryption
+  name: 'Azure Database for MySQL: encryption'
+  description: 'Daten in Azure Database for MySQL sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Infrastructure encryption should be enabled for Azure Database for MySQL servers; MySQL servers should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: mysql-transport
+  name: 'Azure Database for MySQL: transport'
+  description: 'Die Verbindung zu Azure Database for MySQL kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Enforce SSL connection should be enabled for MySQL database servers; MITRE ATT&CK T1040.'
+- id: mysql-authentication
+  name: 'Azure Database for MySQL: authentication'
+  description: 'Der Zugriff auf Azure Database for MySQL stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 DP-4; Azure Policy: A Microsoft Entra administrator should be provisioned for MySQL servers; Azure MySQL flexible server should have Microsoft Entra Only Authentication enabled; MITRE ATT&CK T1078.004.'
+- id: mysql-backup
+  name: 'Azure Database for MySQL: backup'
+  description: 'Daten oder Konfiguration von Azure Database for MySQL lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 BR-1, BR-2; Azure Policy: Geo-redundant backup should be enabled for Azure Database for MySQL; MITRE ATT&CK T1485.'
+- id: mysql-vulnerable-config
+  name: 'Azure Database for MySQL: vulnerable config'
+  description: 'Azure Database for MySQL läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 IR-3, IR-5, LT-1, LT-2; Azure Policy: Azure Defender for SQL should be enabled for unprotected MySQL flexible servers; MITRE ATT&CK T1190.'
+- id: mysql-network-access
+  name: 'Azure Database for MySQL: network access'
+  description: 'Der Netzwerkzugang zu Azure Database for MySQL ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: MySQL server should use a virtual network service endpoint; MITRE ATT&CK T1021.'
+- id: synapse-public-exposure
+  name: 'Azure Synapse Analytics: public exposure'
+  description: 'Azure Synapse Analytics ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Synapse workspaces should disable public network access; MITRE ATT&CK T1530.'
+- id: synapse-encryption
+  name: 'Azure Synapse Analytics: encryption'
+  description: 'Daten in Azure Synapse Analytics sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Azure Synapse Analytics dedicated SQL pools should enable encryption; Azure Synapse workspaces should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: synapse-transport
+  name: 'Azure Synapse Analytics: transport'
+  description: 'Die Verbindung zu Azure Synapse Analytics kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Azure Synapse Workspace SQL Server should be running TLS version 1.2 or newer; MITRE ATT&CK T1040.'
+- id: synapse-authentication
+  name: 'Azure Synapse Analytics: authentication'
+  description: 'Der Zugriff auf Azure Synapse Analytics stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Synapse Workspaces should have Microsoft Entra-only authentication enabled; Synapse Workspaces should use only Microsoft Entra identities for authentication during workspace creation; MITRE ATT&CK T1078.004.'
+- id: synapse-vulnerable-config
+  name: 'Azure Synapse Analytics: vulnerable config'
+  description: 'Azure Synapse Analytics läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 IR-3, IR-5, LT-1, LT-2; Azure Policy: Microsoft Defender for SQL should be enabled for unprotected Synapse workspaces; MITRE ATT&CK T1190.'
+- id: synapse-network-access
+  name: 'Azure Synapse Analytics: network access'
+  description: 'Der Netzwerkzugang zu Azure Synapse Analytics ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Synapse workspaces should use private link; IP firewall rules on Azure Synapse workspaces should be removed; Managed workspace virtual network on Azure Synapse workspaces should be enabled u.a.; MITRE ATT&CK T1021.'
+- id: blob-storage-public-exposure
+  name: 'Azure Blob Storage: public exposure'
+  description: 'Azure Blob Storage ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Storage account public access should be disallowed; Storage accounts should disable public network access; MITRE ATT&CK T1530.'
+- id: blob-storage-encryption
+  name: 'Azure Blob Storage: encryption'
+  description: 'Daten in Azure Blob Storage sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Storage account containing the container with activity logs must be encrypted with BYOK; Storage account encryption scopes should use customer-managed keys to encrypt data at rest; Storage account encryption scopes should use double encryption for data at rest u.a.; MITRE ATT&CK T1530.'
+- id: blob-storage-transport
+  name: 'Azure Blob Storage: transport'
+  description: 'Die Verbindung zu Azure Blob Storage kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Storage accounts should have the specified minimum TLS version; MITRE ATT&CK T1040.'
+- id: blob-storage-authentication
+  name: 'Azure Blob Storage: authentication'
+  description: 'Der Zugriff auf Azure Blob Storage stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Storage accounts should prevent shared key access; Storage accounts should prevent shared key access (excluding storage accounts created by Databricks); MITRE ATT&CK T1078.004.'
+- id: blob-storage-backup
+  name: 'Azure Blob Storage: backup'
+  description: 'Daten oder Konfiguration von Azure Blob Storage lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 PV-2; Azure Policy: Storage accounts should prevent cross tenant object replication; MITRE ATT&CK T1485.'
+- id: blob-storage-network-access
+  name: 'Azure Blob Storage: network access'
+  description: 'Der Netzwerkzugang zu Azure Blob Storage ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Storage accounts should restrict network access; Storage accounts should restrict network access using virtual network rules; Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks) u.a.; MITRE ATT&CK T1021.'
+- id: data-lake-logging
+  name: 'Azure Data Lake Storage: logging'
+  description: 'Aktivitäten auf Azure Data Lake Storage werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Data Lake Store should be enabled; Resource logs in Data Lake Analytics should be enabled; MITRE ATT&CK T1070.'
+- id: queue-storage-encryption
+  name: 'Azure Queue Storage: encryption'
+  description: 'Daten in Azure Queue Storage sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Queue Storage should use customer-managed key for encryption; MITRE ATT&CK T1530.'
+- id: cache-redis-public-exposure
+  name: 'Azure Cache for Redis: public exposure'
+  description: 'Azure Cache for Redis ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Cache for Redis should disable public network access; MITRE ATT&CK T1530.'
+- id: cache-redis-encryption
+  name: 'Azure Cache for Redis: encryption'
+  description: 'Daten in Azure Cache for Redis sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure Cache for Redis Enterprise should use customer-managed keys for encrypting disk data; MITRE ATT&CK T1530.'
+- id: cache-redis-network-access
+  name: 'Azure Cache for Redis: network access'
+  description: 'Der Netzwerkzugang zu Azure Cache for Redis ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Cache for Redis Enterprise should use private link; Azure Cache for Redis should use private link; MITRE ATT&CK T1021.'
+- id: functions-public-exposure
+  name: 'Azure Functions: public exposure'
+  description: 'Azure Functions ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Function app slots should disable public network access; Function apps should disable public network access; MITRE ATT&CK T1530.'
+- id: functions-encryption
+  name: 'Azure Functions: encryption'
+  description: 'Daten in Azure Functions sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-3; Azure Policy: Function app slots should enable end to end encryption; Function apps should enable end to end encryption; MITRE ATT&CK T1530.'
+- id: functions-transport
+  name: 'Azure Functions: transport'
+  description: 'Die Verbindung zu Azure Functions kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3, NS-8; Azure Policy: Function app slots should only be accessible over HTTPS; Function app slots should use the latest TLS version; Function apps should only be accessible over HTTPS u.a.; MITRE ATT&CK T1040.'
+- id: functions-authentication
+  name: 'Azure Functions: authentication'
+  description: 'Der Zugriff auf Azure Functions stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1, IM-3; Azure Policy: Function apps should have authentication enabled; Function apps should use managed identity; MITRE ATT&CK T1078.004.'
+- id: functions-vulnerable-config
+  name: 'Azure Functions: vulnerable config'
+  description: 'Azure Functions läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 PV-2; Azure Policy: Function app slots should not have CORS configured to allow every resource to access your apps; Function app slots that use Java should use a specified ''Java version''; Function apps should not have CORS configured to allow every resource to access your apps u.a.; MITRE ATT&CK T1190.'
+- id: aks-encryption
+  name: 'Azure AKS: encryption'
+  description: 'Daten in Azure AKS sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Both operating systems and data disks in Azure Kubernetes Service clusters should be encrypted by customer-managed keys; Temp disks and cache for agent node pools in Azure Kubernetes Service clusters should be encrypted at host; MITRE ATT&CK T1530.'
+- id: aks-transport
+  name: 'Azure AKS: transport'
+  description: 'Die Verbindung zu Azure AKS kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Kubernetes clusters should be accessible only over HTTPS; MITRE ATT&CK T1040.'
+- id: aks-authentication
+  name: 'Azure AKS: authentication'
+  description: 'Der Zugriff auf Azure AKS stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1, IM-3, PV-2; Azure Policy: Azure Kubernetes Service Clusters should enable Microsoft Entra ID integration; Azure Kubernetes Service Clusters should have local authentication methods disabled; Azure Kubernetes Service Clusters should use managed identities u.a.; MITRE ATT&CK T1078.004.'
+- id: aks-authorization
+  name: 'Azure AKS: authorization'
+  description: 'Identitäten erhalten auf Azure AKS mehr Rechte als nötig, etwa breite RBAC-Rollen. Ein kompromittiertes Konto kann dadurch Konfiguration und Daten ändern. Quelle: MCSB v2 PA-7, PV-2; Azure Policy: Kubernetes cluster should not allow privileged containers; Kubernetes clusters should ensure that the cluster-admin role is only used where required; Kubernetes clusters should minimize wildcard use in role and cluster role u.a.; MITRE ATT&CK T1078.004.'
+- id: aks-logging
+  name: 'Azure AKS: logging'
+  description: 'Aktivitäten auf Azure AKS werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Kubernetes Service should be enabled; MITRE ATT&CK T1070.'
+- id: aks-vulnerable-config
+  name: 'Azure AKS: vulnerable config'
+  description: 'Azure AKS läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 LT-1, LT-2, PV-6; Azure Policy: Azure Kubernetes Service clusters should have Defender profile enabled; Kubernetes Services should be upgraded to a non-vulnerable Kubernetes version; MITRE ATT&CK T1190.'
+- id: aks-network-access
+  name: 'Azure AKS: network access'
+  description: 'Der Netzwerkzugang zu Azure AKS ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 PV-2; Azure Policy: Kubernetes cluster pods should only use approved host network and port list; MITRE ATT&CK T1021.'
+- id: container-apps-public-exposure
+  name: 'Azure Container Apps: public exposure'
+  description: 'Azure Container Apps ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Container Apps environment should disable public network access; MITRE ATT&CK T1530.'
+- id: container-apps-transport
+  name: 'Azure Container Apps: transport'
+  description: 'Die Verbindung zu Azure Container Apps kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Container Apps should only be accessible over HTTPS; MITRE ATT&CK T1040.'
+- id: container-apps-network-access
+  name: 'Azure Container Apps: network access'
+  description: 'Der Netzwerkzugang zu Azure Container Apps ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Container App environments should use network injection; Container Apps should disable external network access; MITRE ATT&CK T1021.'
+- id: container-instances-encryption
+  name: 'Azure Container Instances: encryption'
+  description: 'Daten in Azure Container Instances sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure Container Instance container group should use customer-managed key for encryption; MITRE ATT&CK T1530.'
+- id: container-instances-network-access
+  name: 'Azure Container Instances: network access'
+  description: 'Der Netzwerkzugang zu Azure Container Instances ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Container Instance container group should deploy into a virtual network; MITRE ATT&CK T1021.'
+- id: batch-public-exposure
+  name: 'Azure Batch: public exposure'
+  description: 'Azure Batch ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access should be disabled for Batch accounts; MITRE ATT&CK T1530.'
+- id: batch-encryption
+  name: 'Azure Batch: encryption'
+  description: 'Daten in Azure Batch sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-3, DP-5; Azure Policy: Azure Batch account should use customer-managed keys to encrypt data; Azure Batch pools should have disk encryption enabled; MITRE ATT&CK T1530.'
+- id: batch-logging
+  name: 'Azure Batch: logging'
+  description: 'Aktivitäten auf Azure Batch werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Batch accounts should be enabled; MITRE ATT&CK T1070.'
+- id: service-bus-public-exposure
+  name: 'Azure Service Bus: public exposure'
+  description: 'Azure Service Bus ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Service Bus Namespaces should disable public network access; MITRE ATT&CK T1530.'
+- id: service-bus-encryption
+  name: 'Azure Service Bus: encryption'
+  description: 'Daten in Azure Service Bus sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Service Bus Premium namespaces should use a customer-managed key for encryption; Service Bus namespaces should have double encryption enabled; MITRE ATT&CK T1530.'
+- id: service-bus-authentication
+  name: 'Azure Service Bus: authentication'
+  description: 'Der Zugriff auf Azure Service Bus stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure Service Bus namespaces should have local authentication methods disabled; MITRE ATT&CK T1078.004.'
+- id: service-bus-logging
+  name: 'Azure Service Bus: logging'
+  description: 'Aktivitäten auf Azure Service Bus werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Service Bus should be enabled; MITRE ATT&CK T1070.'
+- id: service-bus-network-access
+  name: 'Azure Service Bus: network access'
+  description: 'Der Netzwerkzugang zu Azure Service Bus ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Service Bus namespaces should use private link; MITRE ATT&CK T1021.'
+- id: event-hubs-public-exposure
+  name: 'Azure Event Hubs: public exposure'
+  description: 'Azure Event Hubs ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Event Hub Namespaces should disable public network access; MITRE ATT&CK T1530.'
+- id: event-hubs-encryption
+  name: 'Azure Event Hubs: encryption'
+  description: 'Daten in Azure Event Hubs sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Event Hub namespaces should have double encryption enabled; Event Hub namespaces should use a customer-managed key for encryption; MITRE ATT&CK T1530.'
+- id: event-hubs-authentication
+  name: 'Azure Event Hubs: authentication'
+  description: 'Der Zugriff auf Azure Event Hubs stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure Event Hub namespaces should have local authentication methods disabled; MITRE ATT&CK T1078.004.'
+- id: event-hubs-logging
+  name: 'Azure Event Hubs: logging'
+  description: 'Aktivitäten auf Azure Event Hubs werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3, LT-4; Azure Policy: Enable logging by category group for Application gateways (microsoft.network/applicationgateways) to Event Hub; Enable logging by category group for Bastions (microsoft.network/bastionhosts) to Event Hub; Enable logging by category group for Endpoints (microsoft.cdn/profiles/endpoints) to Event Hub u.a.; MITRE ATT&CK T1070.'
+- id: event-hubs-network-access
+  name: 'Azure Event Hubs: network access'
+  description: 'Der Netzwerkzugang zu Azure Event Hubs ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Event Hub namespaces should use private link; Event Hub should use a virtual network service endpoint; MITRE ATT&CK T1021.'
+- id: event-grid-public-exposure
+  name: 'Azure Event Grid: public exposure'
+  description: 'Azure Event Grid ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Event Grid domains should disable public network access; Azure Event Grid namespaces should disable public network access; Azure Event Grid topics should disable public network access; MITRE ATT&CK T1530.'
+- id: event-grid-authentication
+  name: 'Azure Event Grid: authentication'
+  description: 'Der Zugriff auf Azure Event Grid stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure Event Grid domains should have local authentication methods disabled; Azure Event Grid partner namespaces should have local authentication methods disabled; Azure Event Grid topics should have local authentication methods disabled; MITRE ATT&CK T1078.004.'
+- id: event-grid-network-access
+  name: 'Azure Event Grid: network access'
+  description: 'Der Netzwerkzugang zu Azure Event Grid ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Event Grid domains should use private link; Azure Event Grid namespace MQTT broker should use private link; Azure Event Grid namespace topic broker should use private link u.a.; MITRE ATT&CK T1021.'
+- id: vnet-logging
+  name: 'Azure Virtual Network: logging'
+  description: 'Aktivitäten auf Azure Virtual Network werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Audit flow logs configuration for every virtual network; Enable logging by category group for Virtual network gateways (microsoft.network/virtualnetworkgateways) to Event Hub; Enable logging by category group for Virtual network gateways (microsoft.network/virtualnetworkgateways) to Log Analytics u.a.; MITRE ATT&CK T1070.'
+- id: vnet-network-access
+  name: 'Azure Virtual Network: network access'
+  description: 'Der Netzwerkzugang zu Azure Virtual Network ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 DP-3, NS-1, NS-2, NS-5; Azure Policy: A custom IPsec/IKE policy must be applied to all Azure virtual network gateway connections; API Management services should use a virtual network; App Service app slots should be injected into a virtual network u.a.; MITRE ATT&CK T1021.'
+- id: private-endpoint-public-exposure
+  name: 'Azure Private Endpoint: public exposure'
+  description: 'Azure Private Endpoint ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Arc Private Link Scopes should disable public network access; MITRE ATT&CK T1530.'
+- id: private-endpoint-encryption
+  name: 'Azure Private Endpoint: encryption'
+  description: 'Daten in Azure Private Endpoint sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5, NS-2; Azure Policy: Azure Databricks workspaces should be Premium SKU that supports features like private link, customer-managed key for encryption; MITRE ATT&CK T1530.'
+- id: private-endpoint-logging
+  name: 'Azure Private Endpoint: logging'
+  description: 'Aktivitäten auf Azure Private Endpoint werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Monitor Private Link Scope should block access to non private link resources; Azure Monitor Private Link Scope should use private link; MITRE ATT&CK T1070.'
+- id: private-endpoint-vulnerable-config
+  name: 'Azure Private Endpoint: vulnerable config'
+  description: 'Azure Private Endpoint läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 NS-2; Azure Policy: Azure Arc Private Link Scopes should be configured with a private endpoint; Azure Arc-enabled kubernetes clusters should be configured with an Azure Arc Private Link Scope; Azure Arc-enabled servers should be configured with an Azure Arc Private Link Scope; MITRE ATT&CK T1190.'
+- id: private-endpoint-network-access
+  name: 'Azure Private Endpoint: network access'
+  description: 'Der Netzwerkzugang zu Azure Private Endpoint ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 DP-8, NS-2; Azure Policy: App Configuration should use a SKU that supports private link; App Configuration should use private link; App Service apps should use a SKU that supports private link u.a.; MITRE ATT&CK T1021.'
+- id: application-gateway-logging
+  name: 'Azure Application Gateway: logging'
+  description: 'Aktivitäten auf Azure Application Gateway werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Azure Application Gateway should have Resource logs enabled; MITRE ATT&CK T1070.'
+- id: front-door-transport
+  name: 'Azure Front Door: transport'
+  description: 'Die Verbindung zu Azure Front Door kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: Azure Front Door Standard and Premium should be running minimum TLS version of 1.2; MITRE ATT&CK T1040.'
+- id: front-door-logging
+  name: 'Azure Front Door: logging'
+  description: 'Aktivitäten auf Azure Front Door werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3, LT-4, NS-6; Azure Policy: Azure Front Door Standard or Premium (Plus WAF) should have resource logs enabled; Azure Front Door should have Resource logs enabled; Enable logging by category group for Front Door and CDN profiles (microsoft.cdn/profiles) to Event Hub u.a.; MITRE ATT&CK T1070.'
+- id: front-door-network-access
+  name: 'Azure Front Door: network access'
+  description: 'Der Netzwerkzugang zu Azure Front Door ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Front Door profiles should use Premium tier that supports managed WAF rules and private link; MITRE ATT&CK T1021.'
+- id: traffic-manager-logging
+  name: 'Azure Traffic Manager: logging'
+  description: 'Aktivitäten auf Azure Traffic Manager werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Enable logging by category group for Traffic Manager profiles (microsoft.network/trafficmanagerprofiles) to Event Hub; Enable logging by category group for Traffic Manager profiles (microsoft.network/trafficmanagerprofiles) to Log Analytics; Enable logging by category group for Traffic Manager profiles (microsoft.network/trafficmanagerprofiles) to Storage; MITRE ATT&CK T1070.'
+- id: waf-logging
+  name: 'Azure WAF: logging'
+  description: 'Aktivitäten auf Azure WAF werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 NS-6; Azure Policy: Azure Front Door Standard or Premium (Plus WAF) should have resource logs enabled; MITRE ATT&CK T1070.'
+- id: waf-network-access
+  name: 'Azure WAF: network access'
+  description: 'Der Netzwerkzugang zu Azure WAF ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Front Door profiles should use Premium tier that supports managed WAF rules and private link; MITRE ATT&CK T1021.'
+- id: ddos-protection-logging
+  name: 'Azure DDoS Protection: logging'
+  description: 'Aktivitäten auf Azure DDoS Protection werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Public IP addresses should have resource logs enabled for Azure DDoS Protection; MITRE ATT&CK T1070.'
+- id: ddos-protection-network-access
+  name: 'Azure DDoS Protection: network access'
+  description: 'Der Netzwerkzugang zu Azure DDoS Protection ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-5; Azure Policy: Virtual networks should be protected by Azure DDoS Protection; MITRE ATT&CK T1021.'
+- id: firewall-logging
+  name: 'Azure Firewall: logging'
+  description: 'Aktivitäten auf Azure Firewall werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Enable logging by category group for Firewall (microsoft.network/azurefirewalls) to Log Analytics; Enable logging by category group for Firewalls (microsoft.network/azurefirewalls) to Event Hub; Enable logging by category group for Firewalls (microsoft.network/azurefirewalls) to Log Analytics u.a.; MITRE ATT&CK T1070.'
+- id: defender-vulnerable-config
+  name: 'Microsoft Defender for Cloud: vulnerable config'
+  description: 'Microsoft Defender for Cloud läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 DP-1, DP-2, DP-8, DS-6, ES-1, ES-2, IR-3, IR-5, LT-1, LT-2, PV-4, PV-6; Azure Policy: Azure Defender for App Service should be enabled; Azure Defender for Azure SQL Database servers should be enabled; Azure Defender for Key Vault should be enabled u.a.; MITRE ATT&CK T1190.'
+- id: dedicated-hsm-logging
+  name: 'Azure Dedicated HSM: logging'
+  description: 'Aktivitäten auf Azure Dedicated HSM werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Key Vault Managed HSM should be enabled; MITRE ATT&CK T1070.'
+- id: dedicated-hsm-backup
+  name: 'Azure Dedicated HSM: backup'
+  description: 'Daten oder Konfiguration von Azure Dedicated HSM lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 DP-6; Azure Policy: Azure Key Vault Managed HSM should have purge protection enabled; MITRE ATT&CK T1485.'
+- id: bastion-logging
+  name: 'Azure Bastion: logging'
+  description: 'Aktivitäten auf Azure Bastion werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Enable logging by category group for Bastions (microsoft.network/bastionhosts) to Event Hub; Enable logging by category group for Bastions (microsoft.network/bastionhosts) to Log Analytics; Enable logging by category group for Bastions (microsoft.network/bastionhosts) to Storage; MITRE ATT&CK T1070.'
+- id: vpn-gateway-authentication
+  name: 'Azure VPN Gateway: authentication'
+  description: 'Der Zugriff auf Azure VPN Gateway stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: VPN gateways should use only Azure Active Directory (Azure AD) authentication for point-to-site users; MITRE ATT&CK T1078.004.'
+- id: vpn-gateway-logging
+  name: 'Azure VPN Gateway: logging'
+  description: 'Aktivitäten auf Azure VPN Gateway werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Enable logging by category group for Application gateways (microsoft.network/applicationgateways) to Event Hub; Enable logging by category group for Application gateways (microsoft.network/applicationgateways) to Log Analytics; Enable logging by category group for Application gateways (microsoft.network/applicationgateways) to Storage u.a.; MITRE ATT&CK T1070.'
+- id: vpn-gateway-network-access
+  name: 'Azure VPN Gateway: network access'
+  description: 'Der Netzwerkzugang zu Azure VPN Gateway ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 DP-3, NS-1; Azure Policy: A custom IPsec/IKE policy must be applied to all Azure virtual network gateway connections; Virtual networks should use specified virtual network gateway; MITRE ATT&CK T1021.'
+- id: managed-identity-authentication
+  name: 'Azure Managed Identity: authentication'
+  description: 'Der Zugriff auf Azure Managed Identity stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-3, PV-4; Azure Policy: App Service app slots should use managed identity; App Service apps should use managed identity; Azure Data Factory linked services should use system-assigned managed identity authentication when it is supported u.a.; MITRE ATT&CK T1078.004.'
+- id: monitor-encryption
+  name: 'Azure Monitor: encryption'
+  description: 'Daten in Azure Monitor sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5, LT-5; Azure Policy: Azure Monitor Logs clusters should be created with infrastructure-encryption enabled (double encryption); Azure Monitor Logs clusters should be encrypted with customer-managed key; Saved-queries in Azure Monitor should be saved in customer storage account for logs encryption; MITRE ATT&CK T1530.'
+- id: monitor-logging
+  name: 'Azure Monitor: logging'
+  description: 'Aktivitäten auf Azure Monitor werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3, LT-5, NS-2; Azure Policy: Azure Monitor Logs for Application Insights should be linked to a Log Analytics workspace; Azure Monitor Private Link Scope should block access to non private link resources; Azure Monitor Private Link Scope should use private link u.a.; MITRE ATT&CK T1070.'
+- id: app-insights-logging
+  name: 'Azure Application Insights: logging'
+  description: 'Aktivitäten auf Azure Application Insights werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3, NS-2; Azure Policy: Application Insights components should block log ingestion and querying from public networks; Azure Monitor Logs for Application Insights should be linked to a Log Analytics workspace; MITRE ATT&CK T1070.'
+- id: log-analytics-authorization
+  name: 'Azure Log Analytics: authorization'
+  description: 'Identitäten erhalten auf Azure Log Analytics mehr Rechte als nötig, etwa breite RBAC-Rollen. Ein kompromittiertes Konto kann dadurch Konfiguration und Daten ändern. Quelle: MCSB v2 LT-5; Azure Policy: Log Analytics agent should be installed on your Cloud Services (extended support) role instances; MITRE ATT&CK T1078.004.'
+- id: log-analytics-logging
+  name: 'Azure Log Analytics: logging'
+  description: 'Aktivitäten auf Azure Log Analytics werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3, LT-4, NS-2; Azure Policy: Azure Monitor Logs for Application Insights should be linked to a Log Analytics workspace; Enable logging by category group for Application gateways (microsoft.network/applicationgateways) to Log Analytics; Enable logging by category group for Bastions (microsoft.network/bastionhosts) to Log Analytics u.a.; MITRE ATT&CK T1070.'
+- id: api-management-public-exposure
+  name: 'Azure API Management: public exposure'
+  description: 'Azure API Management ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: API Management should disable public network access to the service configuration endpoints; MITRE ATT&CK T1530.'
+- id: api-management-encryption
+  name: 'Azure API Management: encryption'
+  description: 'Daten in Azure API Management sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-3; Azure Policy: API Management APIs should use only encrypted protocols; MITRE ATT&CK T1530.'
+- id: api-management-vulnerable-config
+  name: 'Azure API Management: vulnerable config'
+  description: 'Azure API Management läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 AM-2, PV-2; Azure Policy: Azure API Management platform version should be stv2; MITRE ATT&CK T1190.'
+- id: api-management-network-access
+  name: 'Azure API Management: network access'
+  description: 'Der Netzwerkzugang zu Azure API Management ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: API Management services should use a virtual network; MITRE ATT&CK T1021.'
+- id: data-factory-public-exposure
+  name: 'Azure Data Factory: public exposure'
+  description: 'Azure Data Factory ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access on Azure Data Factory should be disabled; MITRE ATT&CK T1530.'
+- id: data-factory-authentication
+  name: 'Azure Data Factory: authentication'
+  description: 'Der Zugriff auf Azure Data Factory stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-3; Azure Policy: Azure Data Factory linked services should use system-assigned managed identity authentication when it is supported; MITRE ATT&CK T1078.004.'
+- id: data-factory-network-access
+  name: 'Azure Data Factory: network access'
+  description: 'Der Netzwerkzugang zu Azure Data Factory ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Data Factory should use private link; SQL Server Integration Services integration runtimes on Azure Data Factory should be joined to a virtual network; MITRE ATT&CK T1021.'
+- id: databricks-public-exposure
+  name: 'Azure Databricks: public exposure'
+  description: 'Azure Databricks ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Databricks Clusters should disable public IP; Azure Databricks Workspaces should disable public network access; MITRE ATT&CK T1530.'
+- id: databricks-encryption
+  name: 'Azure Databricks: encryption'
+  description: 'Daten in Azure Databricks sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5, NS-2; Azure Policy: Azure Databricks workspaces should be Premium SKU that supports features like private link, customer-managed key for encryption; MITRE ATT&CK T1530.'
+- id: databricks-authentication
+  name: 'Azure Databricks: authentication'
+  description: 'Der Zugriff auf Azure Databricks stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Storage accounts should prevent shared key access (excluding storage accounts created by Databricks); MITRE ATT&CK T1078.004.'
+- id: databricks-logging
+  name: 'Azure Databricks: logging'
+  description: 'Aktivitäten auf Azure Databricks werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Databricks Workspaces should be enabled; MITRE ATT&CK T1070.'
+- id: databricks-network-access
+  name: 'Azure Databricks: network access'
+  description: 'Der Netzwerkzugang zu Azure Databricks ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Databricks Workspaces should be in a virtual network; Azure Databricks Workspaces should use private link; Storage accounts should restrict network access using virtual network rules (excluding storage accounts created by Databricks) u.a.; MITRE ATT&CK T1021.'
+- id: machine-learning-public-exposure
+  name: 'Azure Machine Learning: public exposure'
+  description: 'Azure Machine Learning ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Machine Learning Workspaces should disable public network access; MITRE ATT&CK T1530.'
+- id: machine-learning-encryption
+  name: 'Azure Machine Learning: encryption'
+  description: 'Daten in Azure Machine Learning sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure Machine Learning workspaces should be encrypted with a customer-managed key; Azure Machine Learning workspaces should be encrypted with the use of a customer-managed key; MITRE ATT&CK T1530.'
+- id: machine-learning-authentication
+  name: 'Azure Machine Learning: authentication'
+  description: 'Der Zugriff auf Azure Machine Learning stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1, IM-3; Azure Policy: Azure Machine Learning Computes should have local authentication methods disabled; Azure Machine Learning workspaces should use user-assigned managed identity; MITRE ATT&CK T1078.004.'
+- id: machine-learning-logging
+  name: 'Azure Machine Learning: logging'
+  description: 'Aktivitäten auf Azure Machine Learning werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Machine Learning Workspaces should be enabled; MITRE ATT&CK T1070.'
+- id: machine-learning-vulnerable-config
+  name: 'Azure Machine Learning: vulnerable config'
+  description: 'Azure Machine Learning läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 PV-2; Azure Policy: Azure Machine Learning compute instances should be recreated to get the latest software updates; MITRE ATT&CK T1190.'
+- id: machine-learning-network-access
+  name: 'Azure Machine Learning: network access'
+  description: 'Der Netzwerkzugang zu Azure Machine Learning ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2, PV-2; Azure Policy: Azure Machine Learning Computes should be in a virtual network; Azure Machine Learning workspaces should enable V1LegacyMode to support network isolation backward compatibility; Azure Machine Learning workspaces should use private link; MITRE ATT&CK T1021.'
+- id: ai-services-authentication
+  name: 'Azure AI Services: authentication'
+  description: 'Der Zugriff auf Azure AI Services stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-3; Azure Policy: Cognitive Services accounts should use a managed identity; MITRE ATT&CK T1078.004.'
+- id: ai-services-logging
+  name: 'Azure AI Services: logging'
+  description: 'Aktivitäten auf Azure AI Services werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Diagnostic logs in Azure AI services resources should be enabled; MITRE ATT&CK T1070.'
+- id: ai-search-public-exposure
+  name: 'Azure AI Search: public exposure'
+  description: 'Azure AI Search ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure AI Search services should disable public network access; MITRE ATT&CK T1530.'
+- id: ai-search-encryption
+  name: 'Azure AI Search: encryption'
+  description: 'Daten in Azure AI Search sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure AI Search services should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: ai-search-authentication
+  name: 'Azure AI Search: authentication'
+  description: 'Der Zugriff auf Azure AI Search stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure AI Search services should have local authentication methods disabled; MITRE ATT&CK T1078.004.'
+- id: ai-search-logging
+  name: 'Azure AI Search: logging'
+  description: 'Aktivitäten auf Azure AI Search werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Search services should be enabled; MITRE ATT&CK T1070.'
+- id: ai-search-network-access
+  name: 'Azure AI Search: network access'
+  description: 'Der Netzwerkzugang zu Azure AI Search ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure AI Search service should use a SKU that supports private link; MITRE ATT&CK T1021.'
+- id: logic-apps-encryption
+  name: 'Azure Logic Apps: encryption'
+  description: 'Daten in Azure Logic Apps sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Logic Apps Integration Service Environment should be encrypted with customer-managed keys; MITRE ATT&CK T1530.'
+- id: logic-apps-logging
+  name: 'Azure Logic Apps: logging'
+  description: 'Aktivitäten auf Azure Logic Apps werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Logic Apps should be enabled; MITRE ATT&CK T1070.'
+- id: automation-public-exposure
+  name: 'Azure Automation: public exposure'
+  description: 'Azure Automation ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Automation accounts should disable public network access; MITRE ATT&CK T1530.'
+- id: automation-encryption
+  name: 'Azure Automation: encryption'
+  description: 'Daten in Azure Automation sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Automation account variables should be encrypted; Azure Automation accounts should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: automation-authentication
+  name: 'Azure Automation: authentication'
+  description: 'Der Zugriff auf Azure Automation stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure Automation account should have local authentication method disabled; MITRE ATT&CK T1078.004.'
+- id: network-watcher-logging
+  name: 'Azure Network Watcher: logging'
+  description: 'Aktivitäten auf Azure Network Watcher werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: All flow log resources should be in enabled state; Audit flow logs configuration for every virtual network; Network Watcher flow logs should have traffic analytics enabled; MITRE ATT&CK T1070.'
+- id: managed-hsm-logging
+  name: 'Azure Key Vault Managed HSM: logging'
+  description: 'Aktivitäten auf Azure Key Vault Managed HSM werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Key Vault Managed HSM should be enabled; MITRE ATT&CK T1070.'
+- id: managed-hsm-backup
+  name: 'Azure Key Vault Managed HSM: backup'
+  description: 'Daten oder Konfiguration von Azure Key Vault Managed HSM lassen sich ohne ausreichende Sicherung, Aufbewahrung oder Schutz vor Löschung verlieren oder zerstören. Quelle: MCSB v2 DP-6; Azure Policy: Azure Key Vault Managed HSM should have purge protection enabled; MITRE ATT&CK T1485.'
+- id: file-sync-public-exposure
+  name: 'Azure File Sync: public exposure'
+  description: 'Azure File Sync ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access should be disabled for Azure File Sync; MITRE ATT&CK T1530.'
+- id: file-sync-network-access
+  name: 'Azure File Sync: network access'
+  description: 'Der Netzwerkzugang zu Azure File Sync ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure File Sync should use private link; MITRE ATT&CK T1021.'
+- id: expressroute-logging
+  name: 'Azure ExpressRoute: logging'
+  description: 'Aktivitäten auf Azure ExpressRoute werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-4; Azure Policy: Enable logging by category group for ExpressRoute circuits (microsoft.network/expressroutecircuits) to Event Hub; Enable logging by category group for ExpressRoute circuits (microsoft.network/expressroutecircuits) to Log Analytics; Enable logging by category group for ExpressRoute circuits (microsoft.network/expressroutecircuits) to Storage; MITRE ATT&CK T1070.'
+- id: service-fabric-authentication
+  name: 'Azure Service Fabric: authentication'
+  description: 'Der Zugriff auf Azure Service Fabric stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Service Fabric clusters should only use Azure Active Directory for client authentication; MITRE ATT&CK T1078.004.'
+- id: sql-managed-instance-public-exposure
+  name: 'Azure SQL Managed Instance: public exposure'
+  description: 'Azure SQL Managed Instance ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure SQL Managed Instances should disable public network access; MITRE ATT&CK T1530.'
+- id: sql-managed-instance-encryption
+  name: 'Azure SQL Managed Instance: encryption'
+  description: 'Daten in Azure SQL Managed Instance sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Customer managed key encryption must be used as part of CMK Encryption for Arc SQL managed instances.; SQL managed instances should use customer-managed keys to encrypt data at rest; MITRE ATT&CK T1530.'
+- id: sql-managed-instance-transport
+  name: 'Azure SQL Managed Instance: transport'
+  description: 'Die Verbindung zu Azure SQL Managed Instance kann unverschlüsselt oder mit veralteter TLS-Version aufgebaut werden. Zugangsdaten und Daten können auf dem Netzpfad mitgelesen werden. Quelle: MCSB v2 DP-3; Azure Policy: SQL Managed Instance should have the minimal TLS version of 1.2; MITRE ATT&CK T1040.'
+- id: sql-managed-instance-authentication
+  name: 'Azure SQL Managed Instance: authentication'
+  description: 'Der Zugriff auf Azure SQL Managed Instance stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-1; Azure Policy: Azure SQL Managed Instance should have Microsoft Entra-only authentication enabled; Azure SQL Managed Instances should have Microsoft Entra-only authentication enabled during creation; MITRE ATT&CK T1078.004.'
+- id: sql-managed-instance-vulnerable-config
+  name: 'Azure SQL Managed Instance: vulnerable config'
+  description: 'Azure SQL Managed Instance läuft mit unsicherer Konfiguration oder veralteten Komponenten. Bekannte Schwachstellen können ausgenutzt werden. Quelle: MCSB v2 DP-2, IR-3, IR-5, LT-1, LT-2; Azure Policy: Azure Defender for SQL should be enabled for unprotected SQL Managed Instances; MITRE ATT&CK T1190.'
+- id: data-explorer-public-exposure
+  name: 'Azure Data Explorer: public exposure'
+  description: 'Azure Data Explorer ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Public network access on Azure Data Explorer should be disabled; MITRE ATT&CK T1530.'
+- id: data-explorer-encryption
+  name: 'Azure Data Explorer: encryption'
+  description: 'Daten in Azure Data Explorer sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4, DP-5; Azure Policy: Azure Data Explorer encryption at rest should use a customer-managed key; Disk encryption should be enabled on Azure Data Explorer; Double encryption should be enabled on Azure Data Explorer; MITRE ATT&CK T1530.'
+- id: data-explorer-network-access
+  name: 'Azure Data Explorer: network access'
+  description: 'Der Netzwerkzugang zu Azure Data Explorer ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Data Explorer cluster should use private link; Azure Data Explorer should use a SKU that supports private link; MITRE ATT&CK T1021.'
+- id: stream-analytics-encryption
+  name: 'Azure Stream Analytics: encryption'
+  description: 'Daten in Azure Stream Analytics sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: Azure Stream Analytics jobs should use customer-managed keys to encrypt data; MITRE ATT&CK T1530.'
+- id: stream-analytics-authentication
+  name: 'Azure Stream Analytics: authentication'
+  description: 'Der Zugriff auf Azure Stream Analytics stützt sich auf schwache Authentifizierung, etwa lokale Konten, Schlüssel oder Passwörter ohne Entra-ID-Bindung. Quelle: MCSB v2 IM-3; Azure Policy: Stream Analytics job should use managed identity to authenticate endpoints; MITRE ATT&CK T1078.004.'
+- id: stream-analytics-logging
+  name: 'Azure Stream Analytics: logging'
+  description: 'Aktivitäten auf Azure Stream Analytics werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in Azure Stream Analytics should be enabled; MITRE ATT&CK T1070.'
+- id: vm-scale-sets-encryption
+  name: 'Azure Virtual Machine Scale Sets: encryption'
+  description: 'Daten in Azure Virtual Machine Scale Sets sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-4; Azure Policy: Virtual machines and virtual machine scale sets should have encryption at host enabled; MITRE ATT&CK T1530.'
+- id: vm-scale-sets-logging
+  name: 'Azure Virtual Machine Scale Sets: logging'
+  description: 'Aktivitäten auf Azure Virtual Machine Scale Sets werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-5; Azure Policy: Linux virtual machine scale sets should have Azure Monitor Agent installed; Windows virtual machine scale sets should have Azure Monitor Agent installed; MITRE ATT&CK T1070.'
+- id: app-configuration-public-exposure
+  name: 'Azure App Configuration: public exposure'
+  description: 'Azure App Configuration ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: App Configuration should disable public network access; MITRE ATT&CK T1530.'
+- id: app-configuration-encryption
+  name: 'Azure App Configuration: encryption'
+  description: 'Daten in Azure App Configuration sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-5; Azure Policy: App Configuration should use a customer-managed key; MITRE ATT&CK T1530.'
+- id: app-configuration-network-access
+  name: 'Azure App Configuration: network access'
+  description: 'Der Netzwerkzugang zu Azure App Configuration ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: App Configuration should use a SKU that supports private link; App Configuration should use private link; MITRE ATT&CK T1021.'
+- id: managed-grafana-public-exposure
+  name: 'Azure Managed Grafana: public exposure'
+  description: 'Azure Managed Grafana ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: Azure Managed Grafana workspaces should disable public network access; MITRE ATT&CK T1530.'
+- id: managed-grafana-network-access
+  name: 'Azure Managed Grafana: network access'
+  description: 'Der Netzwerkzugang zu Azure Managed Grafana ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Managed Grafana workspaces should use private link; MITRE ATT&CK T1021.'
+- id: hdinsight-encryption
+  name: 'Azure HDInsight: encryption'
+  description: 'Daten in Azure HDInsight sind nicht oder nicht mit eigenen Schlüsseln verschlüsselt. Bei Zugriff auf Speicher oder Backups sind sie im Klartext lesbar. Quelle: MCSB v2 DP-3, DP-4, DP-5; Azure Policy: Azure HDInsight clusters should use customer-managed keys to encrypt data at rest; Azure HDInsight clusters should use encryption at host to encrypt data at rest; Azure HDInsight clusters should use encryption in transit to encrypt communication between Azure HDInsight cluster nodes; MITRE ATT&CK T1530.'
+- id: hdinsight-network-access
+  name: 'Azure HDInsight: network access'
+  description: 'Der Netzwerkzugang zu Azure HDInsight ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure HDInsight should use private link; MITRE ATT&CK T1021.'
+- id: iot-hub-public-exposure
+  name: 'Azure IoT Hub: public exposure'
+  description: 'Azure IoT Hub ist aus dem öffentlichen Netz erreichbar oder lässt Zugriff über Standardregeln zu. Angreifer mit gestohlenen oder erratenen Zugangsdaten können von überall zugreifen. Quelle: MCSB v2 NS-2; Azure Policy: IoT Hub device provisioning service instances should disable public network access; Public network access for Azure Device Update for IoT Hub accounts should be disabled; Public network access on Azure IoT Hub should be disabled; MITRE ATT&CK T1530.'
+- id: iot-hub-logging
+  name: 'Azure IoT Hub: logging'
+  description: 'Aktivitäten auf Azure IoT Hub werden nicht oder unvollständig protokolliert. Missbrauch lässt sich nicht nachvollziehen und nicht untersuchen. Quelle: MCSB v2 LT-3; Azure Policy: Resource logs in IoT Hub should be enabled; MITRE ATT&CK T1070.'
+- id: iot-hub-network-access
+  name: 'Azure IoT Hub: network access'
+  description: 'Der Netzwerkzugang zu Azure IoT Hub ist nicht auf vertrauenswürdige Quellen eingeschränkt. Angreifer im Netz oder aus dem Internet erreichen den Dienst. Quelle: MCSB v2 NS-2; Azure Policy: Azure Device Update for IoT Hub accounts should use private link; IoT Hub device provisioning service instances should use private link; MITRE ATT&CK T1021.'
+- id: arc-managed-identity-key-theft
+  name: Azure Arc Managed Identity Key Theft
+  description: 'Der private Schlüssel der systemzugewiesenen Managed Identity liegt auf der Festplatte des Servers. Wer den Schlüssel stiehlt, kann Tokens anfordern und sich als der Server bei Azure-Ressourcen ausweisen. Quelle: Security-Overview Azure Arc-enabled servers (Zertifikat auf dem Datenträger), CAF Arc-Security-Baseline (Managed Identity: privater Schlüssel auf dem Server). MITRE ATT&CK T1078.004.'
+- id: arc-excessive-extension-rights
+  name: Azure Arc Extension Deployment for Root Access
+  description: 'Benutzer mit Contributor- oder Owner-Rolle auf Arc-Servern können Erweiterungen deployen und damit administrativen Zugriff auf den Server erlangen. Quelle: CAF Identity and access management for Azure Arc-enabled servers („Security risk: Avoid granting broad permissions like Owner or Contributor“). MITRE ATT&CK T1078.004.'
+- id: arc-onboarding-client-secret
+  name: Azure Arc Onboarding with Long-Lived Client Secret
+  description: 'Die Onboarding-Service-Principal wird mit einem Client-Secret statt mit einem Zertifikat authentifiziert. Ein langlebiges oder geteiltes Secret erlaubt es, beliebig viele Server zu registrieren. Quelle: CAF Identity and access management for Azure Arc-enabled servers („Certificate-based authentication (Recommended)“, Secrets kurzlebig halten). MITRE ATT&CK T1078.004.'
+- id: dds-ntlm-hash-sync-exposure
+  name: Entra Domain Services NTLM Hash Synchronization
+  description: 'Mit aktivierter NTLM-Passwort-Synchronisation liegen NTLM-Hashes im Managed Domain. Ein Angreifer mit Domänenzugriff kann diese offline knacken. Quelle: Entra-Domain-Services „Harden a managed domain“ (NTLM Password Synchronization) und „Password hashes“ (Legacy-Hashes nur bei Bedarf). MITRE ATT&CK T1110.002.'
+- id: dds-weak-protocols-enabled
+  name: Entra Domain Services Weak Protocols Enabled
+  description: 'NTLMv1, TLS 1.0 und Kerberos RC4 bleiben aktiv, obwohl sie schwache Kryptografie verwenden. Angreifer können Verbindungen auf diese Protokolle zurückstufen. Quelle: Entra-Domain-Services „Harden a managed domain“ (Security settings: NtlmV1, TlsV1, KerberosRc4Encryption). MITRE ATT&CK T1040.'
+- id: dds-ldap-relay
+  name: Entra Domain Services LDAP Relay
+  description: 'LDAP-Signing und Channel Binding sind nicht erzwungen. Ein über NTLM geführter LDAP-Bind kann auf eine andere Sitzung relayed werden. Quelle: Entra-Domain-Services „Harden a managed domain“ (LDAP Signing, LDAP Channel Binding); LDAP-Channel-Binding-Übersicht (NTLM-Credential-Relay). MITRE ATT&CK T1557.'
+- id: acr-anonymous-pull
+  name: Container Registry Anonymous Pull
+  description: 'Anonymer Pull ist aktiv, obwohl die Registry keine öffentlichen Inhalte hostet. Jeder ohne Anmeldung kann Images aller Repositories lesen. Quelle: Secure-your-ACR-deployment („Keep anonymous pull access disabled unless the registry is intentionally public“). MITRE ATT&CK T1530.'
+- id: acr-admin-account-enabled
+  name: Container Registry Admin Account Enabled
+  description: 'Der Admin-Account der Registry ist aktiv. Er ist ein einziges Konto mit vollen Rechten, und Aktionen sind nicht einer Person zuzuordnen. Quelle: Secure-your-ACR-deployment („Keep the admin account disabled“), Authentication-Übersicht (Admin account). MITRE ATT&CK T1078.001.'
+- id: acr-public-network-access
+  name: Container Registry Public Network Access
+  description: 'Die Registry ist über das öffentliche Internet erreichbar, ohne Private Endpoint und ohne IP-Regeln. Zugangsdaten können von überall genutzt werden. Quelle: Secure-your-ACR-deployment („Network security“: Private Endpoint, Public Access deaktivieren), Policy-Initiative Container Registry („Public network access should be disabled“). MITRE ATT&CK T1190.'
+- id: asr-replication-over-public-endpoint
+  name: Site Recovery Replication Over Public Endpoint
+  description: 'Die Replikation läuft über den öffentlichen Endpunkt, sofern kein Private Endpoint eingerichtet ist. Replizierte Festplatten können auf dem Weg abgefangen werden. Quelle: Security-Baseline Site Recovery (NS-2: „Replicates data … over a public endpoint“), Azure-to-Azure-Networking (Outbound über Service Tags). MITRE ATT&CK T1040.'
+- id: asr-over-privileged-operator
+  name: Site Recovery Over-Privileged Operators
+  description: 'Operatoren erhalten breite Rechte wie Contributor statt der Site-Recovery-Rollen. Ein kompromittiertes Konto kann dann Replikate, Failover und Zielnetze verändern. Quelle: Site-Recovery-RBAC („Recommended built-in roles“: Site Recovery Contributor, Operator, Reader; Least privilege). MITRE ATT&CK T1078.004.'
+- id: asr-replica-platform-keys
+  name: Site Recovery Replicas With Platform-Managed Keys
+  description: 'Replizierte Daten sind nur mit Microsoft-verwalteten Schlüsseln verschlüsselt. Ohne eigene Schlüssel kann die Organisation den Zugriff nicht selbst sperren. Quelle: Security-Baseline Site Recovery (DP-5: Customer-managed keys „Enabled by default: False“). MITRE ATT&CK T1530.'
+- id: dns-private-zone-misconfigured-links
+  name: Azure DNS Private Zone Misconfigured Links
+  description: 'Eine private DNS-Zone ist mit VNets verknüpft, in denen sie nicht gebraucht wird, oder Auto-Registrierung trägt Einträge ein, die Namen anderer Ressourcen überschreiben. Ressourcen im Netz lösen dann Namen auf fremde Ziele auf. Quelle: DNS-Security-Design-Guide (Private DNS zones: VNet-Verknüpfung, Auto-Registrierung), Private-DNS-Import-Export (Merge-Verhalten bestehender Einträge). MITRE ATT&CK T1584.003.'
+- id: dns-no-dnssec-validation
+  name: Azure DNS Private Resolution Without DNSSEC Validation
+  description: 'Rekursive Auflösung innerhalb von Azure-VNets validiert DNSSEC nicht. Gefälschte Antworten werden akzeptiert. Quelle: DNS-Security-Design-Guide (DNSSEC limitations: private Zonen nicht validiert), DNSSEC-Übersicht. MITRE ATT&CK T1557.'
+- id: dns-command-and-control-resolution
+  name: Azure DNS Resolution of Malicious Domains
+  description: 'Workloads lösen Domains auf, die für Command-and-Control oder Malware-Verteilung genutzt werden. Ohne DNS-Schutz wird die Verbindung nicht unterbunden. Quelle: DNS-Security-Design-Guide (DNS security policy: Blockieren bekannter bösartiger Domains über Threat-Intelligence). MITRE ATT&CK T1071.'
+- id: sentinel-security-logs-not-ingested
+  name: Microsoft Sentinel Security Logs Not Ingested
+  description: 'Sicherheitsrelevante Logs werden nicht an Sentinel angebunden, weil keine Datenkonnektoren aktiv sind oder Filter zu viel verwerfen. Angriffe bleiben ohne Erkennung. Quelle: Best-practices-data (Alternative data ingestion: Log-Filterung schränkt Features wie UEBA und Fusion ein), Sentinel-Overview (350+ Datenkonnektoren). MITRE ATT&CK T1070.'
+- id: sentinel-analytics-rule-tampering
+  name: Microsoft Sentinel Analytics Rule Tampering
+  description: 'Analytics-Regeln werden deaktiviert oder verändert, etwa nach einem Zugriffsverlust des Erstellers, und laufen dann nicht mehr. Der Zugriffs-Token der Regel ist an den Ersteller gebunden, wenn Workspaces über Subscriptions oder Tenants gehen. Quelle: Threat-detection in Sentinel (Access permissions for analytics rules: Regel wird bei fehlendem Zugriff auto-disabled). MITRE ATT&CK T1070.'
+- id: sentinel-watchlist-data-exposure
+  name: Microsoft Sentinel Watchlist Data Exposure
+  description: 'Watchlists mit sensiblen Daten, etwa Listen entlassener Mitarbeiter oder interner IP-Bereiche, bleiben nach der Untersuchung bestehen und sind für alle Leser des Workspace sichtbar. Quelle: Best-practices (Plan incident management: Watchlists nach Untersuchung löschen, damit keine sensiblen Daten bleiben). MITRE ATT&CK T1530.'
+- id: fwm-global-policy-change-blast-radius
+  name: Firewall Manager Global Policy Change
+  description: 'Ein geänderter Basis-Policy-Eintrag wirkt auf alle assoziierten Firewalls in allen Regionen und Subscriptions. Ein kompromittiertes Konto mit Policy-Rechten kann so den gesamten Perimeter öffnen. Quelle: Firewall-Manager-Übersicht (Policy als globale Ressource), Azure-Firewall-Design-Guide (Policy-Hierarchie: Parent-Regeln haben Vorrang). MITRE ATT&CK T1078.004.'
+- id: fwm-traffic-bypasses-firewall
+  name: Firewall Manager Traffic Bypassing Firewall
+  description: 'Private Verkehrsziele oder öffentliche IP-Bereiche, die im privaten Netz genutzt werden, werden nicht über die Firewall geleitet. Der Verkehr läuft ungefiltert zwischen Netzen. Quelle: Tutorial secure virtual hub (Routing: Private traffic via Firewall, zusätzliche Präfixe angeben). MITRE ATT&CK T1021.'
+- id: fwm-fqdn-filter-dns-mismatch
+  name: Firewall FQDN Filtering Bypass Through DNS Mismatch
+  description: 'Clients lösen einen FQDN über einen anderen DNS-Server auf als die Firewall. Die FQDN-Regeln greifen dann nicht, oder der Client erreicht Ziele, die die Regel verbieten sollte. Quelle: Azure-Firewall-Design-Guide (cross-cloud: Caution zu DNS-Proxy und Client-DNS), Firewall-Manager-Policy-Vererbung (Threat-Intelligence-Modus nur verschärfbar). MITRE ATT&CK T1071.'
+- id: sm-broad-target-rbac
+  name: Storage Mover Agent Broad Target Access
+  description: 'Der Agent erhält Rollen wie Storage Blob Data Contributor oder Storage File Data Privileged Contributor auf das Ziel. Ein kompromittierter Agent kann dadurch Zieldaten überschreiben oder löschen. Quelle: Storage-Mover „How to register an agent“ (Just-in-time-Autorisierung, Rollen auf Container- und Share-Ebene). MITRE ATT&CK T1078.004.'
+- id: sm-orphaned-agent-role-assignments
+  name: Storage Mover Orphaned Agent Role Assignments
+  description: 'Nach dem Unregistrieren eines Agenten bleiben die Rollenzuweisungen am Ziel bestehen, sie zeigen auf einen nicht mehr existierenden Principal. Die Berechtigung ist verwaist und nicht sichtbar entfernt. Quelle: Storage-Mover „Decommissioning an agent“ (Unknown service principal bleibt bestehen), Agent-Registrierung (Warnung: Autorisierung wird nicht automatisch entfernt). MITRE ATT&CK T1078.004.'
+- id: sm-control-plane-public-traffic
+  name: Storage Mover Control Traffic on Public Endpoint
+  description: 'Steuerungsnachrichten, Fortschrittstelemetrie und Copy-Logs laufen auch bei Private Link über den öffentlichen Endpunkt des Storage-Mover-Ressourcen. Metadaten zu Migrationen sind dadurch aus dem öffentlichen Netz erreichbar. Quelle: Storage-Mover „Storage Mover networking prerequisites“ (Some traffic can''t be routed through Private Link). MITRE ATT&CK T1040.'
+- id: subnet-without-nsg
+  name: Subnet Without Network Security Group
+  description: 'Ein Subnetz ohne NSG hat keine Zugriffskontrolle. Zwischen Subnetzen gelten standardmäßig keine Netzwerkzugriffskontrollen, sodass Angreifer sich seitlich bewegen können. Quelle: Azure-Network-Security-Best-Practices (By default, no network access controls exist between subnets), VNets-and-Subnets-Design-Guide (NSG auf jedem Subnetz, deny by default). MITRE ATT&CK T1021.'
+- id: subnet-broad-allow-rules
+  name: Subnet NSG With Broad Allow Rules
+  description: 'NSG-Regeln mit sehr weiten Quell- oder Zielbereichen erlauben mehr Verkehr als nötig. Sie erzeugen eine trügerische Sicherheit und werden von Red Teams regelmäßig ausgenutzt. Quelle: Azure-Network-Security-Best-Practices („Don''t assign allow rules with broad ranges“). MITRE ATT&CK T1190.'
+- id: subnet-no-flow-logs
+  name: Subnet NSG Without Flow Logs
+  description: 'Ohne NSG-Flow-Logs bleibt unsichtbar, welche Verbindungen erlaubt oder verweigert wurden. Verdächtige Seitwärtsbewegung und Fehlkonfigurationen bleiben unentdeckt. Quelle: VNets-and-Subnets-Design-Guide (Enable NSG flow logs on every subnet-level NSG), Network-Watcher-NSG-Flow-Logs (Key properties). MITRE ATT&CK T1070.'
+- id: vwan-udr-bypasses-hub-firewall
+  name: Virtual WAN Route Override Bypasses Hub Firewall
+  description: 'Benutzer mit RBAC-Rechten können über eine benutzerdefinierte Route Virtual-WAN-Routen für Spokes überschreiben und die Hub-Firewall umgehen. Quelle: Zero-Trust-Virtual-WAN (Step 3: RBAC-Rechte zum Zuweisen von UDRs einschränken, Network Contributor/routeTables/join). MITRE ATT&CK T1078.004.'
+- id: vwan-flat-spoke-transit
+  name: Virtual WAN Flat Spoke Transit
+  description: 'Ohne eigene Routentabellen können Spoke-VNets und Zweigstellen untereinander kommunizieren, auch wenn sie getrennt sein sollten. Ein kompromittiertes Spoke erreicht dann andere Zonen. Quelle: Secure-Virtual-WAN (Use customer-managed routing for spoke segmentation), Architecture-Best-Practices-Virtual-WAN (Create custom route tables). MITRE ATT&CK T1021.'
+- id: vwan-p2s-weak-authentication
+  name: Virtual WAN Point-to-Site Weak Authentication
+  description: 'Point-to-Site-VPN-Benutzer melden sich ohne Entra-ID-Bedingungen, MFA oder Gerätecompliance an. Gestohlene Zugangsdaten reichen für den Zugang ins Netz. Quelle: Architecture-Best-Practices-Virtual-WAN (Security 4: Microsoft Entra ID mit Conditional Access, MFA und Gerätecompliance). MITRE ATT&CK T1078.004.'
+- id: lb-backend-directly-exposed
+  name: Load Balancer Backend Directly Exposed
+  description: 'Ein öffentlicher Load Balancer leitet Verkehr direkt auf die Backend-Instanzen, ohne Firewall oder WAF dazwischen. Die Backends sind dadurch direkt aus dem Internet angreifbar. Quelle: Architecture-Best-Practices-Azure-Load-Balancer (Protect the back-end servers: Firewall-Funktionen, Application Gateway/Front Door für HTTP). MITRE ATT&CK T1190.'
+- id: lb-basic-sku-unsupported
+  name: Basic Load Balancer Unsupported
+  description: 'Basic Load Balancer wurde am 30. September 2025 eingestellt. Bestehende Instanzen sind nicht mehr unterstützt und haben keine SLA. Sicherheitspatches und Support fehlen. Quelle: Secure-Azure-Load-Balancer (Important: Basic Load Balancer retired). MITRE ATT&CK T1499.'
+- id: lb-unencrypted-application-traffic
+  name: Load Balancer Unencrypted Application Traffic
+  description: 'Load Balancer arbeitet auf Schicht 4 und beendet kein TLS. Ist die Anwendung nicht selbst verschlüsselt, läuft der Verkehr im Klartext über das Netz. Quelle: Secure-Azure-Load-Balancer (Data protection 1–2: End-to-End-Verschlüsselung, TLS-Terminierung in Application Gateway/Front Door). MITRE ATT&CK T1040.'
+- id: b2c-password-spraying
+  name: Azure AD B2C Password Spraying
+  description: 'Angreifer probieren wenige Passwörter gegen viele lokale Konten, um die Kontosperre zu umgehen. Smart Lockout und Passwortkomplexität begrenzen das. Quelle: Azure-AD-B2C-Technical-Overview (Smart account lockout, Password complexity), Mitigate-credential-attacks (Threat-Management). MITRE ATT&CK T1110.003.'
+- id: b2c-account-takeover-no-risk-policy
+  name: Azure AD B2C Account Takeover Without Risk Policy
+  description: 'Ohne Conditional-Access-Richtlinie auf Benutzerrisiko bleiben risikoreiche Anmeldungen ohne Gegenmaßnahme. Ein kompromittiertes Konto wird nicht zur Passwortänderung gezwungen. Quelle: Conditional-Access-User-Flow (Template 2: user-risk-based Conditional Access, Password change bei medium/high). MITRE ATT&CK T1078.004. Hinweis: Azure AD B2C ist seit 1. Mai 2025 nicht mehr für Neukunden verfügbar.'
+- id: b2c-single-factor-sign-in
+  name: Azure AD B2C Single-Factor Sign-In
+  description: 'Benutzerflows verlangen nur ein Passwort. Ein abgefangenes oder erratenes Passwort reicht für den Zugang zu allen angebundenen Anwendungen. Quelle: Enable-multifactor-authentication-in-Azure-AD-B2C (zweite Schutzebene für Sign-up und Sign-in). MITRE ATT&CK T1078.004.'
+- id: esan-public-network-access
+  name: Elastic SAN Public Network Access
+  description: 'Der öffentliche Netzwerkzugang ist auf SAN-Ebene aktiv, obwohl nur Private Endpoints genutzt werden. Volumengruppen sind dann aus dem Internet erreichbar. Quelle: Elastic-SAN-Networking (Public network access: disable if exclusively using private endpoints). MITRE ATT&CK T1530.'
+- id: esan-subnet-implicit-access
+  name: Elastic SAN Implicit Subnet Access via Private Endpoint
+  description: 'Die Genehmigung eines Private Endpoints gewährt implizit allen Verkehr aus dem Subnetz. Ohne Network Policies greifen NSG-Regeln für den Endpoint nicht, und der Zugriff ist nicht granular steuerbar. Quelle: Elastic-SAN-Networking (Control network traffic: implicit access), Configure-private-endpoints (Optional: network policies). MITRE ATT&CK T1021.'
+- id: esan-unencrypted-transit-no-soft-delete
+  name: Elastic SAN Unencrypted Transit and No Soft Delete
+  description: 'Elastic SAN unterstützt keine Verschlüsselung in Transit und kein Soft Delete. Datenverkehr kann mitgelesen werden, und gelöschte Volumes lassen sich nicht wiederherstellen. Quelle: What-is-Azure-Elastic-SAN (Support for Storage features: Encryption in transit ⛔, Soft delete ⛔). MITRE ATT&CK T1040.'
+- id: nat-outbound-traffic-unlogged
+  name: NAT Gateway Outbound Traffic Not Logged
+  description: 'Ohne NAT-Gateway-Flow-Logs ist nicht sichtbar, welche Ziele über die öffentliche NAT-IP erreicht werden. Unerwartete ausgehende Verbindungen bleiben unbemerkt. Quelle: Manage-StandardV2-NAT-Gateway-Flow-Logs (Why use flow logs: unerwartete ausgehende Verbindungen erkennen). MITRE ATT&CK T1070.'
+- id: nat-snat-exhaustion
+  name: NAT Gateway SNAT Exhaustion
+  description: 'Erschöpfung der SNAT-Ports führt zu fehlgeschlagenen ausgehenden Verbindungen. Angreifer können dies durch viele Verbindungen auslösen, ohne dass ein Alarm ausgelöst wird. Quelle: Secure-your-Azure-NAT-Gateway-deployment (Configure SNAT exhaustion alerts, Datapath availability). MITRE ATT&CK T1499.'
+- id: nat-unrestricted-egress-exfiltration
+  name: NAT Gateway Unrestricted Egress Exfiltration
+  description: 'Über das NAT-Gateway kann jedes Subnetz ungefiltert nach außen senden. Datenabfluss an externe Ziele wird nicht erkannt, wenn nur die Verbindungszahl überwacht wird. Quelle: Secure-your-Azure-NAT-Gateway-deployment (Logging and monitoring: unusual outbound activity), NAT-Gateway-Design (Service-tagged public IPs). MITRE ATT&CK T1048.'
+- id: apic-test-console-credential-exposure
+  name: API Center Test Console Credential Exposure
+  description: 'Jeder Benutzer mit Zugriff auf das API-Center-Portal kann APIs mit hinterlegten API-Keys oder OAuth-Secrets testen. Die Credentials sind dann für alle Portalnutzer verfügbar. Quelle: Authorize-access-to-APIs-in-API-Center („When using API keys and OAuth 2.0 secrets, any user with access to the developer portal can use APIs“). MITRE ATT&CK T1078.004.'
+- id: apic-broad-keyvault-access
+  name: API Center Broad Key Vault Access
+  description: 'Die Managed Identity des API Centers erhält zu breite Rechte auf den Key Vault, etwa Vollzugriff statt der Rolle Key Vault Secrets User. Kompromittierte Identitäten können dann alle Secrets lesen. Quelle: Authorize-access-to-APIs-in-API-Center (Option 2: Key Vault Secrets User, RBAC). MITRE ATT&CK T1078.004.'
+- id: apic-unregistered-api
+  name: API Center Unregistered API Exposure
+  description: 'APIs, die nicht im API-Center-Inventar stehen, werden ohne Governance betrieben. Ihre Authentifizierung und Versionen sind nicht geprüft und bleiben unentdeckt. Quelle: Azure-API-Center-Overview (Create and maintain an organizational inventory, Govern your organization''s APIs). MITRE ATT&CK T1190.'
+- id: bkp-no-multiuser-authorization
+  name: Backup Vault Without Multi-User Authorization
+  description: 'Kritische Operationen wie Deaktivieren von Soft Delete oder Reduzieren der Aufbewahrung laufen ohne zweite Freigabe. Ein Administrator mit Vault-Rechten kann Sicherungen damit allein vernichten. Quelle: Azure-Backup-Security-Best-Practices (MUA with Resource Guard), Protect-backups-from-ransomware-FAQ (Rogue-Admin-Szenario). MITRE ATT&CK T1078.004.'
+- id: bkp-soft-delete-disabled
+  name: Backup Vault Soft Delete Disabled
+  description: 'Ohne Soft Delete sind gelöschte Sicherungen endgültig weg. Ein Angreifer mit Löschrechten entfernt die Wiederherstellungspunkte, ohne dass sie in einem Papierkorb landen. Quelle: Azure-Backup-Overview-Security (Soft delete, Security levels), Protect-backups-from-ransomware-FAQ (Soft delete recommendation). MITRE ATT&CK T1485.'
+- id: bkp-mutable-recovery-points
+  name: Backup Vault Mutable Recovery Points
+  description: 'Ohne Unveränderbarkeit lassen sich Wiederherstellungspunkte vor Ablauf der Aufbewahrung löschen oder verkürzen. Ransomware, die Anmeldedaten kompromittiert, kann so auch die Sicherung zerstören. Quelle: Azure-Backup-Security-Best-Practices (Pillar 3: Immutability locked), Backup-Vault-Immutable-Concept (Immutable vault). MITRE ATT&CK T1490.'
+- id: bkp-public-network-access
+  name: Backup Vault Public Network Access
+  description: 'Der Recovery-Services-Vault ist über das öffentliche Netz erreichbar, obwohl Azure Backup Private Endpoints unterstützt. Zugangsdaten können von außerhalb genutzt werden. Quelle: Azure-Backup-Security-Best-Practices (Policy „Azure Recovery Services vaults should disable public network access“), Security-overview (Private Endpoints for Azure Backup). MITRE ATT&CK T1530.'
+- id: adls-acl-overgrant
+  name: Data Lake Storage Individual ACL Entries
+  description: 'ACL-Einträge für einzelne Benutzer oder Dienstprinzipale statt für Entra-Gruppen wachsen über die Zeit. Ausscheidende Personen behalten Zugriff, weil sie in jedem Unterverzeichnis einzeln entfernt werden müssen. Quelle: Access-control-lists-ADLS (FAQ: Use Microsoft Entra security groups as the assigned principal), Secure-Blob-Storage (Use RBAC for coarse and ACLs for fine access). MITRE ATT&CK T1078.004.'
+- id: adls-anonymous-read
+  name: Data Lake Storage Anonymous Read Access
+  description: 'Anonymer Lesezugriff auf einen Container macht ACLs für Lesezugriffe wirkungslos. Jeder Internetnutzer kann die Dateien lesen. Quelle: Known-issues-ADLS (Access control lists and anonymous read access: ACLs have no effect on reads). MITRE ATT&CK T1530.'
+- id: adls-incomplete-private-endpoints
+  name: Data Lake Storage Missing DFS Private Endpoint
+  description: 'Mit nur einem Private Endpoint für den Blob-Teil fehlt der DFS-Endpunkt. Operationen wie ACL-Verwaltung und Verzeichnislöschung leiten auf den öffentlichen Endpunkt um, oder sie schlagen fehl. Quelle: Known-issues-ADLS (Private endpoints: blob und dfs sub-resources). MITRE ATT&CK T1021.'
+- id: queue-sas-overbroad
+  name: Queue Storage Overbroad SAS Token
+  description: 'Ein Service-SAS ohne gespeicherte Zugriffsrichtlinie kann nicht widerrufen werden und hat oft lange Laufzeit. Mit weiten Berechtigungen kann ein Angreifer Nachrichten lesen, verarbeiten oder löschen. Quelle: Security-recommendations-Queue-Storage (Scope SAS to least privilege; Service SAS ohne Policy: Laufzeit ≤ 1 Stunde). MITRE ATT&CK T1078.004.'
+- id: queue-shared-key-auth
+  name: Queue Storage Shared Key Authorization
+  description: 'Anforderungen werden mit dem Kontoschlüssel signiert. Der Schlüssel gewährt vollen Zugriff auf das Konto, ist nicht einem Benutzer zuzuordnen und lässt sich über Code oder Konfiguration leicht verbreiten. Quelle: Security-recommendations-Queue-Storage (Use Entra ID to authorize access to queue data; Secure account keys with Key Vault), Authorize-data-access (Shared Key). MITRE ATT&CK T1078.004.'
+- id: queue-open-network-access
+  name: Queue Storage Open Network Access
+  description: 'Das Speicherkonto ist aus allen Netzen erreichbar, weil keine Firewall oder Private Endpoints konfiguriert sind. Angreifer aus dem Internet können Nachrichten einsehen oder einspielen. Quelle: Security-recommendations-Queue-Storage (Networking: Limit network access, Use private endpoints). MITRE ATT&CK T1190.'
+- id: vnet-no-ddos-protection
+  name: Virtual Network Without DDoS Protection
+  description: 'Öffentlich erreichbare Ressourcen in einem VNet ohne DDoS-Schutz sind volumetrischen und Protokollangriffen ausgeliefert. Adaptive Abwehr greift erst, wenn der Schutz aktiv ist. Quelle: DDoS-Protection-Fundamental-Best-Practices (Protect the network layer: Always-on traffic monitoring, DDoS Network Protection), Secure-DDoS-Protection (Protect every supported public IP). MITRE ATT&CK T1499.'
+- id: vnet-public-paas-path
+  name: Virtual Network Public PaaS Path
+  description: 'PaaS-Dienste werden über öffentliche IP-Adressen statt über private Endpoints angesprochen. Die Angriffsfläche umfasst dann öffentliche Endpunkte, obwohl das Netz privat ist. Quelle: Architecture-best-practices-Azure-Virtual-Network (Security: private endpoints remove public IP addresses, reducing attack surface). MITRE ATT&CK T1190.'
+- id: vnet-service-endpoint-exfiltration
+  name: Virtual Network Service Endpoint Exfiltration Path
+  description: 'Service-Endpoints auf allen Subnetzen öffnen Datenabflusskanäle zu PaaS-Diensten. Ein kompromittiertes System kann Daten auf ein fremdes Konto des gleichen Dienstes kopieren. Quelle: Mission-critical-security (Don''t enable virtual network service endpoints by default on all subnets: data exfiltration channels), Integrate-Azure-services-with-VNets (Compare private and service endpoints). MITRE ATT&CK T1048.'
+- id: fw-no-threat-intelligence
+  name: Azure Firewall Threat Intelligence Disabled
+  description: 'Ohne Threat Intelligence im Modus Alert and deny kann Verkehr zu bekannten bösartigen IP-Adressen, Domains und URLs ungehindert fließen. Command-and-Control-Verbindungen werden nicht unterbunden. Quelle: Architecture-best-practices-Azure-Firewall (Enable threat intelligence in Alert and deny mode), Secure-Azure-Firewall-deployment (threat intelligence-based filtering). MITRE ATT&CK T1071.'
+- id: fw-idps-not-blocking
+  name: Azure Firewall IDPS Not Blocking
+  description: 'IDPS läuft nur im Alert-Modus oder ist deaktiviert. Bekannte Exploit-Muster und Malware-Signaturen werden protokolliert, aber nicht blockiert. Quelle: Zero-Trust-Recommendations-Azure-Firewall (IDPS inspection enabled in deny mode), Architecture-best-practices-Azure-Firewall (IDPS in Alert oder Alert and deny). MITRE ATT&CK T1190.'
+- id: fw-no-diagnostic-logging
+  name: Azure Firewall Diagnostic Logging Disabled
+  description: 'Ohne Diagnoseprotokolle fehlen Verbindungsentscheidungen, IDPS-Treffer und DNS-Proxy-Logs. Laterale Bewegungen und Angriffszeitlinien lassen sich nicht rekonstruieren. Quelle: Zero-Trust-Recommendations-Azure-Firewall (Diagnostic logging is enabled), Secure-Azure-Firewall-deployment (Data protection: Logs als sensibel behandeln). MITRE ATT&CK T1070.'
+- id: fw-no-tls-inspection
+  name: Azure Firewall TLS Inspection Disabled
+  description: 'Ausgehender verschlüsselter Verkehr wird nicht entschlüsselt. IDPS und URL-Filterung sehen dann nur Metadaten, und Malware über HTTPS bleibt unsichtbar. Quelle: Zero-Trust-Recommendations-Azure-Firewall (Inspection of outbound TLS traffic is enabled), Azure-Firewall-Design-Guide (TLS inspection Premium). MITRE ATT&CK T1071.'
+- id: mhsm-no-purge-protection
+  name: Managed HSM Without Purge Protection
+  description: 'Ohne Purge Protection kann ein Administrator den HSM oder einzelne Schlüssel endgültig löschen, bevor die Aufbewahrung abläuft. Verschlüsselte Daten sind dann unwiederbringlich verloren. Quelle: Managed-HSM-soft-delete-and-purge-protection (Purge protection: prevents deletion by a malicious insider), Secure-Managed-HSM (Enable purge protection). MITRE ATT&CK T1485.'
+- id: mhsm-single-person-security-domain
+  name: Managed HSM Security Domain Single Custodian
+  description: 'Die Security Domain ist nicht über ein Quorum mit mehreren Schlüsselinhabern abgesichert. Eine einzelne Person kann den HSM wiederherstellen oder kontrollieren. Quelle: Secure-Managed-HSM (Implement multiperson control for security domain, minimum three keys), Security-domain-overview. MITRE ATT&CK T1078.004.'
+- id: mhsm-no-key-autorotation
+  name: Managed HSM Keys Without Autorotation
+  description: 'Schlüssel werden nicht automatisch rotiert. Ein abgeflossener Schlüssel bleibt über lange Zeit gültig, und ältere Schlüssel werden weiter verwendet. Quelle: Secure-Managed-HSM (Configure automated key rotation), Reliability-Managed-HSM (Backup and restore). MITRE ATT&CK T1552.'
+- id: aci-plaintext-cli-credentials
+  name: Container Instances Plaintext Credentials in CLI
+  description: 'Zugangsdaten, die über die CLI übergeben werden, werden im Backend im Klartext gespeichert. Wer Zugriff auf die Konfiguration hat, liest sie aus. Quelle: Best-practices-and-considerations-ACI (User''s credentials passed via CLI are stored as plain text; use environment variables). MITRE ATT&CK T1552.001.'
+- id: aci-untrusted-images
+  name: Container Instances Untrusted Container Images
+  description: 'Images stammen aus öffentlichen Registries ohne Prüfung. Jede Schicht kann Schwachstellen oder Schadcode enthalten. Quelle: Security-considerations-ACI (Use a private registry; monitor and scan container images). MITRE ATT&CK T1195.'
+- id: aci-no-network-segmentation
+  name: Container Instances Without Network Segmentation
+  description: 'Container-Gruppen laufen ohne VNet-Integration und ohne NSG. Sie sind vom übrigen Netz nicht abgegrenzt, und seitliche Bewegung ist möglich. Quelle: Security-baseline-ACI (NS-1: Deploy into VNet; NSG rules). MITRE ATT&CK T1021.'
+- id: aci-privileged-root-container
+  name: Container Instances Privileged Container Runtime
+  description: 'Container laufen mit unnötigen Rechten oder als root. Bei einem Ausbruch aus dem Container erhält der Angreifer root-Rechte auf dem Host. Quelle: Security-considerations-ACI (Considerations for the container ecosystem: privilegierte Container laufen als root, unnötige Prozesse entfernen). MITRE ATT&CK T1068.'
+- id: agw-no-waf
+  name: Application Gateway Without WAF
+  description: 'Der Application Gateway läuft ohne WAF-Richtlinie. Gängige Angriffe wie SQL-Injection und Cross-Site-Scripting erreichen die Anwendung ungefiltert. Quelle: Secure-Application-Gateway (Web application protection 1: WAF v2 für internetseitige Anwendungen), Architecture-best-practices-Application-Gateway-v2 (Block common threats at the edge). MITRE ATT&CK T1190.'
+- id: agw-weak-tls-policy
+  name: Application Gateway Weak TLS Policy
+  description: 'Die TLS-Richtlinie erlaubt ältere Protokollversionen oder schwache Chiffren. Verbindungen können auf schwache Verschlüsselung zurückgestuft werden. Quelle: Architecture-best-practices-Application-Gateway-v2 (Set up a TLS policy; latest version, TLS 1.2 und stärker). MITRE ATT&CK T1040.'
+- id: agw-unencrypted-backend
+  name: Application Gateway Unencrypted Backend Traffic
+  description: 'Der Verkehr zwischen Gateway und Backend läuft unverschlüsselt. Ein Angreifer im Netz kann Sitzungsdaten mitlesen. Quelle: Configure-end-to-end-TLS-Application-Gateway (Backend authentication with certificates; end-to-end TLS). MITRE ATT&CK T1040.'
+- id: agw-broad-management-rbac
+  name: Application Gateway Broad Management Rights
+  description: 'Administratoren haben breite Netzwerkrechte auf Gateway, WAF-Richtlinie, VNet und Key-Vault-Zertifikate. Ein kompromittiertes Konto kann Routing und Zertifikate verändern. Quelle: Secure-Application-Gateway (Identity and access management 2–3: least privilege, Conditional Access). MITRE ATT&CK T1078.004.'
+- id: bastion-open-rdp-ssh
+  name: Bastion Target Subnet Open RDP/SSH
+  description: 'Die NSG des Zielsubnetzes lässt RDP oder SSH aus dem Internet zu, obwohl Bastion den Zugang bereitstellt. Der direkte Zugang umgeht den Bastion-Schutz. Quelle: Configure-NSG-rules-Azure-Bastion (Target VM subnet: Ingress nur von AzureBastionSubnet), Azure-network-security-best-practices (Zero Trust). MITRE ATT&CK T1021.'
+- id: bastion-no-entra-auth
+  name: Bastion Local Credential Authentication
+  description: 'Bastion-Sitzungen verwenden lokale Konten oder Schlüssel. Verteilte Zugangsdaten sind schwer zu verwalten, und MFA sowie Conditional Access greifen nicht. Quelle: Secure-Azure-Bastion (Entra ID authentication for SSH/RDP), Design-secure-hub-spoke-network (Entra ID for SSH/RDP). MITRE ATT&CK T1078.004.'
+- id: bastion-public-ip-on-vm
+  name: Virtual Machines Behind Bastion With Public IP
+  description: 'VMs, die über Bastion erreichbar sein sollen, haben trotzdem öffentliche IP-Adressen. Die Angriffsfläche bleibt bestehen, obwohl ein sicherer Zugang existiert. Quelle: Developer-and-admin-access-to-Azure-VMs (Use Bastion or P2S VPN instead of public IPs; remove public IPs). MITRE ATT&CK T1190.'
+- id: dhsm-default-admin-password
+  name: Dedicated HSM Default Admin Password
+  description: 'Das Standardpasswort des Mandanten-Administrators ist nach der Bereitstellung noch gesetzt. Wer es kennt, übernimmt die Verwaltung des HSM. Quelle: Secure-Dedicated-HSM (Identity and access management 1: change default passwords immediately after provisioning). MITRE ATT&CK T1078.001.'
+- id: dhsm-role-lockout
+  name: Dedicated HSM Role Lockout by Failed Sign-Ins
+  description: 'Fehlgeschlagene Anmeldungen zerstören die Rolle HSM SO nach drei Versuchen und Partition SO nach zehn. Bei Fehlern im Betrieb verliert das HSM seine Schlüssel. Quelle: Secure-Dedicated-HSM (Identity and access management 6: role lockout thresholds, Failed sign-ins). MITRE ATT&CK T1110.'
+- id: dhsm-no-ha-backup
+  name: Dedicated HSM Without High Availability or Backup
+  description: 'Ein einzelnes HSM ohne HA-Partner und ohne Schlüsselsicherung führt bei Ausfall zu dauerhaftem Schlüsselverlust. Die Dienste, die auf die Schlüssel angewiesen sind, fallen aus. Quelle: Secure-Dedicated-HSM (Backup and recovery 1–2: HSM-Paare, regelmäßige Schlüsselsicherung). MITRE ATT&CK T1485.'
+- id: er-unencrypted-private-peering
+  name: ExpressRoute Unencrypted Private Peering
+  description: 'ExpressRoute verschlüsselt den Verkehr auf dem privaten Peering nicht standardmäßig. Daten zwischen Standort und Azure sind auf der Leitung im Klartext, wenn keine Verschlüsselung eingerichtet ist. Quelle: About-encryption-for-ExpressRoute (Point-to-point encryption by MACsec; IPsec end-to-end), Architecture-best-practices-ExpressRoute (Security: IPsec for private peering). MITRE ATT&CK T1040.'
+- id: er-bgp-session-unauthenticated
+  name: ExpressRoute Unauthenticated BGP Sessions
+  description: 'BGP-Sitzungen sind nicht mit MD5 authentifiziert. Ein Angreifer im Transportnetz kann gefälschte Routen einspielen und Verkehr umleiten. Quelle: Secure-ExpressRoute-deployment (Data protection 2: MD5 for BGP sessions), ExpressRoute-routing-requirements. MITRE ATT&CK T1557.'
+- id: er-broad-circuit-rbac
+  name: ExpressRoute Broad Circuit Management Rights
+  description: 'Benutzer mit breiten Rechten können Circuits, Gateways und Routing ändern. Eine Fehlkonfiguration oder ein kompromittiertes Konto unterbricht die Verbindung oder leitet Verkehr um. Quelle: Architecture-best-practices-ExpressRoute (Security: Azure RBAC for ExpressRoute resources). MITRE ATT&CK T1078.004.'
+- id: la-broad-workspace-access
+  name: Log Analytics Broad Workspace Access
+  description: 'Benutzer mit Workspace-Rechten sehen alle Tabellen, auch wenn sie nur Daten einzelner Ressourcen benötigen. Sensible Protokolle werden so breit sichtbar. Quelle: Manage-access-to-Log-Analytics-workspaces (Access control mode; table-level RBAC), Best-practices-Azure-Monitor-Logs (Grant access based on need). MITRE ATT&CK T1530.'
+- id: la-public-ingestion-endpoint
+  name: Log Analytics Public Ingestion and Query Endpoint
+  description: 'Der Workspace ist über öffentliche Endpunkte für Ingestion und Abfragen erreichbar, ohne Private Link. Logs lassen sich aus dem Internet einspielen oder abfragen. Quelle: Architecture-best-practices-Log-Analytics (Use private link), Best-practices-Azure-Monitor-Logs (Block workspace access from public networks). MITRE ATT&CK T1190.'
+- id: la-log-tampering
+  name: Log Analytics Records Purged or Altered
+  description: 'Daten im Workspace lassen sich nicht ändern, aber löschen (purge). Ohne Export in unveränderbaren Speicher gehen Auditspuren verloren, etwa nach einem Angriff. Quelle: Architecture-best-practices-Log-Analytics (Data export with immutability policies; data can be purged). MITRE ATT&CK T1070.'
+- id: mon-vm-agent-public-channel
+  name: Azure Monitor VM Agent Public Channel
+  description: 'Monitoring-Agenten auf VMs senden Telemetrie über öffentliche Endpunkte. Ohne Private Link läuft der Datenweg über das öffentliche Netz und ist nicht auf das Netz beschränkt. Quelle: Secure-your-Azure-Monitor-deployment (Virtual machine monitoring: connect VMs through private endpoint). MITRE ATT&CK T1040.'
+- id: mon-used-as-security-monitoring
+  name: Azure Monitor Used Instead of Security Monitoring
+  description: 'Azure Monitor sammelt Sicherheitsereignisse, ist aber nicht für Sicherheitsüberwachung gedacht. Erkennungsregeln, Korrelation und Reaktion fehlen. Angriffe bleiben unentdeckt. Quelle: Secure-your-Azure-Monitor-deployment (Implement security monitoring of VMs using Defender for Cloud and Sentinel). MITRE ATT&CK T1070.'
+- id: mon-legacy-cluster-certificate-auth
+  name: Container Insights Legacy Certificate Authentication
+  description: 'Cluster verbinden sich mit Container Insights über zertifikatsbasierte lokale Authentifizierung. Zertifikate werden verteilt und seltener rotiert als verwaltete Identitäten. Quelle: Best-practices-for-monitoring-Kubernetes-with-Azure-Monitor (Connect clusters using managed identity; migrate from legacy authentication). MITRE ATT&CK T1552.'
+- id: ai-api-key-exposure
+  name: AI Services API Key Exposure
+  description: 'API-Schlüssel für Azure OpenAI oder AI Services liegen in Code, Konfiguration oder Logs. Wer sie besitzt, kann Modelle auf Kosten der Organisation nutzen und Daten abfragen. Quelle: Azure-AI-security-best-practices (Use managed identity instead of API keys, eliminating the need to manage and rotate secrets). MITRE ATT&CK T1552.001.'
+- id: ai-prompt-injection
+  name: AI Services Prompt Injection
+  description: 'Eingaben manipulieren das Modell, um Schutzregeln zu umgehen oder vertrauliche Daten auszugeben. Ohne Inhaltsfilterung und Sicherheits-Meta-Prompts wirkt die Manipulation direkt. Quelle: Azure-AI-security-best-practices (Implement multilayered content filtering; safety meta-prompts; Prompt Shields). MITRE ATT&CK T1190.'
+- id: ai-public-endpoint
+  name: AI Services Public Endpoint Exposure
+  description: 'Der öffentliche Endpunkt des AI-Dienstes ist erreichbar, ohne Private Endpoint oder Netzwerkregeln. Modelle und Daten lassen sich aus dem Internet ansprechen. Quelle: Azure-AI-security-best-practices (Use private endpoints for network isolation); Configure-secure-networking-for-Azure-AI-platform-services (Create private endpoints for all AI platform services). MITRE ATT&CK T1530.'
+- id: appi-instrumentation-key-as-credential
+  name: Application Insights Instrumentation Key Misused
+  description: 'Der Instrumentation Key wird als Sicherheitsschlüssel behandelt, ist aber nur eine Kennung. Ohne Microsoft Entra Authentifizierung kann jeder mit dem Schlüssel Telemetrie einspielen und die Daten verfälschen. Quelle: Connection-strings-in-Application-Insights (Ikey values aren''t security tokens; authenticated ingestion via Microsoft Entra). MITRE ATT&CK T1078.004.'
+- id: appi-telemetry-exposes-data
+  name: Application Insights Sensitive Data in Telemetry
+  description: 'Telemetrie enthält personenbezogene oder geheime Werte aus Requests und Logs. Der Workspace speichert diese Daten und macht sie für Leser sichtbar. Quelle: Application-Insights-FAQ und Best-practices-Azure-Monitor-Logs (Purge sensitive data; obfuscation). MITRE ATT&CK T1530.'
+- id: appi-connection-string-in-config
+  name: Application Insights Connection String in Plaintext Configuration
+  description: 'Die Verbindungszeichenfolge steht im Klartext in App-Einstellungen oder Quellcode. Jeder mit Lesezugriff auf die Konfiguration kann Telemetrie senden und Endpunkte umleiten. Quelle: Application-Insights-FAQ (use environment variables; connection strings for ingestion). MITRE ATT&CK T1552.001.'
+- id: ddos-unprotected-public-ip
+  name: Public IP Without DDoS Protection
+  description: 'Öffentliche IP-Adressen im Netz sind nicht durch DDoS Protection abgedeckt. Volumetrische und Protokollangriffe erreichen die Ressourcen ohne adaptive Abwehr. Quelle: Secure-Azure-DDoS-Protection (Protect every supported public IP resource). MITRE ATT&CK T1499.'
+- id: ddos-unsupported-deployment
+  name: DDoS Protection Gap on Unsupported Deployment
+  description: 'Ressourcen mit NAT-Gateway-IPs, klassischen VMs oder Virtual WAN werden von DDoS Protection nicht geschützt. Der Schutz wirkt nur auf unterstützte Konfigurationen. Quelle: About-Azure-DDoS-Protection-Tier-Comparison (Limitations). MITRE ATT&CK T1499.'
+- id: ddos-no-attack-telemetry
+  name: DDoS Attacks Without Telemetry
+  description: 'Ohne Diagnoseeinstellungen fehlen DDoS-Metriken und Angriffsprotokolle. Angriffe bleiben unbemerkt, und die Nachweise für Kostenerstattung und Analyse fehlen. Quelle: DDoS-protection-for-Azure-networks-cross-cloud (Prerequisites: Azure Monitor configuration). MITRE ATT&CK T1499.'
+- id: defender-coverage-gap
+  name: Defender for Cloud Coverage Gap
+  description: 'Nicht alle Subscriptions und Ressourcen sind in Defender for Cloud aufgenommen. Angriffsfläche und Fehlkonfigurationen bleiben außerhalb der Bewertung. Quelle: Defender-for-Cloud-Introduction (CSPM, multicloud coverage); Planning-and-operations-guide (Monitor for new or changed resources). MITRE ATT&CK T1562.'
+- id: defender-unremediated-recommendations
+  name: Defender for Cloud Unremediated Recommendations
+  description: 'Empfehlungen werden nicht bearbeitet, obwohl sie kritische Fehlkonfigurationen melden. Der Secure Score bleibt niedrig, und bekannte Angriffswege bleiben offen. Quelle: Security-policies-in-Defender-for-Cloud (Security recommendations: Schweregrad und Behebung); Planning-and-operations-guide (Security policies and recommendations). MITRE ATT&CK T1190.'
+- id: defender-unprotected-container-registry
+  name: Defender for Containers Not Enabled
+  description: 'Ohne Defender for Containers werden Images nicht auf Schwachstellen geprüft und Angriffe auf den Kontrollpunkt von Kubernetes nicht erkannt. Quelle: Enable-Defender-for-Containers (Enable the Defender for Containers plan; registry access; agentless threat protection). MITRE ATT&CK T1610.'
+- id: afs-public-endpoint-exposure
+  name: Azure File Sync Public Endpoint Exposure
+  description: 'Der öffentliche Endpunkt des Storage Sync Service ist erreichbar, obwohl Private Endpoints verfügbar sind. Agenten und Clients können von außerhalb des Netzes verbinden. Quelle: Networking-considerations-for-Azure-File-Sync (Private endpoints: disable public endpoints). MITRE ATT&CK T1190.'
+- id: afs-identity-misconfiguration
+  name: Azure File Sync Identity Misconfiguration
+  description: 'Freigaben werden nur über Speicherkontoschlüssel oder ohne Domänen-Authentifizierung angesprochen. Berechtigungen auf den Cloud-Freigaben lassen sich nicht über AD DS durchsetzen. Quelle: Hybrid-file-services (Considerations 1–2: AD DS identity, domain-join storage account). MITRE ATT&CK T1078.004.'
+- id: afs-no-backup
+  name: Azure File Sync Without Backup
+  description: 'Die Freigaben sind nicht durch Azure Files Backup geschützt. Versehentliches oder bösartiges Löschen lässt sich nicht rückgängig machen. Quelle: Hybrid-file-services (Considerations 5: Azure Files backup, snapshot and vaulted backups). MITRE ATT&CK T1485.'
+- id: hdi-standard-cluster-no-authentication
+  name: HDInsight Standard Cluster Without Authentication
+  description: 'Standardcluster laufen ohne Authentifizierung für HiveServer2, und Autorisierung über Ranger ist nicht verfügbar. Jeder im Netz kann Abfragen ausführen und Daten lesen. Quelle: Security-options-for-Hive-in-HDInsight (HiveServer2 authentication: default none for standard clusters). MITRE ATT&CK T1078.004.'
+- id: hdi-ssl-and-transport-gaps
+  name: HDInsight Unencrypted Cluster Communication
+  description: 'Die Kommunikation zwischen den Clusterknoten ist nicht über IPsec verschlüsselt, und die Gateway-Verbindung ist nicht durchgehend TLS-geschützt. Abgefangene Daten sind lesbar. Quelle: Security-options-for-Hive-in-HDInsight (SSL on the gateway; encryption in transit with IPsec). MITRE ATT&CK T1040.'
+- id: hdi-keytab-exposure
+  name: HDInsight Kerberos Keytab Exposure
+  description: 'Keytab-Dateien für Domänenbenutzer liegen ungeschützt auf den Clusterknoten oder in Skripten. Wer sie kopiert, kann sich ohne Passwort als dieser Benutzer authentifizieren. Quelle: Enterprise-security-general-information-and-guidelines-in-Azure-HDInsight (Generate domain user keytabs); HDInsight-FAQ (How do I create a keytab). MITRE ATT&CK T1552.'
+- id: tm-unauthorized-profile-change
+  name: Traffic Manager Unauthorized Profile Change
+  description: 'Ein Angreifer mit Schreibrechten auf das Profil ändert Endpunkte oder Routing und leitet Nutzer zu bösartigen Zielen. Quelle: Architecture-best-practices-Traffic-Manager (Prevent unauthorized modification of traffic routing; RBAC on the control plane). MITRE ATT&CK T1565.'
+- id: tm-dangling-dns-takeover
+  name: Traffic Manager Dangling DNS Subdomain Takeover
+  description: 'Ein DNS-Eintrag zeigt auf eine gelöschte Azure-Ressource. Ein Angreifer belegt die Ressource neu und übernimmt die Subdomain. Quelle: Architecture-best-practices-Traffic-Manager (Harden DNS entries; Prevent dangling DNS entries). MITRE ATT&CK T1584.003.'
+- id: tm-http-health-probes
+  name: Traffic Manager HTTP Health Probes
+  description: 'Endpunkte werden per HTTP statt HTTPS überwacht, und die Probes validieren keine Zertifikate. Gefälschte Antworten können den Zustand eines Endpunkts verfälschen. Quelle: Secure-your-Azure-Traffic-Manager-deployment (Use HTTPS for monitoring; probes don''t validate certificate validity). MITRE ATT&CK T1557.'
+- id: waf-detection-mode-in-production
+  name: Web Application Firewall Detection Mode in Production
+  description: 'Die WAF läuft im Erkennungsmodus, obwohl Anwendungen produktiv sind. Erkannte Angriffe werden protokolliert, aber nicht blockiert. Quelle: WAF-Best-practices-Front-Door (Use prevention mode; detection mode provides no protection). MITRE ATT&CK T1190.'
+- id: waf-no-rate-limit-or-bot-protection
+  name: Web Application Firewall Without Rate Limit or Bot Protection
+  description: 'Ohne Ratenlimit und Bot-Schutz können Anfragefluten, Scraping und Credential Stuffing die Anwendung überlasten oder Konten angreifen. Quelle: Secure-your-Azure-WAF-deployment (Implement rate limiting; Enable bot protection). MITRE ATT&CK T1499.'
+- id: waf-logs-not-collected
+  name: Web Application Firewall Logs Not Collected
+  description: 'WAF-Diagnoseprotokolle werden nicht an ein Zielsystem gesendet. Blockierte Angriffe und Regelauslösungen lassen sich nicht nachvollziehen. Quelle: Secure-your-Azure-WAF-deployment (Logging and monitoring 1–2: diagnostic settings, Microsoft Sentinel). MITRE ATT&CK T1070.'
+- id: la-secrets-in-workflow
+  name: Logic Apps Secrets Embedded in Workflows
+  description: 'Zugangsdaten stehen direkt in Workflow-Definitionen oder Verbindungen statt in Key Vault. Wer die Definition lesen kann, erhält die Geheimnisse. Quelle: Azure-security-baseline-Logic-Apps (IM-8: Secrets in Key Vault, app settings), Best-practices-protecting-secrets (Access control). MITRE ATT&CK T1552.001.'
+- id: la-no-managed-identity
+  name: Logic Apps Without Managed Identity
+  description: 'Workflows authentifizieren sich mit Dienstprinzipalen oder Schlüsseln statt mit einer verwalteten Identität. Die Anmeldedaten müssen verwaltet, rotiert und geschützt werden. Quelle: Azure-security-baseline-Logic-Apps (Identity management: use managed identities instead of service principals). MITRE ATT&CK T1078.004.'
+- id: la-anonymous-request-trigger
+  name: Logic Apps Anonymous Request Trigger
+  description: 'Ein HTTP-Request-Trigger akzeptiert Aufrufe ohne Authentifizierung. Jeder, der die URL kennt, kann den Workflow auslösen und Daten einspielen. Quelle: Azure-security-baseline-Logic-Apps (Service principals: AAD authentication for Logic Apps Request triggers). MITRE ATT&CK T1190.'
+- id: nw-overbroad-packet-capture
+  name: Network Watcher Overbroad Packet Capture Rights
+  description: 'Breite Rechte auf Packet Captures erlauben es, Nutzdaten des Netzwerkverkehrs abzugreifen. Die Erfassung installiert eine Erweiterung auf der VM. Quelle: Secure-your-Azure-Network-Watcher-deployment (Limit who can initiate packet captures; RBAC for Network Watcher). MITRE ATT&CK T1040.'
+- id: nw-flow-log-storage-exposure
+  name: Network Watcher Flow Log Storage Exposure
+  description: 'Speicherkonten mit Flow-Logs und Packet Captures sind über das öffentliche Netz erreichbar. Verbindungsmetadaten und Nutzdaten lassen sich abrufen. Quelle: Secure-your-Azure-Network-Watcher-deployment (Network security 2–3: restrict access, private endpoints for flow log storage). MITRE ATT&CK T1530.'
+- id: nw-nsg-flow-log-retirement-gap
+  name: Network Watcher NSG Flow Log Retirement Gap
+  description: 'NSG-Flow-Logs können seit dem 30. Juni 2025 nicht mehr neu angelegt werden und werden am 30. September 2027 eingestellt. Ohne Migration entsteht eine Lücke in der Netzwerkprotokollierung. Quelle: Secure-your-Azure-Network-Watcher-deployment (Network security 1: migrate from NSG flow logs to virtual network flow logs). MITRE ATT&CK T1070.'
+- id: sf-unsecured-cluster
+  name: Service Fabric Unsecured Cluster
+  description: 'Der Cluster ist ohne Zertifikat oder Windows-Sicherheit betrieben, sodass anonyme Clients Verwaltungsoperationen ausführen können. Die Sicherheit lässt sich nach der Erstellung nicht mehr einschalten. Quelle: Best-practices-for-Azure-Service-Fabric-security (Always secure your clusters; configure security only at creation). MITRE ATT&CK T1190.'
+- id: sf-shared-client-certificate
+  name: Service Fabric Shared Client Certificate
+  description: 'Clientzertifikate werden unter mehreren Benutzern des Service Fabric Explorers geteilt, und ihr Ablauf wird nicht überwacht. Ein gestohlenes Zertifikat gibt vollen Clusterzugriff. Quelle: Service-Fabric-cluster-security-scenarios (Client-to-node security: don''t distribute cluster client certificates), Architecture-best-practices-Service-Fabric (Create a process to monitor expiration). MITRE ATT&CK T1552.'
+- id: sf-public-management-endpoints
+  name: Service Fabric Public Management Endpoints
+  description: 'Verwaltungsendpunkte sind über das öffentliche Netz erreichbar, statt über Jump-Server und eingeschränkte NSGs. Die Angriffsfläche des Clusters wird unnötig groß. Quelle: Best-practices-for-Azure-Service-Fabric-security (Create perimeter networks with NSGs; jump servers), Use-network-isolation-Service-Fabric. MITRE ATT&CK T1190.'
+- id: vmss-unpatched-instances
+  name: VM Scale Set Unpatched Instances
+  description: 'Instanzen einer Scale Set bleiben ohne Updates, weil der Upgrade-Modus manuell ist oder automatische OS-Image-Upgrades fehlen. Bekannte Schwachstellen bleiben über Monate offen. Quelle: Architecture-best-practices-VMs-and-scale-sets (Keep your VMs up to date by setting an upgrade policy); Baseline-VMSS (Automatic OS image upgrades; Auto Guest Patching). MITRE ATT&CK T1068.'
+- id: vmss-special-instances-modified
+  name: VM Scale Set Protected Instances Modified
+  description: 'Besondere Instanzen, die andere Aufgaben erfüllen, werden durch Skalierung oder Scale-Set-Aktionen verändert oder entfernt. Ihre Konfiguration und Daten gehen verloren oder werden überschrieben. Quelle: Instance-Protection-for-VMSS-instances (protectFromScaleIn, protectFromScaleSetActions). MITRE ATT&CK T1565.'
+- id: vmss-no-application-health
+  name: VM Scale Set Without Application Health Monitoring
+  description: 'Ohne Application Health Extension oder Health Probe erkennt die Scale Set keine fehlerhaften Instanzen. Rolling Upgrades und automatische Reparaturen greifen nicht, und kompromittierte Instanzen bleiben im Betrieb. Quelle: Using-Application-Health-extension-with-VMSS (Only one source of health monitoring; required for rolling upgrades), Upgrade-policy-modes (Rolling upgrade requires health monitoring). MITRE ATT&CK T1499.'
+- id: mg-api-keys-and-service-accounts
+  name: Managed Grafana API Keys and Service Accounts Enabled
+  description: 'API-Schlüssel und Dienstkonten sind aktiv und umgehen die Anmeldung über Microsoft Entra ID und MFA. Tokens ohne Ablauf bleiben über lange Zeit gültig. Quelle: Secure-Azure-Managed-Grafana (Service-specific security 1–2: disable API keys and service accounts; token expiration). MITRE ATT&CK T1078.004.'
+- id: mg-public-network-access
+  name: Managed Grafana Public Network Access
+  description: 'Die Grafana-Instanz ist über das öffentliche Netz erreichbar, ohne Private Endpoint. Dashboards und Datenquellen sind aus dem Internet ansprechbar. Quelle: Secure-Azure-Managed-Grafana (Network security 1–2: private endpoints, disable public access), Set-up-private-access. MITRE ATT&CK T1190.'
+- id: mg-datasource-credentials
+  name: Managed Grafana Data Source Credentials Stored
+  description: 'Zugangsdaten für Datenquellen sind in Grafana gespeichert, statt über verwaltete Identität oder Current-User-Authentifizierung. Wer Grafana-Administratorzugriff hat, liest die Geheimnisse. Quelle: Secure-Azure-Managed-Grafana (Data protection 2; Identity and access management 3: managed identity and Current User authentication). MITRE ATT&CK T1552.001.'
+- id: kv-public-network-exposure
+  name: Key Vault Reachable From Public Networks
+  description: 'Actor: external attacker or stolen-credential holder. Prerequisite: public network access enabled and no firewall rules. Action: connects to the vault data plane from the internet. Impact: reads or modifies secrets, keys and certificates. Quelle: MCSB v2 NS-2; baseline feature „Disable Public Network Access“; Disable public network access using the Key Vault firewall IP filtering rules.'
+- id: kv-no-private-endpoint
+  name: Key Vault Access Path Not Private
+  description: 'Actor: insider or attacker in a connected network. Prerequisite: vault reachable through a public endpoint, no private endpoint. Action: uses the public endpoint from an unmanaged network. Impact: access to secrets bypasses network segmentation. Quelle: MCSB v2 NS-2; baseline feature „Azure Private Link“; Deploy private endpoints for Azure Key Vault.'
+- id: kv-service-principal-secret
+  name: Application Credential Held as Service Principal Secret
+  description: 'Actor: attacker who obtains a service principal secret or certificate. Prerequisite: application authenticates with a service principal instead of a managed identity. Action: authenticates to Key Vault as the service principal. Impact: reads every secret that the principal can access, persistently. Quelle: MCSB v2 IM-3; baseline feature „Managed Identities“; Use Azure managed identities instead of service principals when possible.'
+- id: kv-secrets-embedded-in-code
+  name: Vault Secret Copied Into Code or Configuration
+  description: 'Actor: anyone with read access to code, pipelines or configuration. Prerequisite: a secret was copied out of the vault into source or app settings. Action: reads the plaintext secret from the repository, log or configuration. Impact: the secret is exposed outside the vault controls and its rotation. Quelle: MCSB v2 IM-8; baseline feature „Service Credential Storage in Key Vault“; Ensure that secrets and credentials are stored in secure locations such as Azure Key Vault.'
+- id: kv-no-conditional-access
+  name: Vault Access Without Conditional Access Conditions
+  description: 'Actor: attacker with a valid but risky sign-in. Prerequisite: no conditional access policy restricts data plane sign-ins. Action: signs in from an untrusted location or unmanaged device. Impact: data plane access granted without location, device or risk checks. Quelle: MCSB v2 IM-7; baseline feature „Conditional Access for Data Plane“; Define the applicable conditions and criteria for Azure AD conditional access.'
+- id: kv-broad-data-plane-role
+  name: Key Vault Data Plane Role Broader Than Needed
+  description: 'Actor: insider or compromised identity with a vault-level role assignment. Prerequisite: role such as Key Vault Administrator or Contributor assigned at vault scope. Action: reads or purges secrets and keys beyond the application''s need. Impact: unnecessary access to all vault objects, including destructive operations. Quelle: MCSB v2 PA-7; baseline feature „Azure RBAC for Data Plane“; Use Azure RBAC to manage Azure resource access through built-in role assignments.'
+- id: kv-non-expiring-keys
+  name: Cryptographic Keys Without Expiration
+  description: 'Actor: attacker who obtains a key. Prerequisite: keys created without an expiration date. Action: uses the key indefinitely after compromise. Impact: an unlimited time window for abuse and no forced rotation. Quelle: MCSB v2 DP-6; baseline feature „Key Management in Azure Key Vault“.'
+- id: kv-no-customer-managed-key
+  name: Data Encrypted Only With Platform Keys Where Compliance Requires Customer Keys
+  description: 'Actor: regulator or auditor. Prerequisite: regulated workload stores data encrypted only with Microsoft-managed keys. Action: cannot demonstrate customer control over key lifecycle or revocation. Impact: compliance gap and no customer-side revocation of data access. Quelle: MCSB v2 DP-5; baseline feature „Data at Rest Encryption Using CMK“; Azure Key Vault is where you store your keys for CMK encryption.'
+- id: kv-accidental-permanent-deletion
+  name: Vault Objects Permanently Deleted
+  description: 'Actor: administrator with delete rights, insider or ransomware with vault access. Prerequisite: soft delete or purge protection disabled. Action: deletes and purges a key vault or its keys and secrets. Impact: permanent loss of cryptographic material that protected other data. Quelle: MCSB v2 BR-1; baseline feature „Service Native Backup Capability“; Use Azure Key Vault native backup feature; current guidance: soft delete and purge protection (secure-key-vault, data protection 1-2).'
+- id: kv-no-resource-logs
+  name: Vault Activity Not Logged
+  description: 'Actor: attacker or insider who reads or changes secrets. Prerequisite: resource logs not enabled or not sent to a workspace. Action: performs key or secret operations without a trace. Impact: no evidence for investigation and no alert on misuse. Quelle: MCSB v2 LT-4; baseline feature „Azure Resource Logs“; Enable resource logs for your key vault; log key operation activities.'
+- id: kv-defender-not-enabled
+  name: Key Vault Threat Detection Not Enabled
+  description: 'Actor: attacker with a stolen credential accessing the vault. Prerequisite: Microsoft Defender for Key Vault not enabled on the subscription. Action: makes unusual access or abuse patterns against the vault. Impact: no alert triggers, so misuse runs until discovered elsewhere. Quelle: MCSB v2 LT-1; baseline feature „Microsoft Defender for Service“; Enable Microsoft Defender for Key Vault.'
+- id: sa-public-network-reachable
+  name: Storage Account Reachable From Public Networks
+  description: 'Actor: external attacker or holder of a leaked credential. Prerequisite: public network access enabled and the firewall default action is Allow. Action: sends requests to the account endpoint from the internet. Impact: reads, changes or exfiltrates data from any data service in the account. Quelle: MCSB v2 NS-2; Secure your Azure Storage account, „Network security“ / „Disable public network access to the storage account“.'
+- id: sa-shared-key-authorization
+  name: Storage Account Shared Key Credential Abuse
+  description: 'Actor: anyone who obtains an account key from code, logs or a configuration file. Prerequisite: Shared Key authorization allowed on the account. Action: signs requests with the account key. Impact: full control of all data services in the account, not scoped to a user, and SAS tokens can be issued without audit. Quelle: MCSB v2 IM-7, PA-7; Secure your Azure Storage account, „Identity and access management“ / „Disallow Shared Key authorization“.'
+- id: sa-long-lived-sas
+  name: Storage Account Long-Lived Shared Access Signature
+  description: 'Actor: attacker holding a SAS token from a log, URL or repository. Prerequisite: SAS issued with long expiry, broad permissions, or without a stored access policy. Action: uses the SAS within its validity. Impact: data access that cannot be revoked individually when signed with the account key. Quelle: MCSB v2 IM-7, PA-7; Secure your Azure Storage account, „Identity and access management“ / „Scope every SAS to the minimum permissions and shortest lifetime required“.'
+- id: sa-broad-data-plane-role
+  name: Storage Data Role Assigned at Account Scope
+  description: 'Actor: insider or compromised identity with a storage role. Prerequisite: data-plane role such as Storage Blob Data Owner assigned at account or subscription scope. Action: reads, overwrites or deletes data in every container and share. Impact: access far beyond the workload''s need. Quelle: MCSB v2 IM-7, PA-7; Secure your Azure Storage account, „Identity and access management“ / „Assign RBAC roles at the smallest reasonable scope“.'
+- id: sa-unencrypted-transport
+  name: Storage Account Accepts Unencrypted or Legacy-TLS Requests
+  description: 'Actor: attacker on the network path or a client with legacy settings. Prerequisite: secure transfer not required, or minimum TLS version below 1.2. Action: intercepts or downgrades the connection. Impact: credentials and data are readable on the wire. Quelle: MCSB v2 NS-2; Secure your Azure Storage account, „Network security“ / „Require secure transfer (HTTPS)“.'
+- id: sa-no-customer-managed-key
+  name: Storage Account Encrypted Only With Microsoft-Managed Keys
+  description: 'Actor: regulator or internal risk owner. Prerequisite: regulated data stored with platform-managed keys only. Action: cannot rotate, audit or revoke the encryption key independently. Impact: compliance gap, and no customer-side way to cut off access to data at rest. Quelle: MCSB v2 DP-5; Secure your Azure Storage account, „Data protection“ / „Configure customer-managed keys (CMK) for encryption at rest“.'
+- id: sa-cross-tenant-copy
+  name: Storage Data Copied Across Tenant Boundaries
+  description: 'Actor: user with data-plane write permission in another tenant. Prerequisite: copy or object replication allowed from source accounts in any tenant. Action: copies or replicates data out of the organization''s tenant. Impact: data leaves the organization''s control through a legitimate-looking operation. Quelle: MCSB v2 NS-2; Secure your Azure Storage account, „Network security“ / „Restrict cross-tenant object replication and copy operations“.'
+- id: sa-no-threat-detection
+  name: Storage Account Threats Not Detected
+  description: 'Actor: attacker performing credential misuse, malware upload or data exfiltration. Prerequisite: Microsoft Defender for Storage not enabled on the subscription or account. Action: performs anomalous or malicious access against blobs, files, queues or tables. Impact: misuse continues without an alert and malware is served to downstream consumers. Quelle: MCSB v2 LT-1, LT-4; Secure your Azure Storage account, „Logging and monitoring“ / „Enable Microsoft Defender for Storage“.'
+- id: sa-unlogged-requests
+  name: Storage Requests Not Logged or Not Attributable
+  description: 'Actor: attacker or insider reading or deleting data. Prerequisite: diagnostic settings absent for the account or its data services. Action: performs reads, writes and deletes without a trace. Impact: no evidence for investigation and no way to tell which authorization method was used. Quelle: MCSB v2 LT-1, LT-4; Secure your Azure Storage account, „Logging and monitoring“ / „Send diagnostic settings to a Log Analytics workspace“.'
+- id: sa-accidental-or-malicious-deletion
+  name: Storage Account or Data Deleted Without Recovery
+  description: 'Actor: administrator error, insider or ransomware with account rights. Prerequisite: no resource lock on the account and no recovery features configured for the data. Action: deletes the account or its data. Impact: data loss that geo-replication would mirror rather than prevent. Quelle: MCSB v2 DP-5; Secure your Azure Storage account, „Data protection“ / „Protect the storage account with a resource lock“.'
+- id: avd-hostpool-mi-overprivileged
+  name: Host Pool Managed Identity Reads More Secrets Than Needed
+  description: 'Actor: attacker who compromises the host pool managed identity or its workload. Prerequisite: managed identity holds Key Vault Secrets User on the whole vault, or an access policy with Get on all secrets. Action: reads every secret in the vault, including unrelated application secrets. Impact: domain-join and local administrator credentials plus unrelated secrets are exposed. Quelle: Deploy Azure Virtual Desktop, Prerequisites: Key Vault RBAC role Key Vault Secrets User for the host pool managed identity.'
+- id: avd-hostpool-activity-unlogged
+  name: Host Pool Changes Not Logged
+  description: 'Actor: insider or attacker with Desktop Virtualization Contributor. Prerequisite: host pool diagnostic settings not enabled. Action: changes host pool properties, registers session hosts or changes assignments. Impact: changes cannot be attributed or detected, and incidents cannot be reconstructed. Quelle: Deploy Azure Virtual Desktop, Management tab: enable diagnostic settings for the host pool.'
+- id: avd-hostpool-domain-join-overprivileged
+  name: Domain Join Account With Extended Rights on the Session Host OU
+  description: 'Actor: attacker who obtains the domain join account from the Key Vault or from automation. Prerequisite: join account holds reset password, validated writes and account restriction rights on all computer objects in the session host OU. Action: resets passwords of computer objects or takes over existing session host computer accounts. Impact: lateral movement across the session host OU and access to user sessions. Quelle: Deploy Azure Virtual Desktop, Prerequisites: AD DS permissions for the domain join account on the OU containing session hosts (KB5020276 computer account reuse).'
+- id: avd-hostpool-registration-token-exposure
+  name: Host Pool Registration Token Retrieved to Register a Rogue Session Host
+  description: 'Actor: insider or attacker with a role that can retrieve the host pool registration token. Prerequisite: Desktop Virtualization Virtual Machine Contributor or Host Pool Contributor assigned on the host pool or a parent scope. Action: retrieves the registration token and registers an attacker-controlled VM as a session host. Impact: user sessions and entered credentials are routed to the attacker-controlled host. Quelle: Built-in Azure RBAC roles for AVD: hostpools/retrieveRegistrationToken in Desktop Virtualization Virtual Machine Contributor and Host Pool Contributor; Session Host Operator: valid registration token.'
+- id: avd-sh-internet-egress
+  name: Session Hosts With Unrestricted Internet Egress
+  description: 'Actor: malware or an attacker inside a user session. Prerequisite: session hosts can reach any internet resource, with no firewall, NVA or proxy. Action: downloads payloads, contacts command-and-control servers or uploads data to external storage. Impact: data exfiltration and persistent remote control of session hosts. Quelle: Security recommendations for Azure Virtual Desktop: by default, session hosts can connect to any resource on the internet.'
+- id: avd-sh-local-admin-exposure
+  name: Azure Virtual Desktop Session Host Local Admin Exposure
+  description: 'Actor: attacker who compromises one session host. Prerequisite: local administrator password is static or shared across session hosts. Action: reuses the local administrator credentials on other session hosts. Impact: administrative rights on all session hosts and access to all user sessions. Quelle: Identity and access management recommendations for AVD: secure local admin accounts (LAPS).'
+- id: avd-sh-user-local-admin
+  name: Users Granted Administrator Rights on Session Hosts
+  description: 'Actor: authenticated user with local administrator rights. Prerequisite: users are members of the local Administrators group or can install software. Action: installs unmanaged software or disables security controls. Impact: malware persistence, tampering with endpoint protection and access to other users'' data. Quelle: Security recommendations for Azure Virtual Desktop: do not grant users admin access to virtual desktops; use configuration management such as Intune.'
+- id: avd-sh-no-endpoint-protection
+  name: Session Hosts Without Endpoint Protection or EDR
+  description: 'Actor: malware delivered by phishing or a malicious download. Prerequisite: no endpoint protection or EDR on the session host. Action: executes payloads and moves between sessions undetected. Impact: compromise of shared multi-session hosts and of all users on them. Quelle: Security recommendations for Azure Virtual Desktop: enable endpoint protection and install an EDR product on all session hosts.'
+- id: avd-sh-outdated-image
+  name: Session Hosts Built From Unpatched Images
+  description: 'Actor: attacker with a public exploit for an unpatched component. Prerequisite: base image or application stack is not patched on a monthly cycle. Action: exploits a known vulnerability on a session host. Impact: privilege escalation to SYSTEM and access to all sessions on that host. Quelle: Security recommendations for Azure Virtual Desktop: patch base images monthly.'
+- id: avd-sh-idle-session-unlocked
+  name: Idle Sessions Not Locked or Disconnected
+  description: 'Actor: person with physical or shared-desk access to an unattended device. Prerequisite: no idle timeout or screen lock configured for sessions. Action: uses a session that is still signed in. Impact: access to open applications, files and data of the previous user. Quelle: Security recommendations for Azure Virtual Desktop: maximum inactive time, disconnection policies and screen locks for idle sessions.'
+- id: avd-sh-direct-rdp-exposure
+  name: Azure Virtual Desktop Direct RDP Exposure
+  description: 'Actor: external attacker or attacker on the internal network. Prerequisite: session hosts reachable via RDP, or permanent RDP access granted to administrators. Action: brute-forces RDP credentials or uses an open RDP path. Impact: interactive access to session hosts outside the AVD gateway. Quelle: Security and governance (CAF) for AVD: use just-in-time access and avoid direct RDP access to session hosts.'
+- id: avd-workspace-sign-in-without-mfa
+  name: Azure Virtual Desktop Sign-In Without MFA
+  description: 'Actor: attacker with a stolen password. Prerequisite: no Conditional Access policy requires MFA for the Azure Virtual Desktop and Windows Cloud Login apps. Action: signs in to the workspace feed and launches desktops and applications. Impact: access to all published desktops and applications of the user. Quelle: Enforce Microsoft Entra MFA for AVD using Conditional Access; Security recommendations for AVD: implement conditional access and MFA.'
+- id: avd-workspace-contributor-overprivileged
+  name: Workspace Changed by Broad Workspace Contributor Assignment
+  description: 'Actor: insider or attacker with Desktop Virtualization Workspace Contributor above the workspace scope. Prerequisite: the role is assigned on a resource group or subscription instead of the workspace. Action: changes workspace configuration and the application groups registered to it. Impact: users are shown unintended desktops or applications. Quelle: Built-in Azure RBAC roles for AVD: Desktop Virtualization Workspace Contributor (workspaces/*, applicationgroups/read).'
+- id: avd-workspace-default-desktop-group
+  name: Default Desktop Application Group Registered to the Workspace
+  description: 'Actor: user who receives the workspace feed. Prerequisite: the portal created the default desktop application group and registered it to the workspace. Action: launches the full desktop instead of only the needed applications. Impact: users receive access to the full session host desktop and its data. Quelle: Deploy Azure Virtual Desktop: a Desktop application group is created automatically and can be registered to the workspace.'
+- id: avd-appgroup-desktop-type-broad-exposure
+  name: Desktop-Type Application Group Assigned to a Broad Group
+  description: 'Actor: insider or external user in a broad assigned group. Prerequisite: desktop-type application group assigned to an all-users or large group where RemoteApp would suffice. Action: uses the full desktop instead of single applications. Impact: larger attack surface and access to data outside the job role. Quelle: Deploy Azure Virtual Desktop: preferred application group type can be set to Desktop or RemoteApp.'
+- id: avd-appgroup-owner-role-assignment
+  name: Owner or User Access Administrator Can Grant Application Group Access
+  description: 'Actor: administrator with Owner or User Access Administrator on the application group. Prerequisite: roleAssignments/write permission on the application group, which these roles include. Action: adds users or groups to the application group. Impact: unreviewed access to published desktops and applications. Quelle: Deploy Azure Virtual Desktop, Prerequisites: assigning users to an application group requires roleAssignments/write; Built-in Azure RBAC roles for AVD: user assignment needs User Access Administrator.'
+- id: avd-appgroup-contributor-overprivileged
+  name: Application Group Changed by Broad Application Group Contributor Assignment
+  description: 'Actor: insider or attacker with Desktop Virtualization Application Group Contributor above the application group. Prerequisite: role inherited from a resource group or subscription. Action: adds, removes or changes published applications and application group properties. Impact: published resources change without review. Quelle: Built-in Azure RBAC roles for AVD: Desktop Virtualization Application Group Contributor (applicationgroups/* apart from user or group assignment).'
+- id: avd-scaling-plan-broad-vm-rights
+  name: Scaling Plan Service Principal With Subscription-Wide VM Rights
+  description: 'Actor: attacker who compromises the Azure Virtual Desktop service principal or the host pool managed identity. Prerequisite: Power On Off Contributor and Virtual Machine Contributor assigned at subscription scope. Action: creates, deletes, starts or stops any virtual machine in the subscription. Impact: destruction of session hosts and of unrelated workloads in the same subscription. Quelle: Create and assign an autoscale scaling plan for AVD: Power On Off Contributor and Virtual Machine Contributor on the service principal with the subscription as assignable scope.'
+- id: avd-scaling-plan-session-host-deletion
+  name: Scaling Plan Deletes Session Hosts Without Review
+  description: 'Actor: attacker or misconfiguration that changes the scaling plan. Prerequisite: dynamic scaling with rights to create and delete session hosts. Action: deletes running session hosts or stops them during business hours. Impact: loss of desktop availability for all users of the host pool. Quelle: Built-in Azure RBAC roles for AVD: Desktop Virtualization Virtual Machine Contributor includes virtualMachines/delete and hostpools/sessionhosts/delete.'
+- id: avd-scaling-plan-default-session-limit
+  name: Default Max Session Limit Overloads Session Hosts
+  description: 'Actor: load generated by many users or a scripted client. Prerequisite: host pool keeps the default MaxSessionLimit, which autoscale requires to be configured. Action: places too many sessions on too few session hosts. Impact: degraded or unavailable desktops for all users on the host pool. Quelle: Create and assign an autoscale scaling plan for AVD, Prerequisites: configure MaxSessionLimit and do not use the default value.'
+- id: avd-scaling-plan-power-role-session-logoff
+  name: Power On Off Contributor Can Sign Out Users and Change Host Pools
+  description: 'Actor: attacker or insider who holds Desktop Virtualization Power On Off Contributor. Prerequisite: role assigned on the subscription, resource group or host pool that holds the scaled host pools. Action: deletes user sessions, sends messages to users, and writes host pool and session host settings. Impact: unsaved user work is lost and host pool configuration changes without a deployment record. Quelle: Built-in Azure RBAC roles for AVD: Desktop Virtualization Power On Off Contributor includes hostpools/write, sessionhosts/write and usersessions/delete.'
+- id: avd-fslogix-av-exclusion-hides-malware
+  name: Antivirus Exclusions for Profile Containers Hide Malware
+  description: 'Actor: malware author with access to a user profile. Prerequisite: antivirus excludes all FSLogix profile container extensions or folders without scoping. Action: stores and runs payloads inside the mounted profile container. Impact: malware persists across sessions and bypasses endpoint protection. Quelle: Security recommendations for AVD: exclude FSLogix profile extensions from antivirus; FSLogix prerequisites: configure antivirus file and folder exclusions.'
+- id: avd-fslogix-share-public-access
+  name: Profile Share Reachable From Public Networks
+  description: 'Actor: external attacker or holder of a leaked credential. Prerequisite: the Azure Files share that holds the profile containers allows public network access. Action: connects to the profile share from the internet. Impact: reads or modifies all user profile containers. Quelle: MCSB v2 NS-2; Secure your Azure Storage account, „Network security“ / „Disable public network access to the storage account“.'
+- id: avd-fslogix-shared-key-access
+  name: Profile Share Accessed With Storage Account Key
+  description: 'Actor: attacker who obtains the storage account key from a script or log. Prerequisite: Shared Key authorization allowed on the storage account that holds profile containers. Action: mounts or reads profile containers with the account key. Impact: access to every user profile without user-level audit. Quelle: MCSB v2 IM-7, PA-7; Secure your Azure Storage account, „Identity and access management“ / „Disallow Shared Key authorization“.'

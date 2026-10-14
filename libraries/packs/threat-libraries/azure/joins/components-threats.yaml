@@ -1,0 +1,1481 @@
+mappings:
+- component: files
+  threats:
+  - threat: azure-files-shared-key-exposure
+    applies_to: component
+- component: files
+  threats:
+  - threat: azure-files-rbac-acl-misconfiguration
+    applies_to: component
+- component: files
+  threats:
+  - threat: azure-files-public-exposure
+    applies_to: component
+- component: files
+  threats:
+  - threat: azure-files-unencrypted-transfer
+    applies_to: component
+- component: files
+  threats:
+  - threat: azure-files-data-destruction
+    applies_to: component
+- component: files
+  threats:
+  - threat: azure-files-undetected-access
+    applies_to: component
+- component: netapp-files
+  threats:
+  - threat: anf-nfs-export-exposure
+    applies_to: component
+- component: netapp-files
+  threats:
+  - threat: anf-dual-protocol-permission-mismatch
+    applies_to: component
+- component: netapp-files
+  threats:
+  - threat: anf-snapshot-deletion
+    applies_to: component
+- component: netapp-files
+  threats:
+  - threat: anf-unmanaged-encryption-keys
+    applies_to: component
+- component: netapp-files
+  threats:
+  - threat: anf-network-activity-unlogged
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-token-theft
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-password-spraying
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-conditional-access-bypass
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-standing-admin-access
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-break-glass-misuse
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-service-principal-abuse
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-consent-phishing
+    applies_to: component
+- component: entra-id
+  threats:
+  - threat: entra-provider-access-abuse
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-managed-identity-ssrf-abuse
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-remote-code-execution
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-scm-exposure
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-insecure-transport
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-secrets-in-settings
+    applies_to: component
+- component: app-service
+  threats:
+  - threat: appservice-unmonitored-requests
+    applies_to: component
+- component: managed-identity
+  threats:
+  - threat: managed-identity-overprivileged
+    applies_to: component
+- component: managed-identity
+  threats:
+  - threat: managed-identity-role-changes-unmonitored
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-management-port-exposure
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-unpatched-os-exploitation
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-configuration-drift
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-no-endpoint-protection
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-disk-snapshot-exfiltration
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-extension-code-execution
+    applies_to: component
+- component: virtual-machines
+  threats:
+  - threat: vm-backup-destruction
+    applies_to: component
+- component: sql-database
+  threats:
+  - threat: sql-database-public-exposure
+    applies_to: component
+- component: sql-database
+  threats:
+  - threat: sql-database-transport
+    applies_to: component
+- component: sql-database
+  threats:
+  - threat: sql-database-authentication
+    applies_to: component
+- component: sql-database
+  threats:
+  - threat: sql-database-backup
+    applies_to: component
+- component: sql-database
+  threats:
+  - threat: sql-database-vulnerable-config
+    applies_to: component
+- component: cosmosdb
+  threats:
+  - threat: cosmosdb-public-exposure
+    applies_to: component
+- component: cosmosdb
+  threats:
+  - threat: cosmosdb-encryption
+    applies_to: component
+- component: cosmosdb
+  threats:
+  - threat: cosmosdb-authentication
+    applies_to: component
+- component: cosmosdb
+  threats:
+  - threat: cosmosdb-vulnerable-config
+    applies_to: component
+- component: cosmosdb
+  threats:
+  - threat: cosmosdb-network-access
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-public-exposure
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-encryption
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-transport
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-authentication
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-backup
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-vulnerable-config
+    applies_to: component
+- component: postgresql
+  threats:
+  - threat: postgresql-network-access
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-public-exposure
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-encryption
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-transport
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-authentication
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-backup
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-vulnerable-config
+    applies_to: component
+- component: mysql
+  threats:
+  - threat: mysql-network-access
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-public-exposure
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-encryption
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-transport
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-authentication
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-vulnerable-config
+    applies_to: component
+- component: synapse
+  threats:
+  - threat: synapse-network-access
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-public-exposure
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-encryption
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-transport
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-authentication
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-backup
+    applies_to: component
+- component: blob-storage
+  threats:
+  - threat: blob-storage-network-access
+    applies_to: component
+- component: data-lake
+  threats:
+  - threat: data-lake-logging
+    applies_to: component
+- component: queue-storage
+  threats:
+  - threat: queue-storage-encryption
+    applies_to: component
+- component: cache-redis
+  threats:
+  - threat: cache-redis-public-exposure
+    applies_to: component
+- component: cache-redis
+  threats:
+  - threat: cache-redis-encryption
+    applies_to: component
+- component: cache-redis
+  threats:
+  - threat: cache-redis-network-access
+    applies_to: component
+- component: functions
+  threats:
+  - threat: functions-public-exposure
+    applies_to: component
+- component: functions
+  threats:
+  - threat: functions-encryption
+    applies_to: component
+- component: functions
+  threats:
+  - threat: functions-transport
+    applies_to: component
+- component: functions
+  threats:
+  - threat: functions-authentication
+    applies_to: component
+- component: functions
+  threats:
+  - threat: functions-vulnerable-config
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-encryption
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-transport
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-authentication
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-authorization
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-logging
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-vulnerable-config
+    applies_to: component
+- component: aks
+  threats:
+  - threat: aks-network-access
+    applies_to: component
+- component: container-apps
+  threats:
+  - threat: container-apps-public-exposure
+    applies_to: component
+- component: container-apps
+  threats:
+  - threat: container-apps-transport
+    applies_to: component
+- component: container-apps
+  threats:
+  - threat: container-apps-network-access
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: container-instances-encryption
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: container-instances-network-access
+    applies_to: component
+- component: batch
+  threats:
+  - threat: batch-public-exposure
+    applies_to: component
+- component: batch
+  threats:
+  - threat: batch-encryption
+    applies_to: component
+- component: batch
+  threats:
+  - threat: batch-logging
+    applies_to: component
+- component: service-bus
+  threats:
+  - threat: service-bus-public-exposure
+    applies_to: component
+- component: service-bus
+  threats:
+  - threat: service-bus-encryption
+    applies_to: component
+- component: service-bus
+  threats:
+  - threat: service-bus-authentication
+    applies_to: component
+- component: service-bus
+  threats:
+  - threat: service-bus-logging
+    applies_to: component
+- component: service-bus
+  threats:
+  - threat: service-bus-network-access
+    applies_to: component
+- component: event-hubs
+  threats:
+  - threat: event-hubs-public-exposure
+    applies_to: component
+- component: event-hubs
+  threats:
+  - threat: event-hubs-encryption
+    applies_to: component
+- component: event-hubs
+  threats:
+  - threat: event-hubs-authentication
+    applies_to: component
+- component: event-hubs
+  threats:
+  - threat: event-hubs-logging
+    applies_to: component
+- component: event-hubs
+  threats:
+  - threat: event-hubs-network-access
+    applies_to: component
+- component: event-grid
+  threats:
+  - threat: event-grid-public-exposure
+    applies_to: component
+- component: event-grid
+  threats:
+  - threat: event-grid-authentication
+    applies_to: component
+- component: event-grid
+  threats:
+  - threat: event-grid-network-access
+    applies_to: component
+- component: vnet
+  threats:
+  - threat: vnet-logging
+    applies_to: component
+- component: vnet
+  threats:
+  - threat: vnet-network-access
+    applies_to: component
+- component: private-endpoint
+  threats:
+  - threat: private-endpoint-public-exposure
+    applies_to: component
+- component: private-endpoint
+  threats:
+  - threat: private-endpoint-encryption
+    applies_to: component
+- component: private-endpoint
+  threats:
+  - threat: private-endpoint-logging
+    applies_to: component
+- component: private-endpoint
+  threats:
+  - threat: private-endpoint-vulnerable-config
+    applies_to: component
+- component: private-endpoint
+  threats:
+  - threat: private-endpoint-network-access
+    applies_to: component
+- component: application-gateway
+  threats:
+  - threat: application-gateway-logging
+    applies_to: component
+- component: front-door
+  threats:
+  - threat: front-door-transport
+    applies_to: component
+- component: front-door
+  threats:
+  - threat: front-door-logging
+    applies_to: component
+- component: front-door
+  threats:
+  - threat: front-door-network-access
+    applies_to: component
+- component: traffic-manager
+  threats:
+  - threat: traffic-manager-logging
+    applies_to: component
+- component: waf
+  threats:
+  - threat: waf-logging
+    applies_to: component
+- component: waf
+  threats:
+  - threat: waf-network-access
+    applies_to: component
+- component: ddos-protection
+  threats:
+  - threat: ddos-protection-logging
+    applies_to: component
+- component: ddos-protection
+  threats:
+  - threat: ddos-protection-network-access
+    applies_to: component
+- component: firewall
+  threats:
+  - threat: firewall-logging
+    applies_to: component
+- component: defender
+  threats:
+  - threat: defender-vulnerable-config
+    applies_to: component
+- component: dedicated-hsm
+  threats:
+  - threat: dedicated-hsm-logging
+    applies_to: component
+- component: dedicated-hsm
+  threats:
+  - threat: dedicated-hsm-backup
+    applies_to: component
+- component: bastion
+  threats:
+  - threat: bastion-logging
+    applies_to: component
+- component: vpn-gateway
+  threats:
+  - threat: vpn-gateway-authentication
+    applies_to: component
+- component: vpn-gateway
+  threats:
+  - threat: vpn-gateway-logging
+    applies_to: component
+- component: vpn-gateway
+  threats:
+  - threat: vpn-gateway-network-access
+    applies_to: component
+- component: managed-identity
+  threats:
+  - threat: managed-identity-authentication
+    applies_to: component
+- component: monitor
+  threats:
+  - threat: monitor-encryption
+    applies_to: component
+- component: monitor
+  threats:
+  - threat: monitor-logging
+    applies_to: component
+- component: app-insights
+  threats:
+  - threat: app-insights-logging
+    applies_to: component
+- component: log-analytics
+  threats:
+  - threat: log-analytics-authorization
+    applies_to: component
+- component: log-analytics
+  threats:
+  - threat: log-analytics-logging
+    applies_to: component
+- component: api-management
+  threats:
+  - threat: api-management-public-exposure
+    applies_to: component
+- component: api-management
+  threats:
+  - threat: api-management-encryption
+    applies_to: component
+- component: api-management
+  threats:
+  - threat: api-management-vulnerable-config
+    applies_to: component
+- component: api-management
+  threats:
+  - threat: api-management-network-access
+    applies_to: component
+- component: data-factory
+  threats:
+  - threat: data-factory-public-exposure
+    applies_to: component
+- component: data-factory
+  threats:
+  - threat: data-factory-authentication
+    applies_to: component
+- component: data-factory
+  threats:
+  - threat: data-factory-network-access
+    applies_to: component
+- component: databricks
+  threats:
+  - threat: databricks-public-exposure
+    applies_to: component
+- component: databricks
+  threats:
+  - threat: databricks-encryption
+    applies_to: component
+- component: databricks
+  threats:
+  - threat: databricks-authentication
+    applies_to: component
+- component: databricks
+  threats:
+  - threat: databricks-logging
+    applies_to: component
+- component: databricks
+  threats:
+  - threat: databricks-network-access
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-public-exposure
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-encryption
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-authentication
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-logging
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-vulnerable-config
+    applies_to: component
+- component: machine-learning
+  threats:
+  - threat: machine-learning-network-access
+    applies_to: component
+- component: ai-services
+  threats:
+  - threat: ai-services-authentication
+    applies_to: component
+- component: ai-services
+  threats:
+  - threat: ai-services-logging
+    applies_to: component
+- component: ai-search
+  threats:
+  - threat: ai-search-public-exposure
+    applies_to: component
+- component: ai-search
+  threats:
+  - threat: ai-search-encryption
+    applies_to: component
+- component: ai-search
+  threats:
+  - threat: ai-search-authentication
+    applies_to: component
+- component: ai-search
+  threats:
+  - threat: ai-search-logging
+    applies_to: component
+- component: ai-search
+  threats:
+  - threat: ai-search-network-access
+    applies_to: component
+- component: logic-apps
+  threats:
+  - threat: logic-apps-encryption
+    applies_to: component
+- component: logic-apps
+  threats:
+  - threat: logic-apps-logging
+    applies_to: component
+- component: automation
+  threats:
+  - threat: automation-public-exposure
+    applies_to: component
+- component: automation
+  threats:
+  - threat: automation-encryption
+    applies_to: component
+- component: automation
+  threats:
+  - threat: automation-authentication
+    applies_to: component
+- component: network-watcher
+  threats:
+  - threat: network-watcher-logging
+    applies_to: component
+- component: managed-hsm
+  threats:
+  - threat: managed-hsm-logging
+    applies_to: component
+- component: managed-hsm
+  threats:
+  - threat: managed-hsm-backup
+    applies_to: component
+- component: file-sync
+  threats:
+  - threat: file-sync-public-exposure
+    applies_to: component
+- component: file-sync
+  threats:
+  - threat: file-sync-network-access
+    applies_to: component
+- component: expressroute
+  threats:
+  - threat: expressroute-logging
+    applies_to: component
+- component: service-fabric
+  threats:
+  - threat: service-fabric-authentication
+    applies_to: component
+- component: sql-managed-instance
+  threats:
+  - threat: sql-managed-instance-public-exposure
+    applies_to: component
+- component: sql-managed-instance
+  threats:
+  - threat: sql-managed-instance-encryption
+    applies_to: component
+- component: sql-managed-instance
+  threats:
+  - threat: sql-managed-instance-transport
+    applies_to: component
+- component: sql-managed-instance
+  threats:
+  - threat: sql-managed-instance-authentication
+    applies_to: component
+- component: sql-managed-instance
+  threats:
+  - threat: sql-managed-instance-vulnerable-config
+    applies_to: component
+- component: data-explorer
+  threats:
+  - threat: data-explorer-public-exposure
+    applies_to: component
+- component: data-explorer
+  threats:
+  - threat: data-explorer-encryption
+    applies_to: component
+- component: data-explorer
+  threats:
+  - threat: data-explorer-network-access
+    applies_to: component
+- component: stream-analytics
+  threats:
+  - threat: stream-analytics-encryption
+    applies_to: component
+- component: stream-analytics
+  threats:
+  - threat: stream-analytics-authentication
+    applies_to: component
+- component: stream-analytics
+  threats:
+  - threat: stream-analytics-logging
+    applies_to: component
+- component: vm-scale-sets
+  threats:
+  - threat: vm-scale-sets-encryption
+    applies_to: component
+- component: vm-scale-sets
+  threats:
+  - threat: vm-scale-sets-logging
+    applies_to: component
+- component: app-configuration
+  threats:
+  - threat: app-configuration-public-exposure
+    applies_to: component
+- component: app-configuration
+  threats:
+  - threat: app-configuration-encryption
+    applies_to: component
+- component: app-configuration
+  threats:
+  - threat: app-configuration-network-access
+    applies_to: component
+- component: managed-grafana
+  threats:
+  - threat: managed-grafana-public-exposure
+    applies_to: component
+- component: managed-grafana
+  threats:
+  - threat: managed-grafana-network-access
+    applies_to: component
+- component: hdinsight
+  threats:
+  - threat: hdinsight-encryption
+    applies_to: component
+- component: hdinsight
+  threats:
+  - threat: hdinsight-network-access
+    applies_to: component
+- component: iot-hub
+  threats:
+  - threat: iot-hub-public-exposure
+    applies_to: component
+- component: iot-hub
+  threats:
+  - threat: iot-hub-logging
+    applies_to: component
+- component: iot-hub
+  threats:
+  - threat: iot-hub-network-access
+    applies_to: component
+- component: arc-servers
+  threats:
+  - threat: arc-managed-identity-key-theft
+    applies_to: component
+- component: arc-servers
+  threats:
+  - threat: arc-excessive-extension-rights
+    applies_to: component
+- component: arc-servers
+  threats:
+  - threat: arc-onboarding-client-secret
+    applies_to: component
+- component: domain-services
+  threats:
+  - threat: dds-ntlm-hash-sync-exposure
+    applies_to: component
+- component: domain-services
+  threats:
+  - threat: dds-weak-protocols-enabled
+    applies_to: component
+- component: domain-services
+  threats:
+  - threat: dds-ldap-relay
+    applies_to: component
+- component: container-registry
+  threats:
+  - threat: acr-anonymous-pull
+    applies_to: component
+- component: container-registry
+  threats:
+  - threat: acr-admin-account-enabled
+    applies_to: component
+- component: container-registry
+  threats:
+  - threat: acr-public-network-access
+    applies_to: component
+- component: site-recovery
+  threats:
+  - threat: asr-replication-over-public-endpoint
+    applies_to: component
+- component: site-recovery
+  threats:
+  - threat: asr-over-privileged-operator
+    applies_to: component
+- component: site-recovery
+  threats:
+  - threat: asr-replica-platform-keys
+    applies_to: component
+- component: dns
+  threats:
+  - threat: dns-private-zone-misconfigured-links
+    applies_to: component
+- component: dns
+  threats:
+  - threat: dns-no-dnssec-validation
+    applies_to: component
+- component: dns
+  threats:
+  - threat: dns-command-and-control-resolution
+    applies_to: component
+- component: sentinel
+  threats:
+  - threat: sentinel-security-logs-not-ingested
+    applies_to: component
+- component: sentinel
+  threats:
+  - threat: sentinel-analytics-rule-tampering
+    applies_to: component
+- component: sentinel
+  threats:
+  - threat: sentinel-watchlist-data-exposure
+    applies_to: component
+- component: firewall-manager
+  threats:
+  - threat: fwm-global-policy-change-blast-radius
+    applies_to: component
+- component: firewall-manager
+  threats:
+  - threat: fwm-traffic-bypasses-firewall
+    applies_to: component
+- component: firewall-manager
+  threats:
+  - threat: fwm-fqdn-filter-dns-mismatch
+    applies_to: component
+- component: storage-mover
+  threats:
+  - threat: sm-broad-target-rbac
+    applies_to: component
+- component: storage-mover
+  threats:
+  - threat: sm-orphaned-agent-role-assignments
+    applies_to: component
+- component: storage-mover
+  threats:
+  - threat: sm-control-plane-public-traffic
+    applies_to: component
+- component: subnet
+  threats:
+  - threat: subnet-without-nsg
+    applies_to: component
+- component: subnet
+  threats:
+  - threat: subnet-broad-allow-rules
+    applies_to: component
+- component: subnet
+  threats:
+  - threat: subnet-no-flow-logs
+    applies_to: component
+- component: virtual-wan
+  threats:
+  - threat: vwan-udr-bypasses-hub-firewall
+    applies_to: component
+- component: virtual-wan
+  threats:
+  - threat: vwan-flat-spoke-transit
+    applies_to: component
+- component: virtual-wan
+  threats:
+  - threat: vwan-p2s-weak-authentication
+    applies_to: component
+- component: load-balancer
+  threats:
+  - threat: lb-backend-directly-exposed
+    applies_to: component
+- component: load-balancer
+  threats:
+  - threat: lb-basic-sku-unsupported
+    applies_to: component
+- component: load-balancer
+  threats:
+  - threat: lb-unencrypted-application-traffic
+    applies_to: component
+- component: ad-b2c
+  threats:
+  - threat: b2c-password-spraying
+    applies_to: component
+- component: ad-b2c
+  threats:
+  - threat: b2c-account-takeover-no-risk-policy
+    applies_to: component
+- component: ad-b2c
+  threats:
+  - threat: b2c-single-factor-sign-in
+    applies_to: component
+- component: elastic-san
+  threats:
+  - threat: esan-public-network-access
+    applies_to: component
+- component: elastic-san
+  threats:
+  - threat: esan-subnet-implicit-access
+    applies_to: component
+- component: elastic-san
+  threats:
+  - threat: esan-unencrypted-transit-no-soft-delete
+    applies_to: component
+- component: nat-gateway
+  threats:
+  - threat: nat-outbound-traffic-unlogged
+    applies_to: component
+- component: nat-gateway
+  threats:
+  - threat: nat-snat-exhaustion
+    applies_to: component
+- component: nat-gateway
+  threats:
+  - threat: nat-unrestricted-egress-exfiltration
+    applies_to: component
+- component: api-center
+  threats:
+  - threat: apic-test-console-credential-exposure
+    applies_to: component
+- component: api-center
+  threats:
+  - threat: apic-broad-keyvault-access
+    applies_to: component
+- component: api-center
+  threats:
+  - threat: apic-unregistered-api
+    applies_to: component
+- component: backup-vault
+  threats:
+  - threat: bkp-no-multiuser-authorization
+    applies_to: component
+- component: backup-vault
+  threats:
+  - threat: bkp-soft-delete-disabled
+    applies_to: component
+- component: backup-vault
+  threats:
+  - threat: bkp-mutable-recovery-points
+    applies_to: component
+- component: backup-vault
+  threats:
+  - threat: bkp-public-network-access
+    applies_to: component
+- component: data-lake
+  threats:
+  - threat: adls-acl-overgrant
+    applies_to: component
+- component: data-lake
+  threats:
+  - threat: adls-anonymous-read
+    applies_to: component
+- component: data-lake
+  threats:
+  - threat: adls-incomplete-private-endpoints
+    applies_to: component
+- component: queue-storage
+  threats:
+  - threat: queue-sas-overbroad
+    applies_to: component
+- component: queue-storage
+  threats:
+  - threat: queue-shared-key-auth
+    applies_to: component
+- component: queue-storage
+  threats:
+  - threat: queue-open-network-access
+    applies_to: component
+- component: vnet
+  threats:
+  - threat: vnet-no-ddos-protection
+    applies_to: component
+- component: vnet
+  threats:
+  - threat: vnet-public-paas-path
+    applies_to: component
+- component: vnet
+  threats:
+  - threat: vnet-service-endpoint-exfiltration
+    applies_to: component
+- component: firewall
+  threats:
+  - threat: fw-no-threat-intelligence
+    applies_to: component
+- component: firewall
+  threats:
+  - threat: fw-idps-not-blocking
+    applies_to: component
+- component: firewall
+  threats:
+  - threat: fw-no-diagnostic-logging
+    applies_to: component
+- component: firewall
+  threats:
+  - threat: fw-no-tls-inspection
+    applies_to: component
+- component: managed-hsm
+  threats:
+  - threat: mhsm-no-purge-protection
+    applies_to: component
+- component: managed-hsm
+  threats:
+  - threat: mhsm-single-person-security-domain
+    applies_to: component
+- component: managed-hsm
+  threats:
+  - threat: mhsm-no-key-autorotation
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: aci-plaintext-cli-credentials
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: aci-untrusted-images
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: aci-no-network-segmentation
+    applies_to: component
+- component: container-instances
+  threats:
+  - threat: aci-privileged-root-container
+    applies_to: component
+- component: application-gateway
+  threats:
+  - threat: agw-no-waf
+    applies_to: component
+- component: application-gateway
+  threats:
+  - threat: agw-weak-tls-policy
+    applies_to: component
+- component: application-gateway
+  threats:
+  - threat: agw-unencrypted-backend
+    applies_to: component
+- component: application-gateway
+  threats:
+  - threat: agw-broad-management-rbac
+    applies_to: component
+- component: bastion
+  threats:
+  - threat: bastion-open-rdp-ssh
+    applies_to: component
+- component: bastion
+  threats:
+  - threat: bastion-no-entra-auth
+    applies_to: component
+- component: bastion
+  threats:
+  - threat: bastion-public-ip-on-vm
+    applies_to: component
+- component: dedicated-hsm
+  threats:
+  - threat: dhsm-default-admin-password
+    applies_to: component
+- component: dedicated-hsm
+  threats:
+  - threat: dhsm-role-lockout
+    applies_to: component
+- component: dedicated-hsm
+  threats:
+  - threat: dhsm-no-ha-backup
+    applies_to: component
+- component: expressroute
+  threats:
+  - threat: er-unencrypted-private-peering
+    applies_to: component
+- component: expressroute
+  threats:
+  - threat: er-bgp-session-unauthenticated
+    applies_to: component
+- component: expressroute
+  threats:
+  - threat: er-broad-circuit-rbac
+    applies_to: component
+- component: log-analytics
+  threats:
+  - threat: la-broad-workspace-access
+    applies_to: component
+- component: log-analytics
+  threats:
+  - threat: la-public-ingestion-endpoint
+    applies_to: component
+- component: log-analytics
+  threats:
+  - threat: la-log-tampering
+    applies_to: component
+- component: monitor
+  threats:
+  - threat: mon-vm-agent-public-channel
+    applies_to: component
+- component: monitor
+  threats:
+  - threat: mon-used-as-security-monitoring
+    applies_to: component
+- component: monitor
+  threats:
+  - threat: mon-legacy-cluster-certificate-auth
+    applies_to: component
+- component: ai-services
+  threats:
+  - threat: ai-api-key-exposure
+    applies_to: component
+- component: ai-services
+  threats:
+  - threat: ai-prompt-injection
+    applies_to: component
+- component: ai-services
+  threats:
+  - threat: ai-public-endpoint
+    applies_to: component
+- component: app-insights
+  threats:
+  - threat: appi-instrumentation-key-as-credential
+    applies_to: component
+- component: app-insights
+  threats:
+  - threat: appi-telemetry-exposes-data
+    applies_to: component
+- component: app-insights
+  threats:
+  - threat: appi-connection-string-in-config
+    applies_to: component
+- component: ddos-protection
+  threats:
+  - threat: ddos-unprotected-public-ip
+    applies_to: component
+- component: ddos-protection
+  threats:
+  - threat: ddos-unsupported-deployment
+    applies_to: component
+- component: ddos-protection
+  threats:
+  - threat: ddos-no-attack-telemetry
+    applies_to: component
+- component: defender
+  threats:
+  - threat: defender-coverage-gap
+    applies_to: component
+- component: defender
+  threats:
+  - threat: defender-unremediated-recommendations
+    applies_to: component
+- component: defender
+  threats:
+  - threat: defender-unprotected-container-registry
+    applies_to: component
+- component: file-sync
+  threats:
+  - threat: afs-public-endpoint-exposure
+    applies_to: component
+- component: file-sync
+  threats:
+  - threat: afs-identity-misconfiguration
+    applies_to: component
+- component: file-sync
+  threats:
+  - threat: afs-no-backup
+    applies_to: component
+- component: hdinsight
+  threats:
+  - threat: hdi-standard-cluster-no-authentication
+    applies_to: component
+- component: hdinsight
+  threats:
+  - threat: hdi-ssl-and-transport-gaps
+    applies_to: component
+- component: hdinsight
+  threats:
+  - threat: hdi-keytab-exposure
+    applies_to: component
+- component: traffic-manager
+  threats:
+  - threat: tm-unauthorized-profile-change
+    applies_to: component
+- component: traffic-manager
+  threats:
+  - threat: tm-dangling-dns-takeover
+    applies_to: component
+- component: traffic-manager
+  threats:
+  - threat: tm-http-health-probes
+    applies_to: component
+- component: waf
+  threats:
+  - threat: waf-detection-mode-in-production
+    applies_to: component
+- component: waf
+  threats:
+  - threat: waf-no-rate-limit-or-bot-protection
+    applies_to: component
+- component: waf
+  threats:
+  - threat: waf-logs-not-collected
+    applies_to: component
+- component: logic-apps
+  threats:
+  - threat: la-secrets-in-workflow
+    applies_to: component
+- component: logic-apps
+  threats:
+  - threat: la-no-managed-identity
+    applies_to: component
+- component: logic-apps
+  threats:
+  - threat: la-anonymous-request-trigger
+    applies_to: component
+- component: network-watcher
+  threats:
+  - threat: nw-overbroad-packet-capture
+    applies_to: component
+- component: network-watcher
+  threats:
+  - threat: nw-flow-log-storage-exposure
+    applies_to: component
+- component: network-watcher
+  threats:
+  - threat: nw-nsg-flow-log-retirement-gap
+    applies_to: component
+- component: service-fabric
+  threats:
+  - threat: sf-unsecured-cluster
+    applies_to: component
+- component: service-fabric
+  threats:
+  - threat: sf-shared-client-certificate
+    applies_to: component
+- component: service-fabric
+  threats:
+  - threat: sf-public-management-endpoints
+    applies_to: component
+- component: vm-scale-sets
+  threats:
+  - threat: vmss-unpatched-instances
+    applies_to: component
+- component: vm-scale-sets
+  threats:
+  - threat: vmss-special-instances-modified
+    applies_to: component
+- component: vm-scale-sets
+  threats:
+  - threat: vmss-no-application-health
+    applies_to: component
+- component: managed-grafana
+  threats:
+  - threat: mg-api-keys-and-service-accounts
+    applies_to: component
+- component: managed-grafana
+  threats:
+  - threat: mg-public-network-access
+    applies_to: component
+- component: managed-grafana
+  threats:
+  - threat: mg-datasource-credentials
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-public-network-exposure
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-no-private-endpoint
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-service-principal-secret
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-secrets-embedded-in-code
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-no-conditional-access
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-broad-data-plane-role
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-non-expiring-keys
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-no-customer-managed-key
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-accidental-permanent-deletion
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-no-resource-logs
+    applies_to: component
+- component: key-vault
+  threats:
+  - threat: kv-defender-not-enabled
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-public-network-reachable
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-shared-key-authorization
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-long-lived-sas
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-broad-data-plane-role
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-unencrypted-transport
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-no-customer-managed-key
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-cross-tenant-copy
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-no-threat-detection
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-unlogged-requests
+    applies_to: component
+- component: storage-account
+  threats:
+  - threat: sa-accidental-or-malicious-deletion
+    applies_to: component
+- component: azure-virtual-desktop-host-pool
+  threats:
+  - threat: avd-hostpool-mi-overprivileged
+    applies_to: component
+- component: azure-virtual-desktop-host-pool
+  threats:
+  - threat: avd-hostpool-activity-unlogged
+    applies_to: component
+- component: azure-virtual-desktop-host-pool
+  threats:
+  - threat: avd-hostpool-domain-join-overprivileged
+    applies_to: component
+- component: azure-virtual-desktop-host-pool
+  threats:
+  - threat: avd-hostpool-registration-token-exposure
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-internet-egress
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-local-admin-exposure
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-user-local-admin
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-no-endpoint-protection
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-outdated-image
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-idle-session-unlocked
+    applies_to: component
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: avd-sh-direct-rdp-exposure
+    applies_to: component
+- component: azure-virtual-desktop-workspace
+  threats:
+  - threat: avd-workspace-sign-in-without-mfa
+    applies_to: component
+- component: azure-virtual-desktop-workspace
+  threats:
+  - threat: avd-workspace-contributor-overprivileged
+    applies_to: component
+- component: azure-virtual-desktop-workspace
+  threats:
+  - threat: avd-workspace-default-desktop-group
+    applies_to: component
+- component: azure-virtual-desktop-application-group
+  threats:
+  - threat: avd-appgroup-desktop-type-broad-exposure
+    applies_to: component
+- component: azure-virtual-desktop-application-group
+  threats:
+  - threat: avd-appgroup-owner-role-assignment
+    applies_to: component
+- component: azure-virtual-desktop-application-group
+  threats:
+  - threat: avd-appgroup-contributor-overprivileged
+    applies_to: component
+- component: azure-virtual-desktop-scaling-plan
+  threats:
+  - threat: avd-scaling-plan-broad-vm-rights
+    applies_to: component
+- component: azure-virtual-desktop-scaling-plan
+  threats:
+  - threat: avd-scaling-plan-session-host-deletion
+    applies_to: component
+- component: azure-virtual-desktop-scaling-plan
+  threats:
+  - threat: avd-scaling-plan-default-session-limit
+    applies_to: component
+- component: azure-virtual-desktop-scaling-plan
+  threats:
+  - threat: avd-scaling-plan-power-role-session-logoff
+    applies_to: component
+- component: azure-virtual-desktop-fslogix-profiles
+  threats:
+  - threat: avd-fslogix-av-exclusion-hides-malware
+    applies_to: component
+- component: azure-virtual-desktop-fslogix-profiles
+  threats:
+  - threat: avd-fslogix-share-public-access
+    applies_to: component
+- component: azure-virtual-desktop-fslogix-profiles
+  threats:
+  - threat: avd-fslogix-shared-key-access
+    applies_to: component

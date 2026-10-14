@@ -2,15 +2,11 @@ pack:
   schema_version: 1
   slug: azure
   name: Azure Technologies
-  description: Microsoft Azure cloud components for threat modeling diagrams
-  version: 2.0.0
+  version: 3.0.0
+  pack_type: full
+  description: Azure threat library covering 83 Azure components (storage, identity, networking, compute, data, analytics, AI, security, and management services). Threats are derived from Microsoft cloud security benchmark v2 controls, Azure Policy definitions, and Microsoft Learn security guidance, and cite their source. Each threat maps to STRIDE, CWE, and MITRE ATT&CK, with countermeasures linked to their source control or Azure Policy. Detection logic is expressed as detective countermeasures. Version 3.0.0 renames threat IDs and replaces the previous generated set.
   author: Precogly Team
-  pack_type: technology
-  tags:
-  - azure
-  - microsoft
-  - cloud
-  - infrastructure
-  - all
+  depends_on: [taxonomies/stride-taxonomy, taxonomies/cwe, taxonomies/mitre-attack]
+  tags: [azure, microsoft, cloud, infrastructure, all, files, netapp, entra-id, app-service, managed-identity, virtual-machines, full]
   repository_url: https://github.com/precogly/precogly
   documentation_url: https://docs.microsoft.com/azure/

@@ -1,0 +1,741 @@
+mappings:
+- threat: azure-files-shared-key-exposure
+  countermeasures: [azure-files-disable-shared-key, azure-files-short-lived-sas, azure-files-diagnostic-monitoring]
+- threat: azure-files-rbac-acl-misconfiguration
+  countermeasures: [azure-files-identity-rbac-with-ntfs, azure-files-diagnostic-monitoring]
+- threat: azure-files-public-exposure
+  countermeasures: [azure-files-private-endpoint, azure-files-disable-shared-key]
+- threat: azure-files-unencrypted-transfer
+  countermeasures: [azure-files-smb-encryption]
+- threat: azure-files-data-destruction
+  countermeasures: [azure-files-backup-soft-delete]
+- threat: azure-files-undetected-access
+  countermeasures: [azure-files-diagnostic-monitoring]
+- threat: anf-nfs-export-exposure
+  countermeasures: [anf-export-policy-kerberos, anf-permission-model-review]
+- threat: anf-dual-protocol-permission-mismatch
+  countermeasures: [anf-permission-model-review]
+- threat: anf-snapshot-deletion
+  countermeasures: [anf-immutable-backup-lock, anf-snapshot-delete-alert]
+- threat: anf-unmanaged-encryption-keys
+  countermeasures: [anf-cmk-encryption]
+- threat: anf-network-activity-unlogged
+  countermeasures: [anf-diagnostic-logging]
+- threat: entra-token-theft
+  countermeasures: [entra-phishing-resistant-mfa, entra-token-protection-cae, entra-risk-detection]
+- threat: entra-password-spraying
+  countermeasures: [entra-password-protection, entra-risk-detection]
+- threat: entra-conditional-access-bypass
+  countermeasures: [entra-block-legacy-auth, entra-ca-gap-review]
+- threat: entra-standing-admin-access
+  countermeasures: [entra-pim-just-in-time]
+- threat: entra-break-glass-misuse
+  countermeasures: [entra-break-glass-accounts, entra-risk-detection]
+- threat: entra-service-principal-abuse
+  countermeasures: [entra-sp-credential-hygiene, entra-sp-least-privilege-monitor]
+- threat: entra-consent-phishing
+  countermeasures: [entra-user-consent-restriction]
+- threat: entra-provider-access-abuse
+  countermeasures: [entra-customer-lockbox]
+- threat: appservice-managed-identity-ssrf-abuse
+  countermeasures: [appservice-imds-egress-control, appservice-managed-identity-least-privilege]
+- threat: appservice-remote-code-execution
+  countermeasures: [appservice-rce-sast, appservice-waf]
+- threat: appservice-scm-exposure
+  countermeasures: [appservice-disable-scm-public]
+- threat: appservice-insecure-transport
+  countermeasures: [appservice-secure-runtime]
+- threat: appservice-secrets-in-settings
+  countermeasures: [appservice-app-settings-keyvault]
+- threat: appservice-unmonitored-requests
+  countermeasures: [appservice-diagnostic-logging]
+- threat: managed-identity-overprivileged
+  countermeasures: [appservice-managed-identity-least-privilege, managed-identity-review]
+- threat: managed-identity-role-changes-unmonitored
+  countermeasures: [managed-identity-review]
+- threat: vm-management-port-exposure
+  countermeasures: [vm-restrict-management-ports, vm-brute-force-detection]
+- threat: vm-unpatched-os-exploitation
+  countermeasures: [vm-patch-management]
+- threat: vm-configuration-drift
+  countermeasures: [vm-secure-baseline]
+- threat: vm-no-endpoint-protection
+  countermeasures: [vm-edr-antimalware]
+- threat: vm-disk-snapshot-exfiltration
+  countermeasures: [vm-disk-export-control]
+- threat: vm-extension-code-execution
+  countermeasures: [vm-extension-allowlist]
+- threat: vm-backup-destruction
+  countermeasures: [vm-backup-immutable]
+- threat: sql-database-public-exposure
+  countermeasures: [policy-public-network-access-on-azure-sql-database-should-be-disabled]
+- threat: sql-database-transport
+  countermeasures: [policy-azure-sql-database-should-be-running-tls-version-1-2-or-newer, policy-enforce-ssl-connection-should-be-enabled-for-mysql-database-servers, policy-enforce-ssl-connection-should-be-enabled-for-postgresql-database-servers]
+- threat: sql-database-authentication
+  countermeasures: [policy-azure-sql-database-should-have-microsoft-entra-only-authentication-enabled, policy-azure-sql-database-should-have-microsoft-entra-only-authentication-enabled-during-creation]
+- threat: sql-database-backup
+  countermeasures: [policy-long-term-geo-redundant-backup-should-be-enabled-for-azure-sql-databases]
+- threat: sql-database-vulnerable-config
+  countermeasures: [policy-azure-defender-for-azure-sql-database-servers-should-be-enabled, policy-sql-databases-should-have-vulnerability-findings-resolved]
+- threat: cosmosdb-public-exposure
+  countermeasures: [policy-azure-cosmos-db-should-disable-public-network-access]
+- threat: cosmosdb-encryption
+  countermeasures: [policy-azure-cosmos-db-accounts-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: cosmosdb-authentication
+  countermeasures: [policy-cosmos-db-database-accounts-should-have-local-authentication-methods-disabled]
+- threat: cosmosdb-vulnerable-config
+  countermeasures: [policy-microsoft-defender-for-azure-cosmos-db-should-be-enabled]
+- threat: cosmosdb-network-access
+  countermeasures: [policy-azure-cosmos-db-accounts-should-have-firewall-rules, policy-cosmos-db-should-use-a-virtual-network-service-endpoint, policy-cosmosdb-accounts-should-use-private-link]
+- threat: postgresql-public-exposure
+  countermeasures: [policy-public-network-access-should-be-disabled-for-postgresql-flexible-servers, policy-public-network-access-should-be-disabled-for-postgresql-servers]
+- threat: postgresql-encryption
+  countermeasures: [policy-infrastructure-encryption-should-be-enabled-for-azure-database-for-postgresql-servers, policy-postgresql-flexible-servers-should-use-customer-managed-keys-to-encrypt-data-at-rest, policy-postgresql-servers-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: postgresql-transport
+  countermeasures: [policy-enforce-ssl-connection-should-be-enabled-for-postgresql-database-servers, policy-postgresql-flexible-servers-should-be-running-tls-version-1-2-or-newer]
+- threat: postgresql-authentication
+  countermeasures: [policy-a-microsoft-entra-administrator-should-be-provisioned-for-postgresql-servers]
+- threat: postgresql-backup
+  countermeasures: [policy-geo-redundant-backup-should-be-enabled-for-azure-database-for-postgresql]
+- threat: postgresql-vulnerable-config
+  countermeasures: [policy-azure-defender-for-sql-should-be-enabled-for-unprotected-postgresql-flexible-servers]
+- threat: postgresql-network-access
+  countermeasures: [policy-postgresql-server-should-use-a-virtual-network-service-endpoint]
+- threat: mysql-public-exposure
+  countermeasures: [policy-public-network-access-should-be-disabled-for-mysql-flexible-servers, policy-public-network-access-should-be-disabled-for-mysql-servers]
+- threat: mysql-encryption
+  countermeasures: [policy-infrastructure-encryption-should-be-enabled-for-azure-database-for-mysql-servers, policy-mysql-servers-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: mysql-transport
+  countermeasures: [policy-enforce-ssl-connection-should-be-enabled-for-mysql-database-servers]
+- threat: mysql-authentication
+  countermeasures: [policy-a-microsoft-entra-administrator-should-be-provisioned-for-mysql-servers, policy-azure-mysql-flexible-server-should-have-microsoft-entra-only-authentication-enabled]
+- threat: mysql-backup
+  countermeasures: [policy-geo-redundant-backup-should-be-enabled-for-azure-database-for-mysql]
+- threat: mysql-vulnerable-config
+  countermeasures: [policy-azure-defender-for-sql-should-be-enabled-for-unprotected-mysql-flexible-servers]
+- threat: mysql-network-access
+  countermeasures: [policy-mysql-server-should-use-a-virtual-network-service-endpoint]
+- threat: synapse-public-exposure
+  countermeasures: [policy-azure-synapse-workspaces-should-disable-public-network-access]
+- threat: synapse-encryption
+  countermeasures: [policy-azure-synapse-analytics-dedicated-sql-pools-should-enable-encryption, policy-azure-synapse-workspaces-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: synapse-transport
+  countermeasures: [policy-azure-synapse-workspace-sql-server-should-be-running-tls-version-1-2-or-newer]
+- threat: synapse-authentication
+  countermeasures: [policy-synapse-workspaces-should-have-microsoft-entra-only-authentication-enabled, policy-synapse-workspaces-should-use-only-microsoft-entra-identities-for-authentication-during-wo]
+- threat: synapse-vulnerable-config
+  countermeasures: [policy-microsoft-defender-for-sql-should-be-enabled-for-unprotected-synapse-workspaces]
+- threat: synapse-network-access
+  countermeasures: [policy-azure-synapse-workspaces-should-use-private-link, policy-ip-firewall-rules-on-azure-synapse-workspaces-should-be-removed, policy-managed-workspace-virtual-network-on-azure-synapse-workspaces-should-be-enabled, policy-synapse-managed-private-endpoints-should-only-connect-to-resources-in-approved-azure-activ]
+- threat: blob-storage-public-exposure
+  countermeasures: [policy-storage-account-public-access-should-be-disallowed, policy-storage-accounts-should-disable-public-network-access]
+- threat: blob-storage-encryption
+  countermeasures: [policy-storage-account-containing-the-container-with-activity-logs-must-be-encrypted-with-byok, policy-storage-account-encryption-scopes-should-use-customer-managed-keys-to-encrypt-data-at-rest, policy-storage-account-encryption-scopes-should-use-double-encryption-for-data-at-rest, policy-storage-accounts-should-have-infrastructure-encryption, policy-storage-accounts-should-use-customer-managed-key-for-encryption]
+- threat: blob-storage-transport
+  countermeasures: [policy-storage-accounts-should-have-the-specified-minimum-tls-version]
+- threat: blob-storage-authentication
+  countermeasures: [policy-storage-accounts-should-prevent-shared-key-access, policy-storage-accounts-should-prevent-shared-key-access-excluding-storage-accounts-created-by-da]
+- threat: blob-storage-backup
+  countermeasures: [policy-storage-accounts-should-prevent-cross-tenant-object-replication]
+- threat: blob-storage-network-access
+  countermeasures: [policy-storage-accounts-should-restrict-network-access, policy-storage-accounts-should-restrict-network-access-using-virtual-network-rules, policy-storage-accounts-should-restrict-network-access-using-virtual-network-rules-excluding-stor, policy-storage-accounts-should-use-private-link, policy-storage-accounts-should-use-private-link-excluding-storage-accounts-created-by-databricks]
+- threat: data-lake-logging
+  countermeasures: [policy-resource-logs-in-azure-data-lake-store-should-be-enabled, policy-resource-logs-in-data-lake-analytics-should-be-enabled]
+- threat: queue-storage-encryption
+  countermeasures: [policy-queue-storage-should-use-customer-managed-key-for-encryption]
+- threat: cache-redis-public-exposure
+  countermeasures: [policy-azure-cache-for-redis-should-disable-public-network-access]
+- threat: cache-redis-encryption
+  countermeasures: [policy-azure-cache-for-redis-enterprise-should-use-customer-managed-keys-for-encrypting-disk-data]
+- threat: cache-redis-network-access
+  countermeasures: [policy-azure-cache-for-redis-enterprise-should-use-private-link, policy-azure-cache-for-redis-should-use-private-link]
+- threat: functions-public-exposure
+  countermeasures: [policy-function-app-slots-should-disable-public-network-access, policy-function-apps-should-disable-public-network-access]
+- threat: functions-encryption
+  countermeasures: [policy-function-app-slots-should-enable-end-to-end-encryption, policy-function-apps-should-enable-end-to-end-encryption]
+- threat: functions-transport
+  countermeasures: [policy-function-app-slots-should-only-be-accessible-over-https, policy-function-app-slots-should-use-the-latest-tls-version, policy-function-apps-should-only-be-accessible-over-https, policy-function-apps-should-use-the-latest-tls-version]
+- threat: functions-authentication
+  countermeasures: [policy-function-apps-should-have-authentication-enabled, policy-function-apps-should-use-managed-identity]
+- threat: functions-vulnerable-config
+  countermeasures: [policy-function-app-slots-should-not-have-cors-configured-to-allow-every-resource-to-access-your, policy-function-app-slots-that-use-java-should-use-a-specified-java-version, policy-function-apps-should-not-have-cors-configured-to-allow-every-resource-to-access-your-apps, policy-function-apps-that-use-java-should-use-a-specified-java-version, policy-function-apps-that-use-python-should-use-a-specified-python-version]
+- threat: aks-encryption
+  countermeasures: [policy-both-operating-systems-and-data-disks-in-azure-kubernetes-service-clusters-should-be-encry, policy-temp-disks-and-cache-for-agent-node-pools-in-azure-kubernetes-service-clusters-should-be-e]
+- threat: aks-transport
+  countermeasures: [policy-kubernetes-clusters-should-be-accessible-only-over-https]
+- threat: aks-authentication
+  countermeasures: [policy-azure-kubernetes-service-clusters-should-enable-microsoft-entra-id-integration, policy-azure-kubernetes-service-clusters-should-have-local-authentication-methods-disabled, policy-azure-kubernetes-service-clusters-should-use-managed-identities, policy-kubernetes-clusters-should-disable-automounting-api-credentials]
+- threat: aks-authorization
+  countermeasures: [policy-kubernetes-cluster-should-not-allow-privileged-containers, policy-kubernetes-clusters-should-ensure-that-the-cluster-admin-role-is-only-used-where-required, policy-kubernetes-clusters-should-minimize-wildcard-use-in-role-and-cluster-role, policy-role-based-access-control-rbac-should-be-used-on-kubernetes-services]
+- threat: aks-logging
+  countermeasures: [policy-resource-logs-in-azure-kubernetes-service-should-be-enabled]
+- threat: aks-vulnerable-config
+  countermeasures: [policy-azure-kubernetes-service-clusters-should-have-defender-profile-enabled, policy-kubernetes-services-should-be-upgraded-to-a-non-vulnerable-kubernetes-version]
+- threat: aks-network-access
+  countermeasures: [policy-kubernetes-cluster-pods-should-only-use-approved-host-network-and-port-list]
+- threat: container-apps-public-exposure
+  countermeasures: [policy-container-apps-environment-should-disable-public-network-access]
+- threat: container-apps-transport
+  countermeasures: [policy-container-apps-should-only-be-accessible-over-https]
+- threat: container-apps-network-access
+  countermeasures: [policy-container-app-environments-should-use-network-injection, policy-container-apps-should-disable-external-network-access]
+- threat: container-instances-encryption
+  countermeasures: [policy-azure-container-instance-container-group-should-use-customer-managed-key-for-encryption]
+- threat: container-instances-network-access
+  countermeasures: [policy-azure-container-instance-container-group-should-deploy-into-a-virtual-network]
+- threat: batch-public-exposure
+  countermeasures: [policy-public-network-access-should-be-disabled-for-batch-accounts]
+- threat: batch-encryption
+  countermeasures: [policy-azure-batch-account-should-use-customer-managed-keys-to-encrypt-data, policy-azure-batch-pools-should-have-disk-encryption-enabled]
+- threat: batch-logging
+  countermeasures: [policy-resource-logs-in-batch-accounts-should-be-enabled]
+- threat: service-bus-public-exposure
+  countermeasures: [policy-service-bus-namespaces-should-disable-public-network-access]
+- threat: service-bus-encryption
+  countermeasures: [policy-service-bus-premium-namespaces-should-use-a-customer-managed-key-for-encryption, policy-service-bus-namespaces-should-have-double-encryption-enabled]
+- threat: service-bus-authentication
+  countermeasures: [policy-azure-service-bus-namespaces-should-have-local-authentication-methods-disabled]
+- threat: service-bus-logging
+  countermeasures: [policy-resource-logs-in-service-bus-should-be-enabled]
+- threat: service-bus-network-access
+  countermeasures: [policy-azure-service-bus-namespaces-should-use-private-link]
+- threat: event-hubs-public-exposure
+  countermeasures: [policy-event-hub-namespaces-should-disable-public-network-access]
+- threat: event-hubs-encryption
+  countermeasures: [policy-event-hub-namespaces-should-have-double-encryption-enabled, policy-event-hub-namespaces-should-use-a-customer-managed-key-for-encryption]
+- threat: event-hubs-authentication
+  countermeasures: [policy-azure-event-hub-namespaces-should-have-local-authentication-methods-disabled]
+- threat: event-hubs-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-application-gateways-microsoft-network-applicationgat, policy-enable-logging-by-category-group-for-bastions-microsoft-network-bastionhosts-to-event-hub, policy-enable-logging-by-category-group-for-endpoints-microsoft-cdn-profiles-endpoints-to-event-h, policy-enable-logging-by-category-group-for-expressroute-circuits-microsoft-network-expressroutec, policy-enable-logging-by-category-group-for-firewalls-microsoft-network-azurefirewalls-to-event-h, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-cdn-profiles-to, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-network-frontdo, policy-enable-logging-by-category-group-for-load-balancers-microsoft-network-loadbalancers-to-eve, policy-enable-logging-by-category-group-for-network-managers-microsoft-network-networkmanagers-to, policy-enable-logging-by-category-group-for-network-security-groups-microsoft-network-networksecu, policy-enable-logging-by-category-group-for-public-ip-prefixes-microsoft-network-publicipprefixes, policy-enable-logging-by-category-group-for-public-ip-addresses-microsoft-network-publicipaddress, policy-enable-logging-by-category-group-for-traffic-manager-profiles-microsoft-network-trafficman, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-networks-microsoft-network-virtualnetworks-to, policy-enable-logging-by-category-group-for-microsoft-cdn-cdnwebapplicationfirewallpolicies-to-ev, policy-enable-logging-by-category-group-for-microsoft-network-dnsresolverpolicies-to-event-hub, policy-enable-logging-by-category-group-for-microsoft-network-networkmanagers-ipampools-to-event, policy-enable-logging-by-category-group-for-microsoft-network-networksecurityperimeters-to-event, policy-enable-logging-by-category-group-for-microsoft-network-p2svpngateways-to-event-hub, policy-enable-logging-by-category-group-for-microsoft-network-vpngateways-to-event-hub, policy-enable-logging-by-category-group-for-microsoft-networkfunction-azuretrafficcollectors-to-e, policy-resource-logs-in-event-hub-should-be-enabled]
+- threat: event-hubs-network-access
+  countermeasures: [policy-event-hub-namespaces-should-use-private-link, policy-event-hub-should-use-a-virtual-network-service-endpoint]
+- threat: event-grid-public-exposure
+  countermeasures: [policy-azure-event-grid-domains-should-disable-public-network-access, policy-azure-event-grid-namespaces-should-disable-public-network-access, policy-azure-event-grid-topics-should-disable-public-network-access]
+- threat: event-grid-authentication
+  countermeasures: [policy-azure-event-grid-domains-should-have-local-authentication-methods-disabled, policy-azure-event-grid-partner-namespaces-should-have-local-authentication-methods-disabled, policy-azure-event-grid-topics-should-have-local-authentication-methods-disabled]
+- threat: event-grid-network-access
+  countermeasures: [policy-azure-event-grid-domains-should-use-private-link, policy-azure-event-grid-namespace-mqtt-broker-should-use-private-link, policy-azure-event-grid-namespace-topic-broker-should-use-private-link, policy-azure-event-grid-topics-should-use-private-link]
+- threat: vnet-logging
+  countermeasures: [policy-audit-flow-logs-configuration-for-every-virtual-network, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-networks-microsoft-network-virtualnetworks-to, policy-enable-logging-by-category-group-for-virtual-networks-microsoft-network-virtualnetworks-to, policy-enable-logging-by-category-group-for-virtual-networks-microsoft-network-virtualnetworks-to]
+- threat: vnet-network-access
+  countermeasures: [policy-a-custom-ipsec-ike-policy-must-be-applied-to-all-azure-virtual-network-gateway-connections, policy-api-management-services-should-use-a-virtual-network, policy-app-service-app-slots-should-be-injected-into-a-virtual-network, policy-app-service-apps-should-be-injected-into-a-virtual-network, policy-app-service-apps-should-use-a-virtual-network-service-endpoint, policy-azure-container-instance-container-group-should-deploy-into-a-virtual-network, policy-azure-databricks-workspaces-should-be-in-a-virtual-network, policy-azure-machine-learning-computes-should-be-in-a-virtual-network, policy-cosmos-db-should-use-a-virtual-network-service-endpoint, policy-event-hub-should-use-a-virtual-network-service-endpoint, policy-key-vault-should-use-a-virtual-network-service-endpoint, policy-managed-workspace-virtual-network-on-azure-synapse-workspaces-should-be-enabled, policy-mariadb-server-should-use-a-virtual-network-service-endpoint, policy-mysql-server-should-use-a-virtual-network-service-endpoint, policy-postgresql-server-should-use-a-virtual-network-service-endpoint, policy-sql-server-integration-services-integration-runtimes-on-azure-data-factory-should-be-joine, policy-sql-server-should-use-a-virtual-network-service-endpoint, policy-storage-accounts-should-use-a-virtual-network-service-endpoint, policy-storage-accounts-should-restrict-network-access-using-virtual-network-rules, policy-storage-accounts-should-restrict-network-access-using-virtual-network-rules-excluding-stor, policy-virtual-machines-should-be-connected-to-an-approved-virtual-network, policy-virtual-networks-should-be-protected-by-azure-ddos-protection, policy-virtual-networks-should-use-specified-virtual-network-gateway]
+- threat: private-endpoint-public-exposure
+  countermeasures: [policy-azure-arc-private-link-scopes-should-disable-public-network-access]
+- threat: private-endpoint-encryption
+  countermeasures: [policy-azure-databricks-workspaces-should-be-premium-sku-that-supports-features-like-private-link]
+- threat: private-endpoint-logging
+  countermeasures: [policy-azure-monitor-private-link-scope-should-block-access-to-non-private-link-resources, policy-azure-monitor-private-link-scope-should-use-private-link]
+- threat: private-endpoint-vulnerable-config
+  countermeasures: [policy-azure-arc-private-link-scopes-should-be-configured-with-a-private-endpoint, policy-azure-arc-enabled-kubernetes-clusters-should-be-configured-with-an-azure-arc-private-link, policy-azure-arc-enabled-servers-should-be-configured-with-an-azure-arc-private-link-scope]
+- threat: private-endpoint-network-access
+  countermeasures: [policy-app-configuration-should-use-a-sku-that-supports-private-link, policy-app-configuration-should-use-private-link, policy-app-service-apps-should-use-a-sku-that-supports-private-link, policy-app-service-apps-should-use-private-link, policy-azure-ai-search-service-should-use-a-sku-that-supports-private-link, policy-azure-api-for-fhir-should-use-private-link, policy-azure-cache-for-redis-enterprise-should-use-private-link, policy-azure-cache-for-redis-should-use-private-link, policy-azure-data-explorer-cluster-should-use-private-link, policy-azure-data-explorer-should-use-a-sku-that-supports-private-link, policy-azure-data-factory-should-use-private-link, policy-azure-databricks-workspaces-should-use-private-link, policy-azure-device-update-for-iot-hub-accounts-should-use-private-link, policy-azure-event-grid-domains-should-use-private-link, policy-azure-event-grid-namespace-mqtt-broker-should-use-private-link, policy-azure-event-grid-namespace-topic-broker-should-use-private-link, policy-azure-event-grid-topics-should-use-private-link, policy-azure-file-sync-should-use-private-link, policy-azure-front-door-profiles-should-use-premium-tier-that-supports-managed-waf-rules-and-priv, policy-azure-hdinsight-should-use-private-link, policy-azure-health-data-services-de-identification-service-should-use-private-link, policy-azure-health-data-services-workspace-should-use-private-link, policy-azure-key-vaults-should-use-private-link, policy-azure-machine-learning-workspaces-should-use-private-link, policy-azure-managed-grafana-workspaces-should-use-private-link, policy-azure-purview-accounts-should-use-private-link, policy-azure-service-bus-namespaces-should-use-private-link, policy-azure-signalr-service-should-use-private-link, policy-azure-synapse-workspaces-should-use-private-link, policy-azure-virtual-desktop-service-should-use-private-link, policy-azure-web-pubsub-service-should-use-a-sku-that-supports-private-link, policy-azure-web-pubsub-service-should-use-private-link, policy-botservice-resources-should-use-private-link, policy-container-registries-should-use-private-link, policy-cosmosdb-accounts-should-use-private-link, policy-disk-access-resources-should-use-private-link, policy-event-hub-namespaces-should-use-private-link, policy-iot-central-should-use-private-link, policy-iot-hub-device-provisioning-service-instances-should-use-private-link, policy-storage-accounts-should-use-private-link, policy-storage-accounts-should-use-private-link-excluding-storage-accounts-created-by-databricks, policy-synapse-managed-private-endpoints-should-only-connect-to-resources-in-approved-azure-activ, policy-vm-image-builder-templates-should-use-private-link]
+- threat: application-gateway-logging
+  countermeasures: [policy-azure-application-gateway-should-have-resource-logs-enabled]
+- threat: front-door-transport
+  countermeasures: [policy-azure-front-door-standard-and-premium-should-be-running-minimum-tls-version-of-1-2]
+- threat: front-door-logging
+  countermeasures: [policy-azure-front-door-standard-or-premium-plus-waf-should-have-resource-logs-enabled, policy-azure-front-door-should-have-resource-logs-enabled, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-cdn-profiles-to, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-cdn-profiles-to, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-cdn-profiles-to, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-network-frontdo, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-network-frontdo, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-network-frontdo]
+- threat: front-door-network-access
+  countermeasures: [policy-azure-front-door-profiles-should-use-premium-tier-that-supports-managed-waf-rules-and-priv]
+- threat: traffic-manager-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-traffic-manager-profiles-microsoft-network-trafficman, policy-enable-logging-by-category-group-for-traffic-manager-profiles-microsoft-network-trafficman, policy-enable-logging-by-category-group-for-traffic-manager-profiles-microsoft-network-trafficman]
+- threat: waf-logging
+  countermeasures: [policy-azure-front-door-standard-or-premium-plus-waf-should-have-resource-logs-enabled]
+- threat: waf-network-access
+  countermeasures: [policy-azure-front-door-profiles-should-use-premium-tier-that-supports-managed-waf-rules-and-priv]
+- threat: ddos-protection-logging
+  countermeasures: [policy-public-ip-addresses-should-have-resource-logs-enabled-for-azure-ddos-protection]
+- threat: ddos-protection-network-access
+  countermeasures: [policy-virtual-networks-should-be-protected-by-azure-ddos-protection]
+- threat: firewall-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-firewall-microsoft-network-azurefirewalls-to-log-anal, policy-enable-logging-by-category-group-for-firewalls-microsoft-network-azurefirewalls-to-event-h, policy-enable-logging-by-category-group-for-firewalls-microsoft-network-azurefirewalls-to-log-ana, policy-enable-logging-by-category-group-for-firewalls-microsoft-network-azurefirewalls-to-storage]
+- threat: defender-vulnerable-config
+  countermeasures: [policy-azure-defender-for-app-service-should-be-enabled, policy-azure-defender-for-azure-sql-database-servers-should-be-enabled, policy-azure-defender-for-key-vault-should-be-enabled, policy-azure-defender-for-resource-manager-should-be-enabled, policy-azure-defender-for-sql-servers-on-machines-should-be-enabled, policy-azure-defender-for-sql-should-be-enabled-for-unprotected-azure-sql-servers, policy-azure-defender-for-sql-should-be-enabled-for-unprotected-mysql-flexible-servers, policy-azure-defender-for-sql-should-be-enabled-for-unprotected-postgresql-flexible-servers, policy-azure-defender-for-sql-should-be-enabled-for-unprotected-sql-managed-instances, policy-azure-defender-for-open-source-relational-databases-should-be-enabled, policy-azure-defender-for-servers-should-be-enabled, policy-azure-kubernetes-service-clusters-should-have-defender-profile-enabled, policy-azure-registry-container-images-should-have-vulnerabilities-resolved-powered-by-microsoft, policy-azure-running-container-images-should-have-vulnerabilities-resolved-powered-by-microsoft-d, policy-microsoft-defender-cspm-should-be-enabled, policy-microsoft-defender-for-apis-should-be-enabled, policy-microsoft-defender-for-azure-cosmos-db-should-be-enabled, policy-microsoft-defender-for-containers-should-be-enabled, policy-microsoft-defender-for-sql-should-be-enabled-for-unprotected-synapse-workspaces, policy-microsoft-defender-for-storage-should-be-enabled, policy-windows-defender-exploit-guard-should-be-enabled-on-your-machines, policy-windows-machines-should-configure-windows-defender-to-update-protection-signatures-within, policy-windows-machines-should-enable-windows-defender-real-time-protection]
+- threat: dedicated-hsm-logging
+  countermeasures: [policy-resource-logs-in-azure-key-vault-managed-hsm-should-be-enabled]
+- threat: dedicated-hsm-backup
+  countermeasures: [policy-azure-key-vault-managed-hsm-should-have-purge-protection-enabled]
+- threat: bastion-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-bastions-microsoft-network-bastionhosts-to-event-hub, policy-enable-logging-by-category-group-for-bastions-microsoft-network-bastionhosts-to-log-analyt, policy-enable-logging-by-category-group-for-bastions-microsoft-network-bastionhosts-to-storage]
+- threat: vpn-gateway-authentication
+  countermeasures: [policy-vpn-gateways-should-use-only-azure-active-directory-azure-ad-authentication-for-point-to-s]
+- threat: vpn-gateway-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-application-gateways-microsoft-network-applicationgat, policy-enable-logging-by-category-group-for-application-gateways-microsoft-network-applicationgat, policy-enable-logging-by-category-group-for-application-gateways-microsoft-network-applicationgat, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-microsoft-network-p2svpngateways-to-event-hub, policy-enable-logging-by-category-group-for-microsoft-network-p2svpngateways-to-log-analytics, policy-enable-logging-by-category-group-for-microsoft-network-p2svpngateways-to-storage, policy-enable-logging-by-category-group-for-microsoft-network-vpngateways-to-event-hub, policy-enable-logging-by-category-group-for-microsoft-network-vpngateways-to-log-analytics, policy-enable-logging-by-category-group-for-microsoft-network-vpngateways-to-storage]
+- threat: vpn-gateway-network-access
+  countermeasures: [policy-a-custom-ipsec-ike-policy-must-be-applied-to-all-azure-virtual-network-gateway-connections, policy-virtual-networks-should-use-specified-virtual-network-gateway]
+- threat: managed-identity-authentication
+  countermeasures: [policy-app-service-app-slots-should-use-managed-identity, policy-app-service-apps-should-use-managed-identity, policy-azure-data-factory-linked-services-should-use-system-assigned-managed-identity-authenticat, policy-azure-kubernetes-service-clusters-should-use-managed-identities, policy-azure-machine-learning-workspaces-should-use-user-assigned-managed-identity, policy-cognitive-services-accounts-should-use-a-managed-identity, policy-communication-service-resource-should-use-a-managed-identity, policy-create-and-assign-a-built-in-user-assigned-managed-identity, policy-function-apps-should-use-managed-identity, policy-stream-analytics-job-should-use-managed-identity-to-authenticate-endpoints, policy-virtual-machines-guest-configuration-extension-should-be-deployed-with-system-assigned-man]
+- threat: monitor-encryption
+  countermeasures: [policy-azure-monitor-logs-clusters-should-be-created-with-infrastructure-encryption-enabled-doubl, policy-azure-monitor-logs-clusters-should-be-encrypted-with-customer-managed-key, policy-saved-queries-in-azure-monitor-should-be-saved-in-customer-storage-account-for-logs-encryp]
+- threat: monitor-logging
+  countermeasures: [policy-azure-monitor-logs-for-application-insights-should-be-linked-to-a-log-analytics-workspace, policy-azure-monitor-private-link-scope-should-block-access-to-non-private-link-resources, policy-azure-monitor-private-link-scope-should-use-private-link, policy-azure-monitor-log-profile-should-collect-logs-for-categories-write-delete-and-action, policy-azure-monitor-should-collect-activity-logs-from-all-regions, policy-azure-monitor-solution-security-and-audit-must-be-deployed, policy-linux-arc-enabled-machines-should-have-azure-monitor-agent-installed, policy-linux-virtual-machine-scale-sets-should-have-azure-monitor-agent-installed, policy-linux-virtual-machines-should-have-azure-monitor-agent-installed, policy-windows-arc-enabled-machines-should-have-azure-monitor-agent-installed, policy-windows-virtual-machine-scale-sets-should-have-azure-monitor-agent-installed, policy-windows-virtual-machines-should-have-azure-monitor-agent-installed]
+- threat: app-insights-logging
+  countermeasures: [policy-application-insights-components-should-block-log-ingestion-and-querying-from-public-networ, policy-azure-monitor-logs-for-application-insights-should-be-linked-to-a-log-analytics-workspace]
+- threat: log-analytics-authorization
+  countermeasures: [policy-log-analytics-agent-should-be-installed-on-your-cloud-services-extended-support-role-insta]
+- threat: log-analytics-logging
+  countermeasures: [policy-azure-monitor-logs-for-application-insights-should-be-linked-to-a-log-analytics-workspace, policy-enable-logging-by-category-group-for-application-gateways-microsoft-network-applicationgat, policy-enable-logging-by-category-group-for-bastions-microsoft-network-bastionhosts-to-log-analyt, policy-enable-logging-by-category-group-for-endpoints-microsoft-cdn-profiles-endpoints-to-log-ana, policy-enable-logging-by-category-group-for-expressroute-circuits-microsoft-network-expressroutec, policy-enable-logging-by-category-group-for-firewall-microsoft-network-azurefirewalls-to-log-anal, policy-enable-logging-by-category-group-for-firewalls-microsoft-network-azurefirewalls-to-log-ana, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-cdn-profiles-to, policy-enable-logging-by-category-group-for-front-door-and-cdn-profiles-microsoft-network-frontdo, policy-enable-logging-by-category-group-for-load-balancers-microsoft-network-loadbalancers-to-log, policy-enable-logging-by-category-group-for-network-managers-microsoft-network-networkmanagers-to, policy-enable-logging-by-category-group-for-network-security-groups-microsoft-network-networksecu, policy-enable-logging-by-category-group-for-public-ip-prefixes-microsoft-network-publicipprefixes, policy-enable-logging-by-category-group-for-public-ip-addresses-microsoft-network-publicipaddress, policy-enable-logging-by-category-group-for-traffic-manager-profiles-microsoft-network-trafficman, policy-enable-logging-by-category-group-for-virtual-network-gateways-microsoft-network-virtualnet, policy-enable-logging-by-category-group-for-virtual-networks-microsoft-network-virtualnetworks-to, policy-enable-logging-by-category-group-for-microsoft-cdn-cdnwebapplicationfirewallpolicies-to-lo, policy-enable-logging-by-category-group-for-microsoft-network-dnsresolverpolicies-to-log-analytic, policy-enable-logging-by-category-group-for-microsoft-network-networkmanagers-ipampools-to-log-an, policy-enable-logging-by-category-group-for-microsoft-network-networksecurityperimeters-to-log-an, policy-enable-logging-by-category-group-for-microsoft-network-p2svpngateways-to-log-analytics, policy-enable-logging-by-category-group-for-microsoft-network-vpngateways-to-log-analytics, policy-enable-logging-by-category-group-for-microsoft-networkfunction-azuretrafficcollectors-to-l, policy-log-analytics-workspaces-should-block-log-ingestion-and-querying-from-public-networks]
+- threat: api-management-public-exposure
+  countermeasures: [policy-api-management-should-disable-public-network-access-to-the-service-configuration-endpoints]
+- threat: api-management-encryption
+  countermeasures: [policy-api-management-apis-should-use-only-encrypted-protocols]
+- threat: api-management-vulnerable-config
+  countermeasures: [policy-azure-api-management-platform-version-should-be-stv2]
+- threat: api-management-network-access
+  countermeasures: [policy-api-management-services-should-use-a-virtual-network]
+- threat: data-factory-public-exposure
+  countermeasures: [policy-public-network-access-on-azure-data-factory-should-be-disabled]
+- threat: data-factory-authentication
+  countermeasures: [policy-azure-data-factory-linked-services-should-use-system-assigned-managed-identity-authenticat]
+- threat: data-factory-network-access
+  countermeasures: [policy-azure-data-factory-should-use-private-link, policy-sql-server-integration-services-integration-runtimes-on-azure-data-factory-should-be-joine]
+- threat: databricks-public-exposure
+  countermeasures: [policy-azure-databricks-clusters-should-disable-public-ip, policy-azure-databricks-workspaces-should-disable-public-network-access]
+- threat: databricks-encryption
+  countermeasures: [policy-azure-databricks-workspaces-should-be-premium-sku-that-supports-features-like-private-link]
+- threat: databricks-authentication
+  countermeasures: [policy-storage-accounts-should-prevent-shared-key-access-excluding-storage-accounts-created-by-da]
+- threat: databricks-logging
+  countermeasures: [policy-resource-logs-in-azure-databricks-workspaces-should-be-enabled]
+- threat: databricks-network-access
+  countermeasures: [policy-azure-databricks-workspaces-should-be-in-a-virtual-network, policy-azure-databricks-workspaces-should-use-private-link, policy-storage-accounts-should-restrict-network-access-using-virtual-network-rules-excluding-stor, policy-storage-accounts-should-use-private-link-excluding-storage-accounts-created-by-databricks]
+- threat: machine-learning-public-exposure
+  countermeasures: [policy-azure-machine-learning-workspaces-should-disable-public-network-access]
+- threat: machine-learning-encryption
+  countermeasures: [policy-azure-machine-learning-workspaces-should-be-encrypted-with-a-customer-managed-key, policy-azure-machine-learning-workspaces-should-be-encrypted-with-the-use-of-a-customer-managed-k]
+- threat: machine-learning-authentication
+  countermeasures: [policy-azure-machine-learning-computes-should-have-local-authentication-methods-disabled, policy-azure-machine-learning-workspaces-should-use-user-assigned-managed-identity]
+- threat: machine-learning-logging
+  countermeasures: [policy-resource-logs-in-azure-machine-learning-workspaces-should-be-enabled]
+- threat: machine-learning-vulnerable-config
+  countermeasures: [policy-azure-machine-learning-compute-instances-should-be-recreated-to-get-the-latest-software-up]
+- threat: machine-learning-network-access
+  countermeasures: [policy-azure-machine-learning-computes-should-be-in-a-virtual-network, policy-azure-machine-learning-workspaces-should-enable-v1legacymode-to-support-network-isolation, policy-azure-machine-learning-workspaces-should-use-private-link]
+- threat: ai-services-authentication
+  countermeasures: [policy-cognitive-services-accounts-should-use-a-managed-identity]
+- threat: ai-services-logging
+  countermeasures: [policy-diagnostic-logs-in-azure-ai-services-resources-should-be-enabled]
+- threat: ai-search-public-exposure
+  countermeasures: [policy-azure-ai-search-services-should-disable-public-network-access]
+- threat: ai-search-encryption
+  countermeasures: [policy-azure-ai-search-services-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: ai-search-authentication
+  countermeasures: [policy-azure-ai-search-services-should-have-local-authentication-methods-disabled]
+- threat: ai-search-logging
+  countermeasures: [policy-resource-logs-in-search-services-should-be-enabled]
+- threat: ai-search-network-access
+  countermeasures: [policy-azure-ai-search-service-should-use-a-sku-that-supports-private-link]
+- threat: logic-apps-encryption
+  countermeasures: [policy-logic-apps-integration-service-environment-should-be-encrypted-with-customer-managed-keys]
+- threat: logic-apps-logging
+  countermeasures: [policy-resource-logs-in-logic-apps-should-be-enabled]
+- threat: automation-public-exposure
+  countermeasures: [policy-automation-accounts-should-disable-public-network-access]
+- threat: automation-encryption
+  countermeasures: [policy-automation-account-variables-should-be-encrypted, policy-azure-automation-accounts-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: automation-authentication
+  countermeasures: [policy-azure-automation-account-should-have-local-authentication-method-disabled]
+- threat: network-watcher-logging
+  countermeasures: [policy-all-flow-log-resources-should-be-in-enabled-state, policy-audit-flow-logs-configuration-for-every-virtual-network, policy-network-watcher-flow-logs-should-have-traffic-analytics-enabled]
+- threat: managed-hsm-logging
+  countermeasures: [policy-resource-logs-in-azure-key-vault-managed-hsm-should-be-enabled]
+- threat: managed-hsm-backup
+  countermeasures: [policy-azure-key-vault-managed-hsm-should-have-purge-protection-enabled]
+- threat: file-sync-public-exposure
+  countermeasures: [policy-public-network-access-should-be-disabled-for-azure-file-sync]
+- threat: file-sync-network-access
+  countermeasures: [policy-azure-file-sync-should-use-private-link]
+- threat: expressroute-logging
+  countermeasures: [policy-enable-logging-by-category-group-for-expressroute-circuits-microsoft-network-expressroutec, policy-enable-logging-by-category-group-for-expressroute-circuits-microsoft-network-expressroutec, policy-enable-logging-by-category-group-for-expressroute-circuits-microsoft-network-expressroutec]
+- threat: service-fabric-authentication
+  countermeasures: [policy-service-fabric-clusters-should-only-use-azure-active-directory-for-client-authentication]
+- threat: sql-managed-instance-public-exposure
+  countermeasures: [policy-azure-sql-managed-instances-should-disable-public-network-access]
+- threat: sql-managed-instance-encryption
+  countermeasures: [policy-customer-managed-key-encryption-must-be-used-as-part-of-cmk-encryption-for-arc-sql-managed, policy-sql-managed-instances-should-use-customer-managed-keys-to-encrypt-data-at-rest]
+- threat: sql-managed-instance-transport
+  countermeasures: [policy-sql-managed-instance-should-have-the-minimal-tls-version-of-1-2]
+- threat: sql-managed-instance-authentication
+  countermeasures: [policy-azure-sql-managed-instance-should-have-microsoft-entra-only-authentication-enabled, policy-azure-sql-managed-instances-should-have-microsoft-entra-only-authentication-enabled-during]
+- threat: sql-managed-instance-vulnerable-config
+  countermeasures: [policy-azure-defender-for-sql-should-be-enabled-for-unprotected-sql-managed-instances]
+- threat: data-explorer-public-exposure
+  countermeasures: [policy-public-network-access-on-azure-data-explorer-should-be-disabled]
+- threat: data-explorer-encryption
+  countermeasures: [policy-azure-data-explorer-encryption-at-rest-should-use-a-customer-managed-key, policy-disk-encryption-should-be-enabled-on-azure-data-explorer, policy-double-encryption-should-be-enabled-on-azure-data-explorer]
+- threat: data-explorer-network-access
+  countermeasures: [policy-azure-data-explorer-cluster-should-use-private-link, policy-azure-data-explorer-should-use-a-sku-that-supports-private-link]
+- threat: stream-analytics-encryption
+  countermeasures: [policy-azure-stream-analytics-jobs-should-use-customer-managed-keys-to-encrypt-data]
+- threat: stream-analytics-authentication
+  countermeasures: [policy-stream-analytics-job-should-use-managed-identity-to-authenticate-endpoints]
+- threat: stream-analytics-logging
+  countermeasures: [policy-resource-logs-in-azure-stream-analytics-should-be-enabled]
+- threat: vm-scale-sets-encryption
+  countermeasures: [policy-virtual-machines-and-virtual-machine-scale-sets-should-have-encryption-at-host-enabled]
+- threat: vm-scale-sets-logging
+  countermeasures: [policy-linux-virtual-machine-scale-sets-should-have-azure-monitor-agent-installed, policy-windows-virtual-machine-scale-sets-should-have-azure-monitor-agent-installed]
+- threat: app-configuration-public-exposure
+  countermeasures: [policy-app-configuration-should-disable-public-network-access]
+- threat: app-configuration-encryption
+  countermeasures: [policy-app-configuration-should-use-a-customer-managed-key]
+- threat: app-configuration-network-access
+  countermeasures: [policy-app-configuration-should-use-a-sku-that-supports-private-link, policy-app-configuration-should-use-private-link]
+- threat: managed-grafana-public-exposure
+  countermeasures: [policy-azure-managed-grafana-workspaces-should-disable-public-network-access]
+- threat: managed-grafana-network-access
+  countermeasures: [policy-azure-managed-grafana-workspaces-should-use-private-link]
+- threat: hdinsight-encryption
+  countermeasures: [policy-azure-hdinsight-clusters-should-use-customer-managed-keys-to-encrypt-data-at-rest, policy-azure-hdinsight-clusters-should-use-encryption-at-host-to-encrypt-data-at-rest, policy-azure-hdinsight-clusters-should-use-encryption-in-transit-to-encrypt-communication-between]
+- threat: hdinsight-network-access
+  countermeasures: [policy-azure-hdinsight-should-use-private-link]
+- threat: iot-hub-public-exposure
+  countermeasures: [policy-iot-hub-device-provisioning-service-instances-should-disable-public-network-access, policy-public-network-access-for-azure-device-update-for-iot-hub-accounts-should-be-disabled, policy-public-network-access-on-azure-iot-hub-should-be-disabled]
+- threat: iot-hub-logging
+  countermeasures: [policy-resource-logs-in-iot-hub-should-be-enabled]
+- threat: iot-hub-network-access
+  countermeasures: [policy-azure-device-update-for-iot-hub-accounts-should-use-private-link, policy-iot-hub-device-provisioning-service-instances-should-use-private-link]
+- threat: arc-managed-identity-key-theft
+  countermeasures: [arc-restrict-himds-group, arc-full-disk-encryption]
+- threat: arc-excessive-extension-rights
+  countermeasures: [arc-least-privilege-roles]
+- threat: arc-onboarding-client-secret
+  countermeasures: [arc-onboarding-certificate-sp]
+- threat: dds-ntlm-hash-sync-exposure
+  countermeasures: [dds-disable-ntlm-password-sync]
+- threat: dds-weak-protocols-enabled
+  countermeasures: [dds-disable-weak-protocols]
+- threat: dds-ldap-relay
+  countermeasures: [dds-ldap-signing-channel-binding]
+- threat: acr-anonymous-pull
+  countermeasures: [acr-disable-anonymous-pull]
+- threat: acr-admin-account-enabled
+  countermeasures: [acr-disable-admin-user]
+- threat: acr-public-network-access
+  countermeasures: [acr-private-endpoint]
+- threat: asr-replication-over-public-endpoint
+  countermeasures: [asr-private-replication]
+- threat: asr-over-privileged-operator
+  countermeasures: [asr-least-privilege-roles]
+- threat: asr-replica-platform-keys
+  countermeasures: [asr-customer-managed-keys]
+- threat: dns-private-zone-misconfigured-links
+  countermeasures: [dns-review-zone-links]
+- threat: dns-no-dnssec-validation
+  countermeasures: [dns-validating-resolver]
+- threat: dns-command-and-control-resolution
+  countermeasures: [dns-security-policy]
+- threat: sentinel-security-logs-not-ingested
+  countermeasures: [sentinel-connector-coverage]
+- threat: sentinel-analytics-rule-tampering
+  countermeasures: [sentinel-rule-change-control]
+- threat: sentinel-watchlist-data-exposure
+  countermeasures: [sentinel-watchlist-hygiene]
+- threat: fwm-global-policy-change-blast-radius
+  countermeasures: [fwm-policy-hierarchy]
+- threat: fwm-traffic-bypasses-firewall
+  countermeasures: [fwm-routing-intent]
+- threat: fwm-fqdn-filter-dns-mismatch
+  countermeasures: [fwm-dns-proxy-clients]
+- threat: sm-broad-target-rbac
+  countermeasures: [sm-least-privilege-target]
+- threat: sm-orphaned-agent-role-assignments
+  countermeasures: [sm-remove-agent-access]
+- threat: sm-control-plane-public-traffic
+  countermeasures: [sm-private-control-plane]
+- threat: subnet-without-nsg
+  countermeasures: [subnet-nsg-deny-default]
+- threat: subnet-broad-allow-rules
+  countermeasures: [subnet-restrict-allow-rules]
+- threat: subnet-no-flow-logs
+  countermeasures: [subnet-flow-logs]
+- threat: vwan-udr-bypasses-hub-firewall
+  countermeasures: [vwan-restrict-udr-permissions]
+- threat: vwan-flat-spoke-transit
+  countermeasures: [vwan-custom-route-tables]
+- threat: vwan-p2s-weak-authentication
+  countermeasures: [vwan-p2s-entra-auth]
+- threat: lb-backend-directly-exposed
+  countermeasures: [lb-protect-backend]
+- threat: lb-basic-sku-unsupported
+  countermeasures: [lb-standard-sku]
+- threat: lb-unencrypted-application-traffic
+  countermeasures: [lb-tls-backend]
+- threat: b2c-password-spraying
+  countermeasures: [b2c-smart-lockout]
+- threat: b2c-account-takeover-no-risk-policy
+  countermeasures: [b2c-user-risk-policy]
+- threat: b2c-single-factor-sign-in
+  countermeasures: [b2c-enable-mfa]
+- threat: esan-public-network-access
+  countermeasures: [esan-disable-public-access]
+- threat: esan-subnet-implicit-access
+  countermeasures: [esan-private-endpoint-network-policies]
+- threat: esan-unencrypted-transit-no-soft-delete
+  countermeasures: [esan-snapshot-recovery]
+- threat: nat-outbound-traffic-unlogged
+  countermeasures: [nat-flow-logs]
+- threat: nat-snat-exhaustion
+  countermeasures: [nat-snat-alerts]
+- threat: nat-unrestricted-egress-exfiltration
+  countermeasures: [nat-anomaly-alerts]
+- threat: apic-test-console-credential-exposure
+  countermeasures: [apic-scope-credential-access]
+- threat: apic-broad-keyvault-access
+  countermeasures: [apic-least-privilege-keyvault]
+- threat: apic-unregistered-api
+  countermeasures: [apic-register-all-apis]
+- threat: bkp-no-multiuser-authorization
+  countermeasures: [bkp-mua-resource-guard]
+- threat: bkp-soft-delete-disabled
+  countermeasures: [bkp-soft-delete-always-on]
+- threat: bkp-mutable-recovery-points
+  countermeasures: [bkp-immutable-vault-lock]
+- threat: bkp-public-network-access
+  countermeasures: [bkp-private-endpoint]
+- threat: adls-acl-overgrant
+  countermeasures: [adls-group-based-acls]
+- threat: adls-anonymous-read
+  countermeasures: [adls-disable-anonymous-read]
+- threat: adls-incomplete-private-endpoints
+  countermeasures: [adls-private-endpoints-blob-dfs]
+- threat: queue-sas-overbroad
+  countermeasures: [queue-sas-least-privilege]
+- threat: queue-shared-key-auth
+  countermeasures: [queue-entra-rbac]
+- threat: queue-open-network-access
+  countermeasures: [queue-network-restriction]
+- threat: vnet-no-ddos-protection
+  countermeasures: [vnet-ddos-protection]
+- threat: vnet-public-paas-path
+  countermeasures: [vnet-private-endpoints]
+- threat: vnet-service-endpoint-exfiltration
+  countermeasures: [vnet-service-endpoint-scope]
+- threat: fw-no-threat-intelligence
+  countermeasures: [fw-threat-intel-deny]
+- threat: fw-idps-not-blocking
+  countermeasures: [fw-idps-deny]
+- threat: fw-no-diagnostic-logging
+  countermeasures: [fw-diagnostic-logs]
+- threat: fw-no-tls-inspection
+  countermeasures: [fw-tls-inspection]
+- threat: mhsm-no-purge-protection
+  countermeasures: [mhsm-purge-protection]
+- threat: mhsm-single-person-security-domain
+  countermeasures: [mhsm-security-domain-quorum]
+- threat: mhsm-no-key-autorotation
+  countermeasures: [mhsm-key-autorotation]
+- threat: aci-plaintext-cli-credentials
+  countermeasures: [aci-keyvault-secrets]
+- threat: aci-untrusted-images
+  countermeasures: [aci-private-registry-scan]
+- threat: aci-no-network-segmentation
+  countermeasures: [aci-vnet-nsg]
+- threat: aci-privileged-root-container
+  countermeasures: [aci-least-privilege-runtime]
+- threat: agw-no-waf
+  countermeasures: [agw-waf-v2-prevention]
+- threat: agw-weak-tls-policy
+  countermeasures: [agw-tls-policy]
+- threat: agw-unencrypted-backend
+  countermeasures: [agw-end-to-end-tls]
+- threat: agw-broad-management-rbac
+  countermeasures: [agw-least-privilege-rbac]
+- threat: bastion-open-rdp-ssh
+  countermeasures: [bastion-nsg-required-rules]
+- threat: bastion-no-entra-auth
+  countermeasures: [bastion-entra-id-auth]
+- threat: bastion-public-ip-on-vm
+  countermeasures: [bastion-no-public-ip]
+- threat: dhsm-default-admin-password
+  countermeasures: [dhsm-change-default-credentials]
+- threat: dhsm-role-lockout
+  countermeasures: [dhsm-operational-procedures]
+- threat: dhsm-no-ha-backup
+  countermeasures: [dhsm-ha-pairs-backup]
+- threat: er-unencrypted-private-peering
+  countermeasures: [er-ipsec-over-er]
+- threat: er-bgp-session-unauthenticated
+  countermeasures: [er-md5-bgp]
+- threat: er-broad-circuit-rbac
+  countermeasures: [er-rbac-circuits]
+- threat: la-broad-workspace-access
+  countermeasures: [la-access-control-mode]
+- threat: la-public-ingestion-endpoint
+  countermeasures: [la-private-link]
+- threat: la-log-tampering
+  countermeasures: [la-immutable-export]
+- threat: mon-vm-agent-public-channel
+  countermeasures: [mon-private-link-agents]
+- threat: mon-used-as-security-monitoring
+  countermeasures: [mon-security-monitoring-defender]
+- threat: mon-legacy-cluster-certificate-auth
+  countermeasures: [mon-managed-identity-auth]
+- threat: ai-api-key-exposure
+  countermeasures: [ai-managed-identity-auth]
+- threat: ai-prompt-injection
+  countermeasures: [ai-content-filtering]
+- threat: ai-public-endpoint
+  countermeasures: [ai-private-endpoint]
+- threat: appi-instrumentation-key-as-credential
+  countermeasures: [appi-entra-authentication]
+- threat: appi-telemetry-exposes-data
+  countermeasures: [appi-scrub-sensitive-telemetry]
+- threat: appi-connection-string-in-config
+  countermeasures: [appi-secret-references]
+- threat: ddos-unprotected-public-ip
+  countermeasures: [ddos-protect-every-public-ip]
+- threat: ddos-unsupported-deployment
+  countermeasures: [ddos-validate-supported-deployment]
+- threat: ddos-no-attack-telemetry
+  countermeasures: [ddos-monitoring-telemetry]
+- threat: defender-coverage-gap
+  countermeasures: [defender-enable-on-all-subscriptions]
+- threat: defender-unremediated-recommendations
+  countermeasures: [defender-review-recommendations]
+- threat: defender-unprotected-container-registry
+  countermeasures: [defender-containers-plan]
+- threat: afs-public-endpoint-exposure
+  countermeasures: [afs-private-endpoints]
+- threat: afs-identity-misconfiguration
+  countermeasures: [afs-ad-ds-identity]
+- threat: afs-no-backup
+  countermeasures: [afs-azure-files-backup]
+- threat: hdi-standard-cluster-no-authentication
+  countermeasures: [hdi-esp-cluster]
+- threat: hdi-ssl-and-transport-gaps
+  countermeasures: [hdi-encryption-in-transit]
+- threat: hdi-keytab-exposure
+  countermeasures: [hdi-keytab-protection]
+- threat: tm-unauthorized-profile-change
+  countermeasures: [tm-rbac-profiles]
+- threat: tm-dangling-dns-takeover
+  countermeasures: [tm-alias-records]
+- threat: tm-http-health-probes
+  countermeasures: [tm-https-monitoring]
+- threat: waf-detection-mode-in-production
+  countermeasures: [waf-prevention-mode]
+- threat: waf-no-rate-limit-or-bot-protection
+  countermeasures: [waf-rate-limit-bot]
+- threat: waf-logs-not-collected
+  countermeasures: [waf-diagnostic-logs]
+- threat: la-secrets-in-workflow
+  countermeasures: [la-keyvault-app-settings]
+- threat: la-no-managed-identity
+  countermeasures: [la-managed-identity]
+- threat: la-anonymous-request-trigger
+  countermeasures: [la-aad-trigger-auth]
+- threat: nw-overbroad-packet-capture
+  countermeasures: [nw-least-privilege-rbac]
+- threat: nw-flow-log-storage-exposure
+  countermeasures: [nw-storage-private-endpoints]
+- threat: nw-nsg-flow-log-retirement-gap
+  countermeasures: [nw-migrate-vnet-flow-logs]
+- threat: sf-unsecured-cluster
+  countermeasures: [sf-secure-cluster-x509-entra]
+- threat: sf-shared-client-certificate
+  countermeasures: [sf-cert-expiry-monitoring]
+- threat: sf-public-management-endpoints
+  countermeasures: [sf-network-isolation]
+- threat: vmss-unpatched-instances
+  countermeasures: [vmss-automatic-os-upgrade]
+- threat: vmss-special-instances-modified
+  countermeasures: [vmss-instance-protection]
+- threat: vmss-no-application-health
+  countermeasures: [vmss-application-health]
+- threat: mg-api-keys-and-service-accounts
+  countermeasures: [mg-disable-api-keys]
+- threat: mg-public-network-access
+  countermeasures: [mg-private-endpoint]
+- threat: mg-datasource-credentials
+  countermeasures: [mg-managed-identity-datasource]
+- threat: kv-public-network-exposure
+  countermeasures: [kv-firewall-disable-public-access]
+- threat: kv-no-private-endpoint
+  countermeasures: [kv-private-endpoint]
+- threat: kv-service-principal-secret
+  countermeasures: [kv-managed-identity]
+- threat: kv-secrets-embedded-in-code
+  countermeasures: [kv-references-not-copies]
+- threat: kv-no-conditional-access
+  countermeasures: [kv-conditional-access]
+- threat: kv-broad-data-plane-role
+  countermeasures: [kv-least-privilege-rbac]
+- threat: kv-non-expiring-keys
+  countermeasures: [kv-key-expiration-policy, kv-key-autorotation]
+- threat: kv-no-customer-managed-key
+  countermeasures: [kv-cmk-for-regulated-data]
+- threat: kv-accidental-permanent-deletion
+  countermeasures: [kv-soft-delete-purge-protection, kv-backup]
+- threat: kv-no-resource-logs
+  countermeasures: [kv-resource-logs-to-sentinel]
+- threat: kv-defender-not-enabled
+  countermeasures: [kv-defender-plan]
+- threat: sa-public-network-reachable
+  countermeasures: [sa-disable-public-access]
+- threat: sa-shared-key-authorization
+  countermeasures: [sa-disallow-shared-key]
+- threat: sa-long-lived-sas
+  countermeasures: [sa-user-delegation-sas, sa-sas-expiration-policy]
+- threat: sa-broad-data-plane-role
+  countermeasures: [sa-least-privilege-rbac]
+- threat: sa-unencrypted-transport
+  countermeasures: [sa-secure-transfer-tls12]
+- threat: sa-no-customer-managed-key
+  countermeasures: [sa-customer-managed-key]
+- threat: sa-cross-tenant-copy
+  countermeasures: [sa-restrict-copy-scope]
+- threat: sa-no-threat-detection
+  countermeasures: [sa-defender-for-storage]
+- threat: sa-unlogged-requests
+  countermeasures: [sa-diagnostic-settings]
+- threat: sa-accidental-or-malicious-deletion
+  countermeasures: [sa-resource-lock, sa-immutability-and-soft-delete]
+- threat: avd-hostpool-mi-overprivileged
+  countermeasures: [avd-hostpool-mi-secret-scope]
+- threat: avd-hostpool-activity-unlogged
+  countermeasures: [avd-hostpool-diagnostics]
+- threat: avd-hostpool-domain-join-overprivileged
+  countermeasures: [avd-domain-join-delegation]
+- threat: avd-hostpool-registration-token-exposure
+  countermeasures: [avd-hostpool-token-role-review]
+- threat: avd-sh-internet-egress
+  countermeasures: [avd-sh-egress-control]
+- threat: avd-sh-local-admin-exposure
+  countermeasures: [avd-sh-laps-rotation]
+- threat: avd-sh-user-local-admin
+  countermeasures: [avd-sh-no-user-admin]
+- threat: avd-sh-no-endpoint-protection
+  countermeasures: [avd-sh-edr]
+- threat: avd-sh-outdated-image
+  countermeasures: [avd-sh-patch-image]
+- threat: avd-sh-idle-session-unlocked
+  countermeasures: [avd-sh-idle-lock]
+- threat: avd-sh-direct-rdp-exposure
+  countermeasures: [avd-sh-jit-no-direct-rdp]
+- threat: avd-workspace-sign-in-without-mfa
+  countermeasures: [avd-conditional-access-mfa]
+- threat: avd-workspace-contributor-overprivileged
+  countermeasures: [avd-workspace-role-review]
+- threat: avd-workspace-default-desktop-group
+  countermeasures: [avd-appgroup-preferred-type]
+- threat: avd-appgroup-desktop-type-broad-exposure
+  countermeasures: [avd-appgroup-preferred-type]
+- threat: avd-appgroup-owner-role-assignment
+  countermeasures: [avd-appgroup-role-review]
+- threat: avd-appgroup-contributor-overprivileged
+  countermeasures: [avd-appgroup-role-review]
+- threat: avd-scaling-plan-broad-vm-rights
+  countermeasures: [avd-scaling-plan-scope]
+- threat: avd-scaling-plan-session-host-deletion
+  countermeasures: [avd-scaling-plan-scope]
+- threat: avd-scaling-plan-default-session-limit
+  countermeasures: [avd-scaling-plan-max-sessions]
+- threat: avd-scaling-plan-power-role-session-logoff
+  countermeasures: [avd-scaling-plan-scope]
+- threat: avd-fslogix-av-exclusion-hides-malware
+  countermeasures: [avd-fslogix-av-exclusions-scoped]
+- threat: avd-fslogix-share-public-access
+  countermeasures: [sa-disable-public-access]
+- threat: avd-fslogix-shared-key-access
+  countermeasures: [sa-disallow-shared-key]
