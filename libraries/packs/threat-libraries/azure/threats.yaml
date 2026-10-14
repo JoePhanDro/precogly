@@ -1109,3 +1109,21 @@ threats:
 - id: avd-fslogix-shared-key-access
   name: Profile Share Accessed With Storage Account Key
   description: 'Actor: attacker who obtains the storage account key from a script or log. Prerequisite: Shared Key authorization allowed on the storage account that holds profile containers. Action: mounts or reads profile containers with the account key. Impact: access to every user profile without user-level audit. Quelle: MCSB v2 IM-7, PA-7; Secure your Azure Storage account, „Identity and access management“ / „Disallow Shared Key authorization“.'
+- id: azure-flow-plaintext-transport
+  name: Data Flow Sent Without Encryption or With Legacy TLS
+  description: 'Actor: attacker on the network path or on a shared network segment. Prerequisite: the flow uses plaintext, secure transfer is off, or the minimum TLS version is below 1.2. Action: reads the traffic as it crosses the network. Impact: data and credentials in transit are disclosed. Quelle: Secure-Azure-Storage-account, Require secure transfer (HTTPS) and minimum TLS 1.2 (MCSB v2 DP-3, NS-2); Azure Policy: Azure SQL Database and PostgreSQL flexible servers should use TLS 1.2 or newer.'
+- id: azure-flow-mitm-network-path
+  name: Data Flow Intercepted on the Network Path
+  description: 'Actor: attacker with access to a network segment between the two endpoints. Prerequisite: the flow reaches the service over a public endpoint or an unverified route, without private connectivity. Action: intercepts the connection and presents a forged endpoint or certificate. Impact: the client sends credentials or data to the attacker. Quelle: MCSB v2 NS-2 (secure cloud network: private connectivity); Learn: Azure Private Link and private endpoints.'
+- id: azure-flow-token-replay
+  name: Authentication Token Replayed Over a Data Flow
+  description: 'Actor: attacker who captures a bearer token, SAS token or refresh token from a log, a proxy or the network. Prerequisite: tokens have long lifetimes or are not bound to a session or a client. Action: replays the token to call the service as the original identity. Impact: unauthorized access under a valid identity. Quelle: MCSB v2 IM-7 (restrict resource access) and IM-1 (centralize identity); Learn: Continuous access evaluation and token protection in Microsoft Entra ID.'
+- id: azure-flow-message-tampering
+  name: Messages Tampered With or Replayed on a Messaging Flow
+  description: 'Actor: attacker with a shared access key or a stolen local credential for the messaging namespace. Prerequisite: local authentication (keys) enabled on the namespace, and no Entra authorization enforced. Action: publishes, reads or alters messages, or replays old messages. Impact: downstream services act on forged or duplicated work items. Quelle: Azure Policy: Service Bus and Event Hubs namespaces should have local authentication disabled; MCSB v2 IM-1 (identity) and DP-3 (data in transit).'
+- id: azure-flow-input-injection
+  name: Malicious Input Sent Over an Entry Flow
+  description: 'Actor: external attacker sending crafted requests to an entry point. Prerequisite: the entry point forwards requests without inspection or validation. Action: sends SQL, script or header payloads over HTTP or HTTPS. Impact: the backend executes or stores malicious input. Quelle: MCSB v2 NS-10 (web application protection) and PV-2 (secure configuration of compute); Azure Policy: App Service web apps should use Web Application Firewall (WAF).'
+- id: azure-flow-smb-relay
+  name: SMB or Kerberos Session Relayed Over a File Flow
+  description: 'Actor: attacker on the network who can coerce authentication from a client. Prerequisite: SMB signing is not required, or the share accepts unauthenticated or NTLM sessions. Action: relays the client''s authentication to another server or share. Impact: access to the share or to another service with the client''s identity. Quelle: MCSB v2 IM-7 and NS-2; Learn: Azure Files identity-based authentication and SMB encryption.'

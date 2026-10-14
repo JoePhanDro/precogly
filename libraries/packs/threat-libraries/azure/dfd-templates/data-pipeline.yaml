@@ -99,6 +99,7 @@ canvas_data:
       position: { x: 35, y: 60 }
       data:
         label: "Event Hub"
+        component_ref: "event-hubs"
         technology: "Azure Event Hub"
         description: "High-throughput event streaming"
 
@@ -108,6 +109,7 @@ canvas_data:
       position: { x: 35, y: 170 }
       data:
         label: "IoT Hub"
+        component_ref: "iot-hub"
         technology: "Azure IoT Hub"
         description: "IoT device management and ingestion"
 
@@ -117,6 +119,7 @@ canvas_data:
       position: { x: 35, y: 280 }
       data:
         label: "Data Factory"
+        component_ref: "data-factory"
         technology: "Azure Data Factory"
         description: "Batch data ingestion and orchestration"
 
@@ -127,6 +130,7 @@ canvas_data:
       position: { x: 30, y: 60 }
       data:
         label: "Stream Analytics"
+        component_ref: "stream-analytics"
         technology: "Azure Stream Analytics"
         description: "Real-time stream processing"
 
@@ -136,6 +140,7 @@ canvas_data:
       position: { x: 30, y: 180 }
       data:
         label: "Databricks"
+        component_ref: "databricks"
         technology: "Azure Databricks"
         description: "Spark-based data transformation"
 
@@ -145,6 +150,7 @@ canvas_data:
       position: { x: 30, y: 300 }
       data:
         label: "Synapse Analytics"
+        component_ref: "synapse"
         technology: "Azure Synapse Analytics"
         description: "Data warehouse and SQL analytics"
 
@@ -165,6 +171,7 @@ canvas_data:
       position: { x: 45, y: 60 }
       data:
         label: "Data Lake (Raw)"
+        component_ref: "data-lake"
         technology: "Azure Data Lake Gen2"
         description: "Raw data landing zone"
         dataSensitivity: "internal"
@@ -175,6 +182,7 @@ canvas_data:
       position: { x: 45, y: 180 }
       data:
         label: "Data Lake (Curated)"
+        component_ref: "data-lake"
         technology: "Azure Data Lake Gen2"
         description: "Transformed and curated data"
         dataSensitivity: "confidential"
@@ -185,6 +193,7 @@ canvas_data:
       position: { x: 45, y: 300 }
       data:
         label: "Dedicated SQL Pool"
+        component_ref: "synapse"
         technology: "Synapse SQL Pool"
         description: "Data warehouse for analytics"
         dataSensitivity: "confidential"
@@ -195,6 +204,7 @@ canvas_data:
       position: { x: 45, y: 400 }
       data:
         label: "Key Vault"
+        component_ref: "key-vault"
         technology: "Azure Key Vault"
         description: "Connection strings and secrets"
         dataSensitivity: "confidential"

@@ -740,3 +740,15 @@ mappings:
   entries: [information-disclosure]
 - threat: avd-fslogix-shared-key-access
   entries: [spoofing]
+- threat: azure-flow-plaintext-transport
+  entries: [information-disclosure]
+- threat: azure-flow-mitm-network-path
+  entries: [tampering]
+- threat: azure-flow-token-replay
+  entries: [spoofing]
+- threat: azure-flow-message-tampering
+  entries: [tampering]
+- threat: azure-flow-input-injection
+  entries: [tampering]
+- threat: azure-flow-smb-relay
+  entries: [spoofing]

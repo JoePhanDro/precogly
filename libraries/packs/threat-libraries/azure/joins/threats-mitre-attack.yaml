@@ -740,3 +740,15 @@ mappings:
   entries: [T1530]
 - threat: avd-fslogix-shared-key-access
   entries: [T1552.001]
+- threat: azure-flow-plaintext-transport
+  entries: [T1040]
+- threat: azure-flow-mitm-network-path
+  entries: [T1557]
+- threat: azure-flow-token-replay
+  entries: [T1550.001]
+- threat: azure-flow-message-tampering
+  entries: [T1565]
+- threat: azure-flow-input-injection
+  entries: [T1190]
+- threat: azure-flow-smb-relay
+  entries: [T1557]

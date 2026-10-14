@@ -739,3 +739,15 @@ mappings:
   countermeasures: [sa-disable-public-access]
 - threat: avd-fslogix-shared-key-access
   countermeasures: [sa-disallow-shared-key]
+- threat: azure-flow-plaintext-transport
+  countermeasures: [sa-secure-transfer-tls12, policy-postgresql-flexible-servers-should-be-running-tls-version-1-2-or-newer, policy-azure-sql-database-should-be-running-tls-version-1-2-or-newer]
+- threat: azure-flow-mitm-network-path
+  countermeasures: [flow-private-connectivity]
+- threat: azure-flow-token-replay
+  countermeasures: [entra-token-protection-cae, azure-files-short-lived-sas]
+- threat: azure-flow-message-tampering
+  countermeasures: [policy-azure-service-bus-namespaces-should-have-local-authentication-methods-disabled, policy-azure-event-hub-namespaces-should-have-local-authentication-methods-disabled]
+- threat: azure-flow-input-injection
+  countermeasures: [appservice-waf, agw-waf-v2-prevention]
+- threat: azure-flow-smb-relay
+  countermeasures: [azure-files-smb-encryption, anf-export-policy-kerberos]

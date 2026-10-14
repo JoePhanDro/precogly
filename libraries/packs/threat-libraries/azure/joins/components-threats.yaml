@@ -1479,3 +1479,551 @@ mappings:
   threats:
   - threat: avd-fslogix-shared-key-access
     applies_to: component
+- component: sql-database
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: cosmosdb
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: postgresql
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: mysql
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: synapse
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: blob-storage
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: files
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-smb-relay
+    applies_to: flow
+- component: data-lake
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: queue-storage
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: cache-redis
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: functions
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: aks
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: app-service
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: container-apps
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: container-instances
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: virtual-machines
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: batch
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: service-bus
+  threats:
+  - threat: azure-flow-message-tampering
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: event-hubs
+  threats:
+  - threat: azure-flow-message-tampering
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: event-grid
+  threats:
+  - threat: azure-flow-message-tampering
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: vnet
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: subnet
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: private-endpoint
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: virtual-wan
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: application-gateway
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: front-door
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: load-balancer
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: traffic-manager
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: dns
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: waf
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: ddos-protection
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: firewall
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: defender
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: sentinel
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: key-vault
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: dedicated-hsm
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: bastion
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: vpn-gateway
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: entra-id
+  threats:
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: ad-b2c
+  threats:
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: managed-identity
+  threats:
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: monitor
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: app-insights
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: log-analytics
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: api-management
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: netapp-files
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-smb-relay
+    applies_to: flow
+- component: azure-virtual-desktop-host-pool
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: azure-virtual-desktop-session-host
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: azure-virtual-desktop-workspace
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: azure-virtual-desktop-application-group
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: azure-virtual-desktop-scaling-plan
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: azure-virtual-desktop-fslogix-profiles
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-smb-relay
+    applies_to: flow
+- component: storage-account
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: backup-vault
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: site-recovery
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: container-registry
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: data-factory
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: databricks
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: machine-learning
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: ai-services
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: ai-search
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: logic-apps
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: automation
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: network-watcher
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: firewall-manager
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: managed-hsm
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: elastic-san
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: file-sync
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-smb-relay
+    applies_to: flow
+- component: storage-mover
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-smb-relay
+    applies_to: flow
+- component: expressroute
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: domain-services
+  threats:
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: service-fabric
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: sql-managed-instance
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: data-explorer
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: stream-analytics
+  threats:
+  - threat: azure-flow-message-tampering
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: vm-scale-sets
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: nat-gateway
+  threats:
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: app-configuration
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: managed-grafana
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: hdinsight
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: iot-hub
+  threats:
+  - threat: azure-flow-message-tampering
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+- component: arc-servers
+  threats:
+  - threat: azure-flow-plaintext-transport
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow
+- component: api-center
+  threats:
+  - threat: azure-flow-input-injection
+    applies_to: flow
+  - threat: azure-flow-token-replay
+    applies_to: flow
+  - threat: azure-flow-mitm-network-path
+    applies_to: flow

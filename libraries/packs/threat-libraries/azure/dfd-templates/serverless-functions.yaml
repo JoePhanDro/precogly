@@ -82,6 +82,7 @@ canvas_data:
       position: { x: 35, y: 60 }
       data:
         label: "API Management"
+        component_ref: "api-management"
         technology: "Azure API Management"
         description: "API gateway with policies and rate limiting"
 
@@ -91,6 +92,7 @@ canvas_data:
       position: { x: 35, y: 180 }
       data:
         label: "Event Grid"
+        component_ref: "event-grid"
         technology: "Azure Event Grid"
         description: "Event routing and delivery"
 
@@ -101,6 +103,7 @@ canvas_data:
       position: { x: 30, y: 60 }
       data:
         label: "HTTP Function"
+        component_ref: "functions"
         technology: "Azure Functions (HTTP Trigger)"
         description: "REST API endpoints"
 
@@ -110,6 +113,7 @@ canvas_data:
       position: { x: 220, y: 60 }
       data:
         label: "Event Function"
+        component_ref: "functions"
         technology: "Azure Functions (Event Grid Trigger)"
         description: "Event processor"
 
@@ -119,6 +123,7 @@ canvas_data:
       position: { x: 30, y: 180 }
       data:
         label: "Queue Function"
+        component_ref: "functions"
         technology: "Azure Functions (Queue Trigger)"
         description: "Async message processor"
 
@@ -128,6 +133,7 @@ canvas_data:
       position: { x: 220, y: 180 }
       data:
         label: "Timer Function"
+        component_ref: "functions"
         technology: "Azure Functions (Timer Trigger)"
         description: "Scheduled batch jobs"
 
@@ -138,6 +144,7 @@ canvas_data:
       position: { x: 80, y: 480 }
       data:
         label: "Storage Queue"
+        component_ref: "queue-storage"
         technology: "Azure Storage Queue"
         description: "Message queue for async processing"
 
@@ -148,6 +155,7 @@ canvas_data:
       position: { x: 50, y: 60 }
       data:
         label: "Cosmos DB"
+        component_ref: "cosmosdb"
         technology: "Azure Cosmos DB (Serverless)"
         description: "NoSQL database with auto-scaling"
         dataSensitivity: "confidential"
@@ -158,6 +166,7 @@ canvas_data:
       position: { x: 50, y: 180 }
       data:
         label: "Blob Storage"
+        component_ref: "blob-storage"
         technology: "Azure Blob Storage"
         description: "Object storage for files and artifacts"
 
@@ -167,6 +176,7 @@ canvas_data:
       position: { x: 50, y: 300 }
       data:
         label: "Key Vault"
+        component_ref: "key-vault"
         technology: "Azure Key Vault"
         description: "Secrets and connection strings"
         dataSensitivity: "confidential"
@@ -178,6 +188,7 @@ canvas_data:
       position: { x: 380, y: 480 }
       data:
         label: "App Insights"
+        component_ref: "app-insights"
         technology: "Application Insights"
         description: "Distributed tracing and monitoring"
 

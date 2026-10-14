@@ -740,3 +740,15 @@ mappings:
   entries: [CWE-284]
 - threat: avd-fslogix-shared-key-access
   entries: [CWE-798]
+- threat: azure-flow-plaintext-transport
+  entries: [CWE-319]
+- threat: azure-flow-mitm-network-path
+  entries: [CWE-295]
+- threat: azure-flow-token-replay
+  entries: [CWE-294]
+- threat: azure-flow-message-tampering
+  entries: [CWE-345]
+- threat: azure-flow-input-injection
+  entries: [CWE-20]
+- threat: azure-flow-smb-relay
+  entries: [CWE-287]

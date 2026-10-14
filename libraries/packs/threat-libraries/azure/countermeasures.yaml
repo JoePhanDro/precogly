@@ -574,6 +574,11 @@ countermeasures:
   description: 'Da Soft Delete nicht unterstützt wird, regelmäßig Snapshots anlegen und Wiederherstellung testen. Verschlüsselung in Transit ist nicht verfügbar, daher Anwendungsebene prüfen. Quelle: What-is-Azure-Elastic-SAN (Support for Storage features).'
   control_functions: [recovery]
   cost: low
+- id: flow-private-connectivity
+  name: Private Connectivity for Data Flows
+  description: 'Reach each service over a Private Endpoint and resolve its name through a private DNS zone, and disable the public network path where the service supports it. Verify that clients validate the service certificate. Verification: check that the service''s publicNetworkAccess is Disabled, that a private endpoint exists, and that the DNS zone resolves the service name to a private address. Quelle: Learn: Azure Private Link and private endpoints; MCSB v2 NS-2.'
+  control_functions: [preventive]
+  cost: medium
 - id: fw-diagnostic-logs
   name: Diagnoseprotokolle der Azure Firewall weiterleiten
   description: 'Alle Firewall-Logkategorien an Log Analytics senden und überwachen. Quelle: Zero-Trust-Recommendations-Azure-Firewall (Diagnostic logging is enabled).'
