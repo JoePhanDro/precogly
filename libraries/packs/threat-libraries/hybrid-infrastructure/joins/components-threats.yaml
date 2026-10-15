@@ -115,17 +115,17 @@ mappings:
     applies_to: component
   - threat: ad-ds-dc-print-spooler-coercion
     applies_to: component
-  - threat: azure/vm-management-port-exposure
+  - threat: azure/azure-virtual-machine-public-management-exposure
     applies_to: component
-  - threat: azure/vm-unpatched-os-exploitation
+  - threat: azure/azure-virtual-machine-unpatched
     applies_to: component
-  - threat: azure/vm-no-endpoint-protection
+  - threat: azure/azure-virtual-machine-no-endpoint-protection
     applies_to: component
-  - threat: azure/vm-configuration-drift
+  - threat: azure/azure-virtual-machine-configuration-drift
     applies_to: component
-  - threat: azure/vm-disk-snapshot-exfiltration
+  - threat: azure/azure-virtual-machine-disk-exfiltration
     applies_to: component
-  - threat: azure/vm-extension-code-execution
+  - threat: azure/azure-virtual-machine-run-command-abuse
     applies_to: component
-  - threat: azure/vm-backup-destruction
+  - threat: azure/azure-virtual-machine-ransomware
     applies_to: component
