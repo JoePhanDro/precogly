@@ -41,7 +41,8 @@ canvas_data:
       style: { width: 150, height: 260 }
       data:
         label: "Corporate LAN"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Corporate VLAN"
 
     - id: "tz-server"
@@ -51,7 +52,8 @@ canvas_data:
       style: { width: 140, height: 540 }
       data:
         label: "Server Zone"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Server VLAN with firewall rules"
 
     - id: "process-adds-onprem"
@@ -143,7 +145,8 @@ canvas_data:
       style: { width: 160, height: 540 }
       data:
         label: "Hub VNet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Azure VNet with gateway subnet"
 
     - id: "tz-identity"
@@ -153,7 +156,8 @@ canvas_data:
       style: { width: 160, height: 260 }
       data:
         label: "Identity Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Azure VNet, NSG restricted"
 
     - id: "tz-files"
@@ -163,7 +167,8 @@ canvas_data:
       style: { width: 160, height: 240 }
       data:
         label: "Private Endpoints"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private Endpoints"
 
     - id: "process-gateway"
@@ -236,7 +241,7 @@ canvas_data:
         label: "Read and write files"
         protocol: "SMB 3.x (encrypted)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "actor-employee"
@@ -264,7 +269,7 @@ canvas_data:
         label: "Identity sync"
         protocol: "HTTPS (outbound)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-5"
       source: "process-adds-onprem"
@@ -274,7 +279,7 @@ canvas_data:
         label: "AD replication over ExpressRoute"
         protocol: "RPC / LDAP over private path"
         encrypted: true
-        authenticated: true
+        authentication: ["kerberos"]
 
     - id: "edge-6"
       source: "process-firewall-onprem"
@@ -311,7 +316,7 @@ canvas_data:
         label: "Access cloud file share"
         protocol: "SMB 3.x over private endpoint"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-10"
       source: "actor-admin"
@@ -321,7 +326,7 @@ canvas_data:
         label: "Directory administration"
         protocol: "LDAP / RDP over Bastion"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-11"
       source: "process-entra-id"
