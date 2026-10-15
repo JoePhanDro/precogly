@@ -51,7 +51,8 @@ canvas_data:
       style: { width: 170, height: 260 }
       data:
         label: "Edge"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "Azure Front Door with WAF"
 
     - id: "tz-frontend"
@@ -61,7 +62,8 @@ canvas_data:
       style: { width: 170, height: 260 }
       data:
         label: "Frontend Hosting"
-        zoneType: "zoneInternet"
+        zoneType: "trust"
+        trustLevel: 0
         technology: "Static website storage"
 
     - id: "tz-backend"
@@ -71,7 +73,8 @@ canvas_data:
       style: { width: 170, height: 540 }
       data:
         label: "Backend Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "App Service VNet integration"
 
     - id: "tz-data"
@@ -81,7 +84,8 @@ canvas_data:
       style: { width: 140, height: 540 }
       data:
         label: "Data Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private Endpoints"
 
     # ---- Edge and frontend ----
@@ -208,7 +212,7 @@ canvas_data:
         label: "Sign-in (OIDC, PKCE)"
         protocol: "OAuth 2.0 / OIDC"
         encrypted: true
-        authenticated: true
+        authentication: ["oidc"]
 
     - id: "edge-4"
       source: "process-frontdoor"
@@ -218,7 +222,7 @@ canvas_data:
         label: "API calls with bearer token"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["bearer"]
 
     - id: "edge-5"
       source: "process-api"
@@ -237,7 +241,7 @@ canvas_data:
         label: "Queries"
         protocol: "TDS over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-7"
       source: "process-api"
@@ -247,7 +251,7 @@ canvas_data:
         label: "Upload and read files"
         protocol: "HTTPS (Entra ID)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-8"
       source: "process-identity"
@@ -257,7 +261,7 @@ canvas_data:
         label: "Read secrets via managed identity"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-9"
       source: "process-worker"
@@ -267,7 +271,7 @@ canvas_data:
         label: "Batch updates"
         protocol: "TDS over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-10"
       source: "process-api"
@@ -286,4 +290,4 @@ canvas_data:
         label: "Configuration changes"
         protocol: "HTTPS (Entra ID, PIM)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]

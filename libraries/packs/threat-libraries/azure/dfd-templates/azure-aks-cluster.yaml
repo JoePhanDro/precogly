@@ -50,7 +50,8 @@ canvas_data:
       style: { width: 180, height: 260 }
       data:
         label: "Ingress Subnet"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "Application Gateway with WAF v2"
 
     - id: "tz-cluster"
@@ -60,7 +61,8 @@ canvas_data:
       style: { width: 310, height: 540 }
       data:
         label: "Node Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Azure CNI, private cluster"
 
     - id: "tz-platform"
@@ -70,7 +72,8 @@ canvas_data:
       style: { width: 200, height: 540 }
       data:
         label: "Platform Services"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private Endpoints"
 
     # ---- Ingress ----
@@ -188,7 +191,7 @@ canvas_data:
         label: "HTTPS requests"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "process-appgw"
@@ -207,7 +210,7 @@ canvas_data:
         label: "kubectl commands"
         protocol: "HTTPS (Entra ID, PIM)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-4"
       source: "actor-pipeline"
@@ -217,7 +220,7 @@ canvas_data:
         label: "Apply manifests"
         protocol: "HTTPS (workload identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-5"
       source: "process-userpool"
@@ -227,7 +230,7 @@ canvas_data:
         label: "Node and pod registration"
         protocol: "HTTPS (kubelet TLS bootstrap)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-6"
       source: "datastore-acr"
@@ -237,7 +240,7 @@ canvas_data:
         label: "Image pull"
         protocol: "HTTPS (kubelet identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-7"
       source: "process-workloadid"
@@ -247,7 +250,7 @@ canvas_data:
         label: "Read secrets via CSI driver"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-8"
       source: "process-userpool"
@@ -257,7 +260,7 @@ canvas_data:
         label: "Application data access"
         protocol: "HTTPS over private endpoint"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-9"
       source: "process-defender"

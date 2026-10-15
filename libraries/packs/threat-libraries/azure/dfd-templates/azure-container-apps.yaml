@@ -42,7 +42,8 @@ canvas_data:
       style: { width: 170, height: 260 }
       data:
         label: "Edge"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "Azure Front Door with WAF"
 
     - id: "tz-env"
@@ -52,7 +53,8 @@ canvas_data:
       style: { width: 300, height: 540 }
       data:
         label: "Container Apps Environment Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Azure VNet, workload profile subnet"
 
     - id: "tz-data"
@@ -62,7 +64,8 @@ canvas_data:
       style: { width: 220, height: 540 }
       data:
         label: "Data Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private Endpoints"
 
     # ---- Edge ----
@@ -181,7 +184,7 @@ canvas_data:
         label: "API requests"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "process-frontdoor"
@@ -200,7 +203,7 @@ canvas_data:
         label: "Queries"
         protocol: "PostgreSQL over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-4"
       source: "process-api"
@@ -210,7 +213,7 @@ canvas_data:
         label: "Cache reads and writes"
         protocol: "TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-5"
       source: "process-api"
@@ -220,7 +223,7 @@ canvas_data:
         label: "Publish job message"
         protocol: "AMQP over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-6"
       source: "datastore-bus"
@@ -230,7 +233,7 @@ canvas_data:
         label: "Deliver job message"
         protocol: "AMQP over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-7"
       source: "process-identity"
@@ -240,7 +243,7 @@ canvas_data:
         label: "Read secrets via managed identity"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-8"
       source: "process-registry"
@@ -250,7 +253,7 @@ canvas_data:
         label: "Pull image"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-9"
       source: "actor-developer"
@@ -260,7 +263,7 @@ canvas_data:
         label: "Push signed image"
         protocol: "HTTPS (Entra ID)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-10"
       source: "process-api"

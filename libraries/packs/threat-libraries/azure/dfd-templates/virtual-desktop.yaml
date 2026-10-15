@@ -39,7 +39,8 @@ canvas_data:
       style: { width: 300, height: 320 }
       data:
         label: "Microsoft-Managed Control Plane"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         trustLevel: 40
         zoneColor: "#f59e0b"
         technology: "Azure Virtual Desktop service"
@@ -84,7 +85,8 @@ canvas_data:
       style: { width: 260, height: 400 }
       data:
         label: "Hub VNet (Connectivity)"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         trustLevel: 60
         zoneColor: "#3b82f6"
         technology: "Azure VNet (hub)"
@@ -128,7 +130,8 @@ canvas_data:
       style: { width: 260, height: 250 }
       data:
         label: "AVD Spoke - Session Host Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         trustLevel: 75
         zoneColor: "#22c55e"
         technology: "Azure VNet (spoke) + NSG"
@@ -153,7 +156,8 @@ canvas_data:
       style: { width: 240, height: 430 }
       data:
         label: "Private Endpoint Subnet (Data)"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         trustLevel: 90
         zoneColor: "#8b5cf6"
         technology: "Azure Private Link"
@@ -200,7 +204,8 @@ canvas_data:
       style: { width: 260, height: 150 }
       data:
         label: "Management & Monitoring"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         trustLevel: 85
         zoneColor: "#14b8a6"
         technology: "Azure Monitor"
@@ -225,7 +230,8 @@ canvas_data:
       style: { width: 550, height: 190 }
       data:
         label: "Deployment Pipeline"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         trustLevel: 50
         zoneColor: "#f97316"
         technology: "CI/CD runners"
@@ -251,7 +257,7 @@ canvas_data:
         label: "Sign-in (MFA / Conditional Access)"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oidc"]
         dataClassification: ["PII"]
 
     - id: "edge-user-avd"
@@ -262,7 +268,7 @@ canvas_data:
         label: "Feed discovery & RDP session (clipboard, drive redirection)"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
         dataClassification: ["Confidential"]
 
     - id: "edge-avd-entra"
@@ -273,7 +279,7 @@ canvas_data:
         label: "Token validation"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-avd-session-hosts"
       source: "process-avd"
@@ -283,7 +289,7 @@ canvas_data:
         label: "Brokered RDP session"
         protocol: "Custom"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
         dataClassification: ["Confidential"]
         description: "Carried over the outbound reverse-connect channel; no inbound ports required"
 
@@ -295,7 +301,7 @@ canvas_data:
         label: "Reverse connect & agent heartbeat (443)"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     # Session host data access
     - id: "edge-session-hosts-fslogix"
@@ -306,7 +312,7 @@ canvas_data:
         label: "Profile container mount"
         protocol: "SMB 3.1.1"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
         dataClassification: ["PII", "Confidential"]
 
     - id: "edge-session-hosts-sql"
@@ -317,7 +323,7 @@ canvas_data:
         label: "LOB app queries"
         protocol: "SQL"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
         dataClassification: ["Customer Data"]
 
     - id: "edge-session-hosts-dns"
@@ -356,7 +362,7 @@ canvas_data:
         label: "Admin session via Azure portal"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-bastion-session-hosts"
       source: "process-bastion"
@@ -366,7 +372,7 @@ canvas_data:
         label: "RDP to session host"
         protocol: "TCP"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     # Deployment
     - id: "edge-pipeline-avd"
@@ -377,7 +383,7 @@ canvas_data:
         label: "Provision host pool, app groups & registration token"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-pipeline-keyvault"
       source: "process-pipeline"
@@ -387,7 +393,7 @@ canvas_data:
         label: "Store registration token"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
         dataClassification: ["Confidential"]
 
     - id: "edge-pipeline-session-hosts"
@@ -398,7 +404,7 @@ canvas_data:
         label: "Deploy VMs from golden image & register agent"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-session-hosts-keyvault"
       source: "process-session-hosts"
@@ -408,7 +414,7 @@ canvas_data:
         label: "Fetch registration token at provisioning"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     # Monitoring
     - id: "edge-session-hosts-logs"
@@ -419,7 +425,7 @@ canvas_data:
         label: "Security events (Azure Monitor Agent)"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-avd-logs"
       source: "process-avd"
@@ -429,7 +435,7 @@ canvas_data:
         label: "WVD connection & management diagnostics"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-firewall-logs"
       source: "process-firewall"
@@ -439,4 +445,4 @@ canvas_data:
         label: "Firewall & DNS logs"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]

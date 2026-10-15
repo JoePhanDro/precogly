@@ -49,7 +49,8 @@ canvas_data:
       style: { width: 160, height: 540 }
       data:
         label: "Application Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Azure VNet"
 
     - id: "tz-db-zone1"
@@ -59,7 +60,8 @@ canvas_data:
       style: { width: 130, height: 300 }
       data:
         label: "Availability Zone 1"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private access, delegated subnet"
 
     - id: "tz-db-zone2"
@@ -69,7 +71,8 @@ canvas_data:
       style: { width: 130, height: 300 }
       data:
         label: "Availability Zone 2"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private access, delegated subnet"
 
     - id: "tz-mgmt"
@@ -79,7 +82,8 @@ canvas_data:
       style: { width: 280, height: 210 }
       data:
         label: "Management Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Azure Bastion"
 
     # ---- Primary cluster ----
@@ -185,7 +189,7 @@ canvas_data:
         label: "Application connections"
         protocol: "PostgreSQL over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "process-appservices"
@@ -195,7 +199,7 @@ canvas_data:
         label: "Reads and writes"
         protocol: "PostgreSQL over TLS (private access)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-3"
       source: "datastore-primary"
@@ -223,7 +227,7 @@ canvas_data:
         label: "Read-only queries"
         protocol: "PostgreSQL over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-6"
       source: "datastore-primary"
@@ -233,7 +237,7 @@ canvas_data:
         label: "Fetch CMK for encryption"
         protocol: "HTTPS (managed identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-7"
       source: "datastore-primary"
@@ -243,7 +247,7 @@ canvas_data:
         label: "Scheduled and long-term backup"
         protocol: "HTTPS (backup extension)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-8"
       source: "actor-dba"
@@ -253,7 +257,7 @@ canvas_data:
         label: "Admin session"
         protocol: "HTTPS (Bastion)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-9"
       source: "process-bastion"
@@ -263,7 +267,7 @@ canvas_data:
         label: "Schema and role changes"
         protocol: "PostgreSQL over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-10"
       source: "datastore-primary"

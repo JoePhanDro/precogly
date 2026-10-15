@@ -51,7 +51,8 @@ canvas_data:
       style: { width: 210, height: 540 }
       data:
         label: "Web Subnet"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "VNet, NSG allows 443 from load balancer only"
 
     - id: "tz-app"
@@ -61,7 +62,8 @@ canvas_data:
       style: { width: 210, height: 540 }
       data:
         label: "Application Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "VNet, NSG allows traffic from web subnet only"
 
     - id: "tz-data"
@@ -71,7 +73,8 @@ canvas_data:
       style: { width: 230, height: 300 }
       data:
         label: "Database Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "VNet, NSG allows 1433 from application subnet only"
 
     - id: "tz-mgmt"
@@ -81,7 +84,8 @@ canvas_data:
       style: { width: 230, height: 210 }
       data:
         label: "Management Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Azure Bastion subnet"
 
     # ---- Web tier ----
@@ -200,7 +204,7 @@ canvas_data:
         label: "HTTPS requests"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "process-lb"
@@ -219,7 +223,7 @@ canvas_data:
         label: "Application calls"
         protocol: "HTTPS (internal certificate)"
         encrypted: true
-        authenticated: true
+        authentication: ["certificate"]
 
     - id: "edge-4"
       source: "process-app"
@@ -229,7 +233,7 @@ canvas_data:
         label: "SQL queries"
         protocol: "TDS over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-5"
       source: "process-batch"
@@ -239,7 +243,7 @@ canvas_data:
         label: "Nightly batch writes"
         protocol: "TDS over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-6"
       source: "datastore-sql"
@@ -258,7 +262,7 @@ canvas_data:
         label: "Read connection secrets"
         protocol: "HTTPS (managed identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-8"
       source: "actor-admin"
@@ -268,7 +272,7 @@ canvas_data:
         label: "Admin session"
         protocol: "HTTPS (Bastion)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-9"
       source: "process-bastion"
@@ -278,7 +282,7 @@ canvas_data:
         label: "RDP to VM"
         protocol: "RDP over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-10"
       source: "actor-admin"
@@ -288,7 +292,7 @@ canvas_data:
         label: "Administrator sign-in"
         protocol: "OAuth 2.0 / OIDC"
         encrypted: true
-        authenticated: true
+        authentication: ["oidc"]
 
     - id: "edge-11"
       source: "datastore-sql"
@@ -298,7 +302,7 @@ canvas_data:
         label: "Scheduled backups"
         protocol: "HTTPS (backup extension)"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-12"
       source: "process-app"

@@ -50,7 +50,8 @@ canvas_data:
       style: { width: 220, height: 300 }
       data:
         label: "Gateway Zone"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "Azure API Management"
 
     # Trust boundary - Functions (inside sb-azure)
@@ -61,7 +62,8 @@ canvas_data:
       style: { width: 400, height: 300 }
       data:
         label: "Compute Zone"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Azure Functions Premium"
 
     # Trust boundary - Data (inside sb-azure)
@@ -72,7 +74,8 @@ canvas_data:
       style: { width: 260, height: 420 }
       data:
         label: "Data Zone"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Azure Private Endpoints"
 
     # Gateway components (inside tb-gateway)
@@ -211,7 +214,7 @@ canvas_data:
         label: "API Requests"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-scheduler-timer"
       source: "actor-scheduler"
@@ -316,7 +319,7 @@ canvas_data:
         label: "Fetch Secrets"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     # Monitoring
     - id: "edge-funcapi-appinsights"

@@ -51,7 +51,8 @@ canvas_data:
       style: { width: 200, height: 260 }
       data:
         label: "AVD Control Plane"
-        zoneType: "zoneInternet"
+        zoneType: "trust"
+        trustLevel: 0
         technology: "Azure Virtual Desktop service"
 
     - id: "tz-session"
@@ -61,7 +62,8 @@ canvas_data:
       style: { width: 230, height: 520 }
       data:
         label: "Session Host Subnet"
-        zoneType: "zoneInternal"
+        zoneType: "trust"
+        trustLevel: 50
         technology: "Azure Virtual Network, delegated subnet"
 
     - id: "tz-platform"
@@ -71,7 +73,8 @@ canvas_data:
       style: { width: 210, height: 520 }
       data:
         label: "Platform Subnet"
-        zoneType: "zoneRestricted"
+        zoneType: "trust"
+        trustLevel: 75
         technology: "Private Endpoints"
 
     - id: "tz-egress"
@@ -81,7 +84,8 @@ canvas_data:
       style: { width: 200, height: 230 }
       data:
         label: "Egress Zone"
-        zoneType: "zoneDmz"
+        zoneType: "trust"
+        trustLevel: 25
         technology: "Azure Firewall"
 
     # ---- Control plane components ----
@@ -200,7 +204,7 @@ canvas_data:
         label: "Discover desktops"
         protocol: "HTTPS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-2"
       source: "process-workspace"
@@ -210,7 +214,7 @@ canvas_data:
         label: "Sign-in and Conditional Access"
         protocol: "OAuth 2.0 / OIDC"
         encrypted: true
-        authenticated: true
+        authentication: ["oidc"]
 
     - id: "edge-3"
       source: "actor-user"
@@ -220,7 +224,7 @@ canvas_data:
         label: "Session stream (reverse connect)"
         protocol: "HTTPS / RDP over TLS"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-4"
       source: "process-hostpool"
@@ -248,7 +252,7 @@ canvas_data:
         label: "Mount profile container"
         protocol: "SMB 3.x over private endpoint"
         encrypted: true
-        authenticated: true
+        authentication: ["unspecified"]
 
     - id: "edge-7"
       source: "process-hostpool"
@@ -258,7 +262,7 @@ canvas_data:
         label: "Read join and admin secrets"
         protocol: "HTTPS (managed identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-8"
       source: "process-sessionhosts"
@@ -286,7 +290,7 @@ canvas_data:
         label: "Power state and capacity"
         protocol: "HTTPS (service identity)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
 
     - id: "edge-11"
       source: "actor-admin"
@@ -296,4 +300,4 @@ canvas_data:
         label: "Manage host pool and images"
         protocol: "HTTPS (Entra ID, PIM)"
         encrypted: true
-        authenticated: true
+        authentication: ["oauth2"]
